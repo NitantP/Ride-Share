@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>newUser</title>
 </head>
 <body>
 	<%
@@ -15,12 +15,11 @@
 
 		
 		//Create a connection string
-		String url = "jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/?user=cs336project";
+		String url = "jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
 		//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 		Class.forName("com.mysql.jdbc.Driver");
-
 		//Create a connection to your DB
-		Connection con = DriverManager.getConnection(url, "student", "student");
+		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
 
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
@@ -30,26 +29,31 @@
 		String newUsername = request.getParameter("username");
 		String newPassword = request.getParameter("password");
 		String newEmail = request.getParameter("email");
-
-		//float price = Float.valueOf(request.getParameter("price"));
 		
-		//Make an insert statement for the Sells table:
-		String insert = "INSERT INTO users(ruid, username, password, email)"
+		//Make an insert statement for the Users table:
+		String insert = "INSERT INTO userlist(RUID, Username, Password, Email)"
 				+ "VALUES (?, ?, ?, ?)";
 
 		PreparedStatement ps = con.prepareStatement(insert);
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-		ps.setString(1, newUsername);
-		ps.setString(2, newPassword);
-		ps.setString(2, newEmail);
-		ps.setString(2, newRUID);
+		ps.setString(1, newRUID);
+		ps.setString(2, newUsername);
+		ps.setString(3, newPassword);
+		ps.setString(4, newEmail);
+		
 		//Run the query against the DB
 		ps.executeUpdate();
 		
+		out.print("Insert successful!");
+		out.print("RUID: " + newRUID + "<br>" +
+				  "Username: " + newUsername + "<br>" +
+				  "Password: " + newPassword + "<br>" +
+				  "Email: " + newEmail + "<br>");
+				  
 		con.close();
 	}
 	catch (Exception ex) {
-		out.print("insert failed");
+		out.print("Insert failed!");
 	}
 	%>
 </body>
