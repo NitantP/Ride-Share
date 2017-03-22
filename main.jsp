@@ -14,7 +14,7 @@
 <% out.println("Ride Share (TEAM 14)"); %> 
 
 <br>
-	<form method="post" action="checkUser.jsp">
+	<form method="post" action="verifyUser.jsp">
 	<table>
 	<tr>    
 	<td>Username:</td><td><input type="text" name="username"></td>
