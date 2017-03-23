@@ -27,12 +27,19 @@
 		//Get the password from the main.jsp
 		String pw = request.getParameter("password");
 		//Make a SELECT query from the users table with the username and password matches with the input
-		String str = "SELECT * FROM userlist WHERE Username = " + un + " and Password = " + pw;
+		String str = "SELECT * FROM userlist WHERE Username = \"" + un + "\" AND Password = \"" + pw + "\";";
+		out.print("" + str + "<br>");
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 
+		if(result.next()){
+			response.sendRedirect("index.jsp");
+		} else {
+			response.sendRedirect("main.jsp");
+		}
 		
 		con.close();
+		
 		}	catch (Exception ex) {
 			out.print("failed");	
 		}
