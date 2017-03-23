@@ -33,10 +33,10 @@
 		ResultSet result = stmt.executeQuery(str);
 
 		if(result.next()){
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("homepage.jsp");
 		} else {
 			request.setAttribute("loginFailed", "Invalid username or password!");
-            RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
 		}
 		

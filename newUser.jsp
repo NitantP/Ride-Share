@@ -44,17 +44,19 @@
 		//Run the query against the DB
 		ps.executeUpdate();
 		
-		out.print("Insert successful!");
+		out.print("Insert successful! <br>");
 		out.print("RUID: " + newRUID + "<br>" +
 				  "Username: " + newUsername + "<br>" +
 				  "Password: " + newPassword + "<br>" +
-				  "Email: " + newEmail + "<br>");
-				  
+				  "Email: " + newEmail + "<br>");		  
 		con.close();
 	}
 	catch (Exception ex) {
 		out.print("Insert failed!");
 	}
 	%>
+	
+	<p><a href="index.jsp">Return to home (login) page</a></p>
+	
 </body>
 </html>
