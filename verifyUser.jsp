@@ -35,15 +35,19 @@
 		if(result.next()){
 			response.sendRedirect("index.jsp");
 		} else {
-			response.sendRedirect("main.jsp");
+			request.setAttribute("loginFailed", "Invalid username or password!");
+            RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+            rd.forward(request, response);
 		}
 		
 		con.close();
 		
 		}	catch (Exception ex) {
-			out.print("failed");	
+			out.print("System failure");	
 		}
 %>
+
+
 
 </body>
 </html>

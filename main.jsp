@@ -11,13 +11,20 @@
 </head>
 <body>
 
-<% out.println("Ride Share (TEAM 14)"); %> 
+Ride Share (TEAM 14) 
+<br>
 
 <br>
 	<form method="post" action="verifyUser.jsp">
 	<table>
 	<tr>    
-	<td>Username:</td><td><input type="text" name="username"></td>
+	<td>Username:</td><td><input type="text" name="username"> 
+	<%
+      if(request.getAttribute("loginFailed") != null){
+   		 out.print(request.getAttribute("loginFailed"));  
+      } 
+    %> 
+    </td>
 	</tr>
 	<tr>
 	<td>Password:</td><td><input type="password" name="password"></td>
@@ -46,6 +53,7 @@
 	<input type="submit" value="Register">
 	</form>
 <br>
+
 
 </body>
 </html>
