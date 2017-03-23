@@ -11,14 +11,31 @@
 </head>
 <body>
 <% 
-
+		List<String> list = new ArrayList<String>();
+		
+		try {
 		//Create a connection string
 		String url = "jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
 		//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 		Class.forName("com.mysql.jdbc.Driver");
 		//Create a connection to your DB
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
+		
+		Statement stmt = con.createStatement();
+		//Get the username from the main.jsp
+		String un = request.getParameter("username");
+		//Get the password from the main.jsp
+		String pw = request.getParameter("password");
+		//Make a SELECT query from the users table with the username and password matches with the input
+		String str = "SELECT * FROM userlist WHERE Username = " + un + " and Password = " + pw;
+		//Run the query against the database.
+		ResultSet result = stmt.executeQuery(str);
 
+		
+		con.close();
+		}	catch (Exception ex) {
+			out.print("failed");	
+		}
 %>
 
 </body>
