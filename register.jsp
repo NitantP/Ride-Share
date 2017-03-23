@@ -13,26 +13,6 @@
 
 Ride Share (TEAM 14) 
 <br>
-
-<br>
-	<form method="post" action="verifyUser.jsp">
-	<table>
-	<tr>    
-	<td>Username:</td><td><input type="text" name="username"> 
-	<%
-      if(request.getAttribute("loginFailed") != null){
-   		 out.print(request.getAttribute("loginFailed"));  
-      } 
-    %> 
-    </td>
-	</tr>
-	<tr>
-	<td>Password:</td><td><input type="password" name="password"></td>
-	</tr>
-	</table>
-	<input type="submit" value="Login"> <input type="checkbox" name="persistentlogin" value="unchecked"> Keep me logged in
-	</form>
-<br>
 									  
 <br>
 	<form method="post" action="newUser.jsp">
