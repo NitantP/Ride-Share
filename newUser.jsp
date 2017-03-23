@@ -12,7 +12,6 @@
 <body>
 	<%
 	try {
-
 		
 		//Create a connection string
 		String url = "jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
@@ -20,20 +19,18 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		//Create a connection to your DB
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
-
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
-
 		//Get parameters from the HTML form at the main.jsp		
 		String newRUID = request.getParameter("ruid");
 		String newUsername = request.getParameter("username");
 		String newPassword = request.getParameter("password");
 		String newEmail = request.getParameter("email");
 		
+		
 		//Make an insert statement for the Users table:
 		String insert = "INSERT INTO userlist(RUID, Username, Password, Email)"
 				+ "VALUES (?, ?, ?, ?)";
-
 		PreparedStatement ps = con.prepareStatement(insert);
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		ps.setString(1, newRUID);
@@ -41,14 +38,58 @@
 		ps.setString(3, newPassword);
 		ps.setString(4, newEmail);
 		
-		//Run the query against the DB
-		ps.executeUpdate();
+		boolean isDigit = true;
+		boolean error = false;
+	    int size = newRUID.length();
+
+	    for (int i = 0; i < size; i++) 
+	    {
+	        if (!Character.isDigit(newRUID.charAt(i))) 
+	        {
+	        	isDigit = false;
+	        }
+	    }
+
+
+		if(newRUID.length() != 9 || !isDigit)
+		{
+				request.setAttribute("RUIDFailed", "Invalid RUID");
+				error = true;
+		}
 		
-		out.print("Insert successful! <br>");
-		out.print("RUID: " + newRUID + "<br>" +
-				  "Username: " + newUsername + "<br>" +
-				  "Password: " + newPassword + "<br>" +
-				  "Email: " + newEmail + "<br>");		  
+		//jc1997@rutgers.edu
+		if (!newEmail.toLowerCase().contains("@rutgers.edu") || newEmail.length() - newEmail.indexOf("@rutgers.edu") != 12)
+		{
+			request.setAttribute("emailFailed", "Invalid Email");
+			error = true;
+		}
+		
+		if(newUsername.isEmpty())
+		{
+			request.setAttribute("userFailed", "Invalid Username");
+			error = true;
+		}
+		if(newPassword.isEmpty())
+		{
+			request.setAttribute("passFailed", "Invalid password");
+			error = true;
+		}
+		
+		if (error)
+		{
+			RequestDispatcher ed = request.getRequestDispatcher("register.jsp");
+        	ed.forward(request, response);
+		}
+
+			//Run the query against the DB
+			ps.executeUpdate();
+			
+			out.print("Insert successful! <br>");
+			out.print("RUID: " + newRUID + "<br>" +
+					  "Username: " + newUsername + "<br>" +
+					  "Password: " + newPassword + "<br>" +
+					  "Email: " + newEmail + "<br>");	
+		
 		con.close();
 	}
 	catch (Exception ex) {
@@ -56,7 +97,7 @@
 	}
 	%>
 	
-	<p><a href="index.jsp">Return to home (login) page</a></p>
+	<p><a href="register.jsp">Return to home (register) page</a></p>
 	
 </body>
 </html>

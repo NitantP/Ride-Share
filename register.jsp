@@ -18,16 +18,40 @@ Ride Share (TEAM 14)
 	<form method="post" action="newUser.jsp">
 	<table>
 	<tr>    
-	<td>Username:</td><td><input type="text" name="username"></td>
+	<td>Username:</td><td><input type="text" name="username">
+	<%
+      if(request.getAttribute("userFailed") != null){
+   		 out.print(request.getAttribute("userFailed"));  
+      } 
+    %>
+	</td>
 	</tr>
 	<tr>
-	<td>Password:</td><td><input type="password" name="password"></td>
+	<td>Password:</td><td><input type="password" name="password">
+	<%
+      if(request.getAttribute("passFailed") != null){
+   		 out.print(request.getAttribute("passFailed"));  
+      } 
+    %>
+	</td>
 	</tr>
 	<tr>
-	<td>E-mail:</td><td><input type="text" name="email"></td>
+	<td>E-mail:</td><td><input type="text" name="email">
+	<%
+      if(request.getAttribute("emailFailed") != null){
+   		 out.print(request.getAttribute("emailFailed"));  
+      } 
+    %>
+	</td>
 	</tr>
 	<tr>
-	<td>RUID:</td><td><input type="text" name="ruid"></td>
+	<td>RUID:</td><td><input type="text" name="ruid">
+	<%
+      if(request.getAttribute("RUIDFailed") != null){
+   		 out.print(request.getAttribute("RUIDFailed"));  
+      } 
+    %>
+	</td>
 	</tr>
 	</table>
 	<input type="submit" value="Register">
