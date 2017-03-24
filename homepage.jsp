@@ -15,4 +15,6 @@ Welcome to Ride Share! If you're seeing this, you logged in correctly!
 <br>
 **WARNING: Site still under construction!**
 
+<p><a href="index.jsp">logout</a></p>
+
 </body>

@@ -41,7 +41,7 @@
 		boolean isDigit = true;
 		boolean error = false;
 	    int size = newRUID.length();
-
+	    
 	    for (int i = 0; i < size; i++) 
 	    {
 	        if (!Character.isDigit(newRUID.charAt(i))) 
@@ -53,25 +53,25 @@
 
 		if(newRUID.length() != 9 || !isDigit)
 		{
-				request.setAttribute("RUIDFailed", "Invalid RUID");
+				request.setAttribute("RUIDFailed", "Invalid RUID (must be 9 digits!)");
 				error = true;
 		}
 		
 		//jc1997@rutgers.edu
 		if (!newEmail.toLowerCase().contains("@rutgers.edu") || newEmail.length() - newEmail.indexOf("@rutgers.edu") != 12)
 		{
-			request.setAttribute("emailFailed", "Invalid Email");
+			request.setAttribute("emailFailed", "Invalid email (must be an @rutgers.edu address!)");
 			error = true;
 		}
 		
 		if(newUsername.isEmpty())
 		{
-			request.setAttribute("userFailed", "Invalid Username");
+			request.setAttribute("userFailed", "Invalid username (cannot be blank!)");
 			error = true;
 		}
 		if(newPassword.isEmpty())
 		{
-			request.setAttribute("passFailed", "Invalid password");
+			request.setAttribute("passFailed", "Invalid password (cannot be blank!)");
 			error = true;
 		}
 		
@@ -97,7 +97,7 @@
 	}
 	%>
 	
-	<p><a href="register.jsp">Return to home (register) page</a></p>
+	<p><a href="index.jsp">Return to main (login) page</a></p>
 	
 </body>
 </html>

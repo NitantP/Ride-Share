@@ -58,6 +58,8 @@ Ride Share (TEAM 14)
 	</form>
 <br>
 
+<p><a href="index.jsp">Back to main (login) page</a></p>
+
 
 </body>
 </html>
