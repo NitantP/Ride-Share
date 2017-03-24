@@ -58,7 +58,7 @@
 		}
 		
 		//jc1997@rutgers.edu
-		if (!newEmail.toLowerCase().contains("@rutgers.edu") || newEmail.length() - newEmail.indexOf("@rutgers.edu") != 12)
+		if (!newEmail.toLowerCase().contains("@rutgers.edu") || newEmail.substring(newEmail.indexOf("@")).equals("rutgers.edu"))
 		{
 			request.setAttribute("emailFailed", "Invalid email (must be an @rutgers.edu address!)");
 			error = true;
