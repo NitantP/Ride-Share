@@ -11,18 +11,7 @@
 </head>
 <body>
 
-Welcome to Ride Share, ___! If you're seeing this, you logged in correctly!
-<br>
-**WARNING: Site still under construction!**
 
-<p><a href="testpage.jsp">test page (NOT PERMANENT, JUST TO SEE HOW SQL TABLES CAN BE DISPLAYED)</a></p>
-
-<p><a href="createRideOffer.jsp">Create ride offer</a></p>
-
-<p><a href="createRideRequest.jsp">Create ride request</a></p>
-
-<p><a href="userSettings.jsp">Settings</a></p>
-
-<p><a href="index.jsp">logout</a></p>
 
 </body>
+</html>
