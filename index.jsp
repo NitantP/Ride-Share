@@ -36,6 +36,6 @@ Welcome to the Ride Share website (TEAM 14)
 
 <p><a href="register.jsp">Register</a></p>
 
-<p><a href="https://github.com/NitantP/ride-share-login">GitHub Repository</a></p>
+<p><a href="https://github.com/NitantP/Ride-Share">GitHub Repository</a></p>
 
 </body>
