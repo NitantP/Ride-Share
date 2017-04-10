@@ -7,11 +7,46 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ride Share - Create Ride Offer</title>
+<title>Ride Share - Create Ride Offers</title>
 </head>
 <body>
 
+Ride Share (TEAM 14) 
+<br>
+									  
+<br>
+	<form method="post" action="newRideOffer.jsp">
+	<table>
+	<tr>    
+	<td>From:</td><td><input type="text" name="startinglocation">
+	</td>
+	</tr>
+	<tr>
+	<td>To:</td><td><input type="password" name="destination">
+	</td>
+	</tr>
+	<tr>
+	<td>Date:</td><td><input type="text" name="date">
+	</td>
+	</tr>
+	<tr>
+	<td>Time:</td><td><input type="text" name="time">
+	</td>
+	</tr>
+	<tr>
+	<td>Max Number of Passengers:</td><td><input type="text" name="maxpassengers">
+	</td>
+	</tr>
+	<tr>
+	<td>Recurring? </td><td><input type="checkbox" name="recurring" value="false">
+	</td>
+	</tr>
+	</table>
+	<input type="submit" value="Submit Request">
+	</form>
+<br>
 
+<p><a href="index.jsp">Back to main (login) page</a></p>
 
 </body>
 </html>
