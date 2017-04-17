@@ -23,20 +23,22 @@
 		Statement stmt = con.createStatement();
 		//Get parameters from the HTML form at the main.jsp		
 		String newRUID = request.getParameter("ruid");
+		String newEmail = request.getParameter("email");
 		String newUsername = request.getParameter("username");
 		String newPassword = request.getParameter("password");
-		String newEmail = request.getParameter("email");
-		
 		
 		//Make an insert statement for the Users table:
-		String insert = "INSERT INTO userlist(RUID, Username, Password, Email)"
-				+ "VALUES (?, ?, ?, ?)";
+		String insert = "INSERT INTO userlist(RUID, Email, Username, Password, RidesGiven, RidesTaken, AccountType)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(insert);
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		ps.setString(1, newRUID);
-		ps.setString(2, newUsername);
-		ps.setString(3, newPassword);
-		ps.setString(4, newEmail);
+		ps.setString(2, newEmail);
+		ps.setString(3, newUsername);
+		ps.setString(4, newPassword);
+		ps.setInt(5, 0);
+		ps.setInt(6, 0);
+		ps.setString(7, "User");
 		
 		boolean isDigit = true;
 		boolean error = false;
@@ -83,7 +85,7 @@
 
 			//Run the query against the DB
 			ps.executeUpdate();
-			
+
 			out.print("Insert successful! <br>");
 			out.print("RUID: " + newRUID + "<br>" +
 					  "Username: " + newUsername + "<br>" +
@@ -93,6 +95,7 @@
 		con.close();
 	}
 	catch (Exception ex) {
+		ex.printStackTrace();
 		out.print("Insert failed!");
 	}
 	%>

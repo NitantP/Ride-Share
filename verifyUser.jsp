@@ -31,9 +31,15 @@
 		out.print("" + str + "<br>");
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
-
+		
 		if(result.next()){
-			response.sendRedirect("homepage.jsp");
+			if(result.getString("AccountType").equals("Admin")){
+				response.sendRedirect("adminIndex.jsp");
+			} else if(result.getString("AccountType").equals("System Support")){
+				response.sendRedirect("systemIndex.jsp");
+			} else {
+				response.sendRedirect("homepage.jsp");
+			}
 		} else {
 			request.setAttribute("loginFailed", "Invalid username or password!");
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
