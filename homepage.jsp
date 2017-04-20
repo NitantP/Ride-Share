@@ -11,7 +11,8 @@
 </head>
 <body>
 
-Welcome to Ride Share, ___! If you're seeing this, you logged in correctly!
+Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! If you're seeing this, you logged in correctly!
+
 <br>
 **WARNING: Site still under construction!**
 

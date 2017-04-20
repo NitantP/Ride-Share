@@ -22,7 +22,7 @@ Ride Share (TEAM 14)
 	</td>
 	</tr>
 	<tr>
-	<td>To:</td><td><input type="password" name="destination">
+	<td>To:</td><td><input type="text" name="destination">
 	</td>
 	</tr>
 	<tr>
@@ -46,7 +46,7 @@ Ride Share (TEAM 14)
 	</form>
 <br>
 
-<p><a href="index.jsp">Back to main (login) page</a></p>
+<p><a href="homepage.jsp">Back to main page</a></p>
 
 </body>
 </html>
