@@ -25,13 +25,15 @@
 		
 		String currentun = (String)session.getAttribute("currentuser");
 		//Make a SELECT query from the users table with the username and password matches with the input
-		String str = "SELECT R.Username, R.Date, R.Time, R.NumPassengers, R.Origin, R.Destination FROM rideoffers O, riderequests R WHERE O.Username = \"" + currentun + "\" AND O.Origin = R.Origin AND O.Destination = R.Destination AND O.Time = R.Time AND O.Date = R.Date AND R.NumPassengers <= O.MaxPassengers GROUP BY O.offerID";
-		out.print("" + str + "<br>");
+		String str = "SELECT R.requestID, R.Username, R.Date, R.Time, R.NumPassengers, R.Origin, R.Destination FROM rideoffers O, riderequests R WHERE O.Username = \"" + currentun + "\" AND O.Origin = R.Origin AND O.Destination = R.Destination AND O.Time = R.Time AND O.Date = R.Date AND R.NumPassengers <= O.MaxPassengers GROUP BY O.offerID";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 %>
+
+<FORM method = "POST" ACTION = "sendInvites.jsp">
 		<table border="1">
 		<tr>
+		<td>Invite</td>
 		<td>Username</td>
 		<td>Date</td>
 		<td>Time</td>
@@ -46,6 +48,7 @@
 
 		%>
 		<tr>
+		<td><input type=checkbox name=invited VALUE = <%=result.getInt("requestID")%>></td>
 		<td><%=result.getString("Username") %></td>
 		<td><%=result.getString("Date") %></td>
 		<td><%=result.getString("Time") %></td>
@@ -59,6 +62,8 @@
 		}
 		%>
 		</table>
+		<input type=submit name=submit value="Send Invites">
+</FORM>
 		
 	<%
 		

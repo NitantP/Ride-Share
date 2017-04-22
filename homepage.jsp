@@ -22,6 +22,8 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! If you're see
 
 <p><a href="createRideRequest.jsp">Create ride request</a></p>
 
+<p><a href="availableMatches.jsp">See available matches to invite to ride (based on your offers)</a></p>
+
 <p><a href="userSettings.jsp">Settings</a></p>
 
 <p><a href="index.jsp">logout</a></p>
