@@ -30,24 +30,19 @@
 		String newMaxPassengers = request.getParameter("maxpassengers");
 		String checkRecurring = request.getParameter("recurring");
 		
-		out.println("test1");
-		
 		//Make an insert statement for the Ride Offers table:
 		String insert = "INSERT INTO rideoffers(Username, Date, Time, MaxPassengers, LicensePlate, Recurring, Origin, Destination)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(insert);
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-		ps.setString(1, "nitant");
-		out.println("test session");
+		ps.setString(1, (String)session.getAttribute("currentuser"));
 		ps.setString(2, newDate);
 		ps.setString(3, newTime);
 		ps.setString(4, newMaxPassengers);
 		ps.setString(5, "test");
-		ps.setString(6, "false");
+		ps.setString(6, checkRecurring);
 		ps.setString(7, newStart);
 		ps.setString(8, newDestination);
-		
-		out.println("test2");
 		
 		//INSERT INPUT CHECKS HERE
 		boolean error = false;
@@ -60,9 +55,8 @@
 
 			//Run the query against the DB
 			ps.executeUpdate();
-			out.println("test3");
 			
-			out.print("Insert successful! <br>");
+			out.print("Insert successful! <br><br>");
 			out.print("From: " + newStart + "<br>" +
 					  "To: " + newDestination + "<br>" +
 					  "Date: " + newDate + "<br>" +
