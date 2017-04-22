@@ -22,7 +22,7 @@ Ride Share (TEAM 14)
 	</td>
 	</tr>
 	<tr>
-	<td>To:</td><td><input type="password" name="destination">
+	<td>To:</td><td><input type="text" name="destination">
 	</td>
 	</tr>
 	<tr>

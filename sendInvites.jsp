@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to Ride Share</title>
-</head>
+</head>	
 <body>
 
 <%! String[] inviteList; %>
@@ -18,7 +18,7 @@
    inviteList = request.getParameterValues("invited");
    if (inviteList != null){
       for (int i = 0; i < inviteList.length; i++){
-         out.println ("<b>"+inviteList[i]+"<b>");
+         out.println ("<b>"+inviteList[i]+ "<b>");
       }
    }
    else out.println ("<b>None invited!<b>");

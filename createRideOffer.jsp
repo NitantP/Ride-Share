@@ -38,7 +38,7 @@ Ride Share (TEAM 14)
 	</td>
 	</tr>
 	<tr>
-	<td>Recurring? </td><td><input type="checkbox" name="recurring" value="false">
+	<td>Recurring? </td><td><input type="checkbox" name="recurring" value="true">
 	</td>
 	</tr>
 	</table>

@@ -31,15 +31,17 @@
 		String checkRecurring = request.getParameter("recurring");
 		
 		//Make an insert statement for the Ride Offers table:
-		String insert = "INSERT INTO rideOffers(From, To, Date, Time, Passengers)"
-				+ "VALUES (?, ?, ?, ?, ?)";
+		String insert = "INSERT INTO riderequests(Username, Date, Time, NumPassengers, Recurring, Origin, Destination)"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(insert);
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-		ps.setString(1, newStart);
-		ps.setString(2, newDestination);
-		ps.setString(3, newDate);
-		ps.setString(4, newTime);
-		ps.setString(5, newNumPassengers);
+		ps.setString(1, (String)session.getAttribute("currentuser"));
+		ps.setString(2, newDate);
+		ps.setString(3, newTime);
+		ps.setString(4, newNumPassengers);
+		ps.setString(5, checkRecurring);
+		ps.setString(6, newStart);
+		ps.setString(7, newDestination);
 		
 		//INSERT INPUT CHECKS HERE
 		boolean error = false;
@@ -53,16 +55,17 @@
 			//Run the query against the DB
 			ps.executeUpdate();
 			
-			out.print("Insert successful! <br>");
+			out.print("Insert successful! <br><br>");
 			out.print("From: " + newStart + "<br>" +
 					  "To: " + newDestination + "<br>" +
 					  "Date: " + newDate + "<br>" +
 					  "Time: " + newTime + "<br>" +
-					  "Max Passengers: " + newNumPassengers + "<br>");	
+					  "Passengers: " + newNumPassengers + "<br>");	
 		
 		con.close();
 	}
 	catch (Exception ex) {
+		ex.printStackTrace();
 		out.print("Insert failed!");
 	}
 	%>
