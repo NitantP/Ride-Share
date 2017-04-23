@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome to Ride Share</title>
+<title>Ride Share - Send Invites</title>
 </head>	
 <body>
 

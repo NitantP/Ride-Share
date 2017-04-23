@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome to Ride Share</title>
+<title>Ride Share - Available Matches</title>
 </head>
 <body>
 
@@ -24,6 +24,7 @@
 		Statement stmt = con.createStatement();
 		
 		String currentun = (String)session.getAttribute("currentuser");
+		
 		//Make a SELECT query from the users table with the username and password matches with the input
 		String str = "SELECT R.requestID, R.Username, R.Date, R.Time, R.NumPassengers, R.Origin, R.Destination FROM rideoffers O, riderequests R WHERE O.Username = \"" + currentun + "\" AND O.Origin = R.Origin AND O.Destination = R.Destination AND O.Time = R.Time AND O.Date = R.Date AND R.NumPassengers <= O.MaxPassengers GROUP BY O.offerID";
 		//Run the query against the database.
