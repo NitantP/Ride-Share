@@ -49,7 +49,7 @@
 
 		%>
 		<tr>
-		<td><input type=checkbox name=invited VALUE = <%=result.getInt("requestID")%>></td>
+		<td><input type=checkbox name=invited VALUE = <%=result.getString("Username")%>></td>
 		<td><%=result.getString("Username") %></td>
 		<td><%=result.getString("Date") %></td>
 		<td><%=result.getString("Time") %></td>
