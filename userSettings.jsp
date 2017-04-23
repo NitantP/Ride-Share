@@ -31,7 +31,7 @@ try
 Class.forName("com.mysql.jdbc.Driver");
 String url="jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
 String cu = (String)session.getAttribute("currentuser");
-String query="SELECT * FROM carlist c WHERE c.Username = /" + cu;
+String query="SELECT * FROM carlist c WHERE c.Username = \"" + cu + "\"";
 
 Connection conn=DriverManager.getConnection(url, "cs336project", "csteam14");
 Statement stmt=conn.createStatement();
