@@ -28,6 +28,8 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! If you're see
 
 <p><a href="userSettings.jsp">Settings</a></p>
 
+<p><a href="carSettings.jsp">Add and Delete Cars</a></p>
+
 <p><a href="index.jsp">logout</a></p>
 
 </body>

@@ -20,9 +20,12 @@ Welcome to the Ride Share website (TEAM 14)
 	<tr>    
 	<td>Username:</td><td><input type="text" name="username"> 
 	<%
-      if(request.getAttribute("loginFailed") != null){
-   		 out.print(request.getAttribute("loginFailed"));  
-      } 
+		if(request.getAttribute("loginFailed") != null){
+			out.print(request.getAttribute("loginFailed"));  
+		}
+		if(request.getAttribute("banned") != null){
+			out.print(request.getAttribute("banned"));  
+		}
     %> 
     </td>
 	</tr>
