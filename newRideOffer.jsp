@@ -28,6 +28,7 @@
 		String newDate = request.getParameter("date");
 		String newTime = request.getParameter("time");
 		String newMaxPassengers = request.getParameter("maxpassengers");
+		String LicensePlate = request.getParameter("licenseplate");
 		String checkRecurring = request.getParameter("recurring");
 		
 		//Make an insert statement for the Ride Offers table:
@@ -39,29 +40,28 @@
 		ps.setString(2, newDate);
 		ps.setString(3, newTime);
 		ps.setString(4, newMaxPassengers);
-		ps.setString(5, "test");
+		ps.setString(5, LicensePlate);
 		ps.setString(6, checkRecurring);
 		ps.setString(7, newStart);
 		ps.setString(8, newDestination);
 		
 		//INSERT INPUT CHECKS HERE
-		boolean error = false;
-		
-		if (error)
-		{
-			RequestDispatcher ed = request.getRequestDispatcher("register.jsp");
-        	ed.forward(request, response);
-		}
 
-			//Run the query against the DB
-			ps.executeUpdate();
+		if(LicensePlate == null || LicensePlate.equals("")){
+			request.setAttribute("insertStatus","Error: no license plate selected!");
+			RequestDispatcher ed = request.getRequestDispatcher("createRideOffer.jsp");
+			ed.forward(request, response);	
+		}
+		
+		ps.executeUpdate();
 			
 			out.print("Insert successful! <br><br>");
 			out.print("From: " + newStart + "<br>" +
 					  "To: " + newDestination + "<br>" +
 					  "Date: " + newDate + "<br>" +
 					  "Time: " + newTime + "<br>" +
-					  "Max Passengers: " + newMaxPassengers + "<br>");	
+					  "Max Passengers: " + newMaxPassengers + "<br>" +
+					  "License Plate: " + LicensePlate + "<br>");	
 		
 		con.close();
 	}
@@ -71,7 +71,9 @@
 	}
 	%>
 	
-	<p><a href="index.jsp">Return to main (login) page</a></p>
+	<p><a href="homepage.jsp">Return to main page</a></p>
+	
+	<p><a href="https://github.com/NitantP/Ride-Share/blob/master/newRideOffer.jsp">GitHub Page</a></p>
 	
 </body>
 </html>

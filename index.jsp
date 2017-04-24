@@ -30,11 +30,11 @@ Welcome to the Ride Share website (TEAM 14)
 	<td>Password:</td><td><input type="password" name="password"></td>
 	</tr>
 	</table>
-	<input type="submit" value="Login"> <input type="checkbox" name="persistentlogin" value="unchecked"> Keep me logged in (coming soon!)
+	<input type="submit" value="Login">
 	</form>
+	<br>
+	<form action="register.jsp"><input type="submit" value="Register"></form>
 <br>
-
-<p><a href="register.jsp">Register</a></p>
 
 <p><a href="https://github.com/NitantP/Ride-Share">GitHub Repository</a></p>
 

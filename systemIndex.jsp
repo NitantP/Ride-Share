@@ -13,7 +13,9 @@
 
 Welcome System Support!
 
+<p><a href=createAd.jsp>Add new advertisement to list</a></p>
 
+<p><a href="https://github.com/NitantP/Ride-Share/blob/master/systemIndex.jsp">GitHub Page</a></p>
 
 </body>
 </html>

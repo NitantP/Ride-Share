@@ -61,9 +61,10 @@ try {
 			request.setAttribute("messageStatus", "<h4 style=\"color:green;\">Message sent!</h4>");
 		}
 		
+		con.close();
+		
         rd.forward(request, response);
             
-		con.close();
 	}
 	catch (Exception ex) {
 		ex.printStackTrace();

@@ -32,12 +32,16 @@
 	<td>Subject:</td><td><input type="text" name="subject"></td>
 	</tr>
 	<tr>
-	<td>Message (max. 100):</td><td><textarea rows="4" cols="30" name="content"></textarea></td>
+	<td>Message (max. 100):</td><td><textarea rows="4" cols="25" name="content"></textarea></td>
 	</tr>
 	</table>
 	<input type="submit" value="Send">
 	</form>
 <br>
+
+<br>
+<p><a href="homepage.jsp">Return to main page</a></p>
+<p><a href="https://github.com/NitantP/Ride-Share/blob/master/createMessage.jsp">GitHub Page</a></p>
 
 </body>
 </html>

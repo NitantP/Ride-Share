@@ -11,10 +11,9 @@
 </head>
 <body>
 
-Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! If you're seeing this, you logged in correctly!
+Welcome to Ride Share, <%= session.getAttribute("currentuser") %>!
 
 <br>
-**WARNING: Site still under construction!**
 
 <p><a href="testpage.jsp">test page (NOT PERMANENT, JUST TO SEE HOW SQL TABLES CAN BE DISPLAYED)</a></p>
 
@@ -29,5 +28,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! If you're see
 <p><a href="userSettings.jsp">Settings</a></p>
 
 <p><a href="index.jsp">logout</a></p>
+
+<p><a href="https://github.com/NitantP/Ride-Share/blob/master/homepage.jsp">GitHub Page</a></p>
 
 </body>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Settings</title>
+<title>Ride Share - User Settings</title>
 </head>
 <body>
 
@@ -15,6 +15,20 @@ Ride Share (TEAM 14)
 <br>
 
 <form method="post">
+
+<%
+try
+{
+Class.forName("com.mysql.jdbc.Driver");
+String url="jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
+String cu = (String)session.getAttribute("currentuser");
+String query="SELECT * FROM carlist c WHERE c.Username = \"" + cu + "\"";
+String ridesquery = "SELECT u.RidesGiven, u.RidesTaken FROM userlist u WHERE u.Username = \"" + cu + "\"";
+
+Connection conn=DriverManager.getConnection(url, "cs336project", "csteam14");
+Statement stmt=conn.createStatement();
+ResultSet rs=stmt.executeQuery(query);
+%>
 
 <table border="1">
 <tr>
@@ -24,18 +38,7 @@ Ride Share (TEAM 14)
 <td>Year</td>
 <td>MaxPassengers</td>
 </tr>
-
 <%
-try
-{
-Class.forName("com.mysql.jdbc.Driver");
-String url="jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
-String cu = (String)session.getAttribute("currentuser");
-String query="SELECT * FROM carlist c WHERE c.Username = \"" + cu + "\"";
-
-Connection conn=DriverManager.getConnection(url, "cs336project", "csteam14");
-Statement stmt=conn.createStatement();
-ResultSet rs=stmt.executeQuery(query);
 while(rs.next())
 {
 
@@ -115,7 +118,7 @@ e.printStackTrace();
 	</td>
 	</tr>
 	<tr>
-	<td>Default? </td><td><input type="checkbox" name="default" value="false">
+	<td>Default? </td><td><input type="checkbox" name="default" value="true">
 	</td>
 	</tr>
 	</table>
@@ -124,6 +127,8 @@ e.printStackTrace();
 <br>
 
 <p><a href="homepage.jsp">Back to main page</a></p>
+
+<p><a href="https://github.com/NitantP/Ride-Share/blob/master/userSettings.jsp">GitHub Page</a></p>
 
 </body>
 </html>

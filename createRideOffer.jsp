@@ -13,6 +13,27 @@
 
 Ride Share (TEAM 14) 
 <br>
+
+<%
+
+ResultSet registeredcars = null;
+
+try {
+	
+	//Create a connection string
+	String url = "jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
+	//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
+	Class.forName("com.mysql.jdbc.Driver");
+	//Create a connection to your DB
+	Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
+	//Create a SQL statement
+	String currentun = (String)session.getAttribute("currentuser");
+	Statement stmt = con.createStatement();
+	registeredcars = stmt.executeQuery("SELECT c.LicensePlate FROM carlist c WHERE c.Username = \"" + currentun + "\" ");
+} catch (Exception e) {
+	out.println("System failure!");
+}
+%>
 									  
 <br>
 	<form method="post" action="newRideOffer.jsp">
@@ -38,6 +59,14 @@ Ride Share (TEAM 14)
 	</td>
 	</tr>
 	<tr>
+	<td>Select a car (by license plate):</td><td><select name="licenseplate">
+        <%  while(registeredcars.next()){ %>
+            <option value=<%=registeredcars.getString(1)%>><%= registeredcars.getString(1)%></option>
+        <% } %>
+        </select>
+    </td>
+    </tr>
+	<tr>
 	<td>Recurring? </td><td><input type="checkbox" name="recurring" value="true">
 	</td>
 	</tr>
@@ -47,6 +76,8 @@ Ride Share (TEAM 14)
 <br>
 
 <p><a href="homepage.jsp">Back to main page</a></p>
+
+<p><a href="https://github.com/NitantP/Ride-Share/blob/master/createRideOffer.jsp">GitHub Page</a></p>
 
 </body>
 </html>

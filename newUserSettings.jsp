@@ -113,7 +113,12 @@
 	}
 	%>
 	
-	<p><a href="index.jsp">Return to main (login) page</a></p>
+	<p><a href="userSettings.jsp">Return to settings page</a></p>
+	
+	<p><a href="homepage.jsp">Return to main page</a></p>
+	
+	<p><a href="https://github.com/NitantP/Ride-Share/blob/master/newUserSettings.jsp">GitHub Page</a></p>
+	
 	
 </body>
 </html>
