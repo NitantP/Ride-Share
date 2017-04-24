@@ -18,10 +18,11 @@ Ride Share (TEAM 14)
 
 <table border="1">
 <tr>
-<td>Name</td>
-<td>Phone Number</td>
-<td>Address</td>
-<td>Password</td>
+<td>LicensePlate</td>
+<td>Make</td>
+<td>Model</td>
+<td>Year</td>
+<td>MaxPassengers</td>
 </tr>
 
 <%
@@ -30,7 +31,7 @@ try
 Class.forName("com.mysql.jdbc.Driver");
 String url="jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
 String cu = (String)session.getAttribute("currentuser");
-String query="SELECT * FROM userlist c WHERE c.Username = \"" + cu + "\"";
+String query="SELECT * FROM carlist c WHERE c.Username = \"" + cu + "\"";
 
 Connection conn=DriverManager.getConnection(url, "cs336project", "csteam14");
 Statement stmt=conn.createStatement();
@@ -40,10 +41,11 @@ while(rs.next())
 
 %>
 <tr>
-<td><%=rs.getString("Name") %></td>
-<td><%=rs.getString("PhoneNumber") %></td>
-<td><%=rs.getString("Address") %></td>
-<td><%=rs.getString("Password") %></td>
+<td><%=rs.getString("LicensePlate") %></td>
+<td><%=rs.getString("Make") %></td>
+<td><%=rs.getString("Model") %></td>
+<td><%=rs.getString("Year") %></td>
+<td><%=rs.getString("MaxPassengers") %></td>
 </tr>
 
  <%
@@ -68,33 +70,52 @@ e.printStackTrace();
 	<form method="post" action="newUserSettings.jsp">
 	<table>
 	<tr>    
-	<td>Name:</td><td><input type="text" name="name">
+	<td>License Plate:</td><td><input type="text" name="licenseplate">
 	<%
-      if(request.getAttribute("nameFailed") != null){
-   		 out.print(request.getAttribute("nameFailed"));  
+      if(request.getAttribute("licenseFailed") != null){
+   		 out.print(request.getAttribute("licenseFailed"));  
       } 
     %>
 	</td>
 	</tr>
 	<tr>
-	<td>Phone Number:</td><td><input type="text" name="phoneNum">
+	<td>Make:</td><td><input type="text" name="make">
 	<%
-      if(request.getAttribute("phoneNumFailed") != null){
-   		 out.print(request.getAttribute("phoneNumFailed"));  
+      if(request.getAttribute("makeFailed") != null){
+   		 out.print(request.getAttribute("makeFailed"));  
       } 
     %>
 	</td>
 	</tr>
 	<tr>
-	<td>Address:</td><td><input type="text" name="address">
+	<td>Model:</td><td><input type="text" name="model">
+	<%
+      if(request.getAttribute("modelFailed") != null){
+   		 out.print(request.getAttribute("modelFailed"));  
+      } 
+    %>
 	</td>
 	</tr>
 	<tr>
-	<td>Password:</td><td><input type="text" name="password">
+	<td>Year:</td><td><input type="text" name="year">
+	<%
+      if(request.getAttribute("yearFailed") != null){
+   		 out.print(request.getAttribute("yearFailed"));  
+      } 
+    %>
+	</td>
+	</tr>
+	<tr>
+	<td>Max Number of Passengers:</td><td><input type="text" name="maxpassengers">
+	<%
+      if(request.getAttribute("passengerFailed") != null){
+   		 out.print(request.getAttribute("passengerFailed"));  
+      } 
+    %>
 	</td>
 	</tr>
 	</table>
-	<input type="submit" value="Change Settings">
+	<input type="submit" value="Add New Car">
 	</form>
 <br>
 
