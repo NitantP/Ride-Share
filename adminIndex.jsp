@@ -11,9 +11,15 @@
 </head>
 <body>
 
-Welcome
+Welcome, <%=(String)session.getAttribute("currentuser") %>
 
 <p><a href="createSystemAccount.jsp">Create system support account</a></p>
+
+<br>
+
+<p><a href="https://github.com/NitantP/Ride-Share/blob/master/adminIndex.jsp">GitHub Page</a></p>
+
+<p><a href="index.jsp">logout</a></p>
 
 </body>
 </html>

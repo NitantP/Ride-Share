@@ -100,5 +100,7 @@ e.printStackTrace();
 
 <p><a href="homepage.jsp">Back to main page</a></p>
 
+<p><a href="https://github.com/NitantP/Ride-Share/blob/master/userSEttings.jsp">GitHub Page</a></p>
+
 </body>
 </html>

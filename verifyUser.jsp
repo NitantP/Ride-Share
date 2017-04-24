@@ -31,7 +31,6 @@
 		//out.print("" + str + "<br>");
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
-		
 
 			if(result.next()){
 				String banRUID = result.getString("RUID");
@@ -43,12 +42,12 @@
 				//ResultSet resultBan = stmt.executeQuery(ban);
 				if (!result.next())
 				{
+					session.setAttribute("currentuser", un);
 					if(AccountType.equals("Admin")){
 						response.sendRedirect("adminIndex.jsp");
 					} else if(AccountType.equals("System Support")){
 						response.sendRedirect("systemIndex.jsp");
 					} else {
-						session.setAttribute("currentuser", un);
 						response.sendRedirect("homepage.jsp");
 					}
 				}
@@ -67,6 +66,7 @@
 		con.close();
 		
 		}	catch (Exception ex) {
+			ex.printStackTrace();
 			out.print("System failure");	
 		}
 %>
