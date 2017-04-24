@@ -28,25 +28,42 @@
 		String pw = request.getParameter("password");
 		//Make a SELECT query from the users table with the username and password matches with the input
 		String str = "SELECT * FROM userlist WHERE Username = \"" + un + "\" AND Password = \"" + pw + "\";";
-		out.print("" + str + "<br>");
+		//out.print("" + str + "<br>");
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
-		if(result.next()){
-			if(result.getString("AccountType").equals("Admin")){
-				response.sendRedirect("adminIndex.jsp");
-			} else if(result.getString("AccountType").equals("System Support")){
-				response.sendRedirect("systemIndex.jsp");
+
+			if(result.next()){
+				String banRUID = result.getString("RUID");
+				String AccountType = result.getString("AccountType");
+				//see if the user is banned
+				String ban = "SELECT * FROM banlist WHERE RUID = \"" + banRUID + "\"";
+				result = stmt.executeQuery(ban);
+				//Run query
+				//ResultSet resultBan = stmt.executeQuery(ban);
+				if (!result.next())
+				{
+					if(AccountType.equals("Admin")){
+						response.sendRedirect("adminIndex.jsp");
+					} else if(AccountType.equals("System Support")){
+						response.sendRedirect("systemIndex.jsp");
+					} else {
+						session.setAttribute("currentuser", un);
+						response.sendRedirect("homepage.jsp");
+					}
+				}
+				else
+				{
+					request.setAttribute("banned", "You Are Banned");
+					RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+					rd.forward(request, response);
+				}
 			} else {
-				session.setAttribute("currentuser", un);
-				response.sendRedirect("homepage.jsp");
+				request.setAttribute("loginFailed", "Invalid username or password!");
+	            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+	            rd.forward(request, response);
 			}
-		} else {
-			request.setAttribute("loginFailed", "Invalid username or password!");
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
-		}
-		
+
 		con.close();
 		
 		}	catch (Exception ex) {

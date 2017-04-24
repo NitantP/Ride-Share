@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ride Share - User Settings</title>
+<title>User Settings</title>
 </head>
 <body>
 
@@ -16,39 +16,34 @@ Ride Share (TEAM 14)
 
 <form method="post">
 
+<table border="1">
+<tr>
+<td>Name</td>
+<td>Phone Number</td>
+<td>Address</td>
+<td>Password</td>
+</tr>
+
 <%
 try
 {
 Class.forName("com.mysql.jdbc.Driver");
 String url="jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
 String cu = (String)session.getAttribute("currentuser");
-String query="SELECT * FROM carlist c WHERE c.Username = \"" + cu + "\"";
-String ridesquery = "SELECT u.RidesGiven, u.RidesTaken FROM userlist u WHERE u.Username = \"" + cu + "\"";
+String query="SELECT * FROM userlist c WHERE c.Username = \"" + cu + "\"";
 
 Connection conn=DriverManager.getConnection(url, "cs336project", "csteam14");
 Statement stmt=conn.createStatement();
 ResultSet rs=stmt.executeQuery(query);
-%>
-
-<table border="1">
-<tr>
-<td>LicensePlate</td>
-<td>Make</td>
-<td>Model</td>
-<td>Year</td>
-<td>MaxPassengers</td>
-</tr>
-<%
 while(rs.next())
 {
 
 %>
 <tr>
-<td><%=rs.getString("LicensePlate") %></td>
-<td><%=rs.getString("Make") %></td>
-<td><%=rs.getString("Model") %></td>
-<td><%=rs.getString("Year") %></td>
-<td><%=rs.getString("MaxPassengers") %></td>
+<td><%=rs.getString("Name") %></td>
+<td><%=rs.getString("PhoneNumber") %></td>
+<td><%=rs.getString("Address") %></td>
+<td><%=rs.getString("Password") %></td>
 </tr>
 
  <%
@@ -73,62 +68,37 @@ e.printStackTrace();
 	<form method="post" action="newUserSettings.jsp">
 	<table>
 	<tr>    
-	<td>License Plate:</td><td><input type="text" name="licenseplate">
+	<td>Name:</td><td><input type="text" name="name">
 	<%
-      if(request.getAttribute("licenseFailed") != null){
-   		 out.print(request.getAttribute("licenseFailed"));  
+      if(request.getAttribute("nameFailed") != null){
+   		 out.print(request.getAttribute("nameFailed"));  
       } 
     %>
 	</td>
 	</tr>
 	<tr>
-	<td>Make:</td><td><input type="text" name="make">
+	<td>Phone Number:</td><td><input type="text" name="phoneNum">
 	<%
-      if(request.getAttribute("makeFailed") != null){
-   		 out.print(request.getAttribute("makeFailed"));  
+      if(request.getAttribute("phoneNumFailed") != null){
+   		 out.print(request.getAttribute("phoneNumFailed"));  
       } 
     %>
 	</td>
 	</tr>
 	<tr>
-	<td>Model:</td><td><input type="text" name="model">
-	<%
-      if(request.getAttribute("modelFailed") != null){
-   		 out.print(request.getAttribute("modelFailed"));  
-      } 
-    %>
+	<td>Address:</td><td><input type="text" name="address">
 	</td>
 	</tr>
 	<tr>
-	<td>Year:</td><td><input type="text" name="year">
-	<%
-      if(request.getAttribute("yearFailed") != null){
-   		 out.print(request.getAttribute("yearFailed"));  
-      } 
-    %>
-	</td>
-	</tr>
-	<tr>
-	<td>Max Number of Passengers:</td><td><input type="text" name="maxpassengers">
-	<%
-      if(request.getAttribute("passengerFailed") != null){
-   		 out.print(request.getAttribute("passengerFailed"));  
-      } 
-    %>
-	</td>
-	</tr>
-	<tr>
-	<td>Default? </td><td><input type="checkbox" name="default" value="true">
+	<td>Password:</td><td><input type="text" name="password">
 	</td>
 	</tr>
 	</table>
-	<input type="submit" value="Add New Car">
+	<input type="submit" value="Change Settings">
 	</form>
 <br>
 
 <p><a href="homepage.jsp">Back to main page</a></p>
-
-<p><a href="https://github.com/NitantP/Ride-Share/blob/master/userSettings.jsp">GitHub Page</a></p>
 
 </body>
 </html>

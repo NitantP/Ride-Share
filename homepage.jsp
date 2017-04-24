@@ -27,6 +27,8 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>!
 
 <p><a href="userSettings.jsp">Settings</a></p>
 
+<p><a href="carSettings.jsp">Add and Delete Cars</a></p>
+
 <p><a href="index.jsp">logout</a></p>
 
 <p><a href="https://github.com/NitantP/Ride-Share/blob/master/homepage.jsp">GitHub Page</a></p>

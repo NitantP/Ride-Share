@@ -20,9 +20,12 @@ Welcome to the Ride Share website (TEAM 14)
 	<tr>    
 	<td>Username:</td><td><input type="text" name="username"> 
 	<%
-      if(request.getAttribute("loginFailed") != null){
-   		 out.print(request.getAttribute("loginFailed"));  
-      } 
+		if(request.getAttribute("loginFailed") != null){
+			out.print(request.getAttribute("loginFailed"));  
+		}
+		if(request.getAttribute("banned") != null){
+			out.print(request.getAttribute("banned"));  
+		}
     %> 
     </td>
 	</tr>
@@ -30,12 +33,12 @@ Welcome to the Ride Share website (TEAM 14)
 	<td>Password:</td><td><input type="password" name="password"></td>
 	</tr>
 	</table>
-	<input type="submit" value="Login">
+	<input type="submit" value="Login"> <input type="checkbox" name="persistentlogin" value="unchecked"> Keep me logged in (coming soon!)
 	</form>
-	<br>
-	<form action="register.jsp"><input type="submit" value="Register"></form>
 <br>
 
-<p><a href="https://github.com/NitantP/Ride-Share">GitHub Repository</a></p>
+<p><a href="register.jsp">Register</a></p>
 
+<p><a href="https://github.com/NitantP/Ride-Share">GitHub Repository</a></p>
 </body>
+</html>
