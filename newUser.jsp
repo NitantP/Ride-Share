@@ -40,6 +40,11 @@
 		ps.setInt(6, 0);
 		ps.setString(7, "User");
 		
+		String userDup = "SELECT * FROM userlist c WHERE c.Username = \"" + newUsername + "\"";
+		String emailDup = "SELECT * FROM userlist c WHERE c.Email = \"" + newEmail + "\"";
+		String RUIDDup = "SELECT * FROM userlist c WHERE c.RUID = \"" + newRUID + "\"";
+		ResultSet result;
+		
 		boolean isDigit = true;
 		boolean error = false;
 	    int size = newRUID.length();
@@ -51,48 +56,76 @@
 	        	isDigit = false;
 	        }
 	    }
-
-
+	
+	    result = stmt.executeQuery(RUIDDup);
 		if(newRUID.length() != 9 || !isDigit)
 		{
 				request.setAttribute("RUIDFailed", "Invalid RUID (must be 9 digits!)");
 				error = true;
 		}
+		else if (result.next())
+		{
+			request.setAttribute("RUIDFailed", "Duplicate RUID");
+			error = true;
+		}
 		
-		//jc1997@rutgers.edu
+		result = stmt.executeQuery(emailDup);
 		if (!newEmail.toLowerCase().contains("@rutgers.edu") || newEmail.substring(newEmail.indexOf("@")).equals("rutgers.edu"))
 		{
 			request.setAttribute("emailFailed", "Invalid email (must be an @rutgers.edu address!)");
 			error = true;
 		}
+		else if (result.next())
+		{
+			request.setAttribute("emailFailed", "Duplicate Email");
+			error = true;
+		}
 		
+		result = stmt.executeQuery(userDup);
 		if(newUsername.isEmpty())
 		{
 			request.setAttribute("userFailed", "Invalid username (cannot be blank!)");
 			error = true;
 		}
+		else if (result.next())
+		{
+			request.setAttribute("userFailed", "Duplicate Username");
+			error = true;
+		}
+		
 		if(newPassword.isEmpty())
 		{
 			request.setAttribute("passFailed", "Invalid password (cannot be blank!)");
 			error = true;
 		}
 		
+		
+		
+		
+		
+		
 		if (error)
 		{
 			RequestDispatcher ed = request.getRequestDispatcher("register.jsp");
         	ed.forward(request, response);
 		}
-
+		else
+		{
 			//Run the query against the DB
 			ps.executeUpdate();
-
+			
 			out.print("Insert successful! <br>");
 			out.print("RUID: " + newRUID + "<br>" +
 					  "Username: " + newUsername + "<br>" +
 					  "Password: " + newPassword + "<br>" +
 					  "Email: " + newEmail + "<br>");	
-		
+			session.setAttribute("currentuser", newUsername);
+			RequestDispatcher ed = request.getRequestDispatcher("carSettings.jsp");
+        	ed.forward(request, response);
+			//setTimeOut(ed.forward(request, response), 1000);
+		}
 		con.close();
+
 	}
 	catch (Exception ex) {
 		ex.printStackTrace();

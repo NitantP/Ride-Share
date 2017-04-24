@@ -41,11 +41,10 @@
 		ps.setString(4, make);
 		ps.setString(5, model);
 		ps.setString(6, year);
-		
 		boolean error = false;
 		boolean isDigit = true;
 		int intYear = -1;
-		if (license.isEmpty())
+		if (license.isEmpty() || license.length() > 7)
 		{
 			request.setAttribute("licenseFailed", "Invalid License Plate");
 			error = true;
@@ -56,14 +55,12 @@
 			request.setAttribute("passengerFailed", "Invalid number of passengers");
 			error = true;
 		}
-		
-		if(model.isEmpty())
+		if(model.isEmpty() || model.length() > 45)
 		{
 			request.setAttribute("modelFailed", "Invalid number of passengers");
 			error = true;
 		}
-		
-		if(make.isEmpty())
+		if(make.isEmpty() || make.length() > 45)
 		{
 			request.setAttribute("makeFailed", "Invalid number of passengers");
 			error = true;
@@ -82,7 +79,6 @@
 		
 		if(year.isEmpty() || !isDigit || year.length() != 4 || year.compareTo("1900") < 0 || year.compareTo("2017") > 0)
 		{
-			//(intYear < 1900 && intYear != -1) || intYear > 2017
 			request.setAttribute("yearFailed", "Invalid year");
 			error = true;
 		}
@@ -90,17 +86,16 @@
 		if(error)
 		{
 			out.print("failed");
-			RequestDispatcher ed = request.getRequestDispatcher("userSettings.jsp");
+			RequestDispatcher ed = request.getRequestDispatcher("carSettings.jsp");
         	ed.forward(request, response);
 		}
 		else
 		{
 			//Run the query against the DB
 			ps.executeUpdate();
-			
 			out.print("Insert successful! <br>");
 			out.print("License Plate: " + license + "<br>" +
-					  "Username: " + "defaultusername" + "<br>" +
+					  "Username: " + session.getAttribute("currentuser") + "<br>" +
 					  "Make: " + make + "<br>" +
 					  "Model: " + model + "<br>" +
 					  "Year: " + year + "<br>" +
@@ -114,7 +109,7 @@
 	}
 	%>
 	
-	<p><a href="userSettings.jsp">Return to settings page</a></p>
+	<p><a href="carSettings.jsp">Return to settings page</a></p>
 	
 </body>
 </html>

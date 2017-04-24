@@ -67,7 +67,7 @@ e.printStackTrace();
 
 									  
 <br>
-	<form method="post" action="newUserSettings.jsp">
+	<form method="post" action="newCarSettings.jsp">
 	<table>
 	<tr>    
 	<td>License Plate:</td><td><input type="text" name="licenseplate">
