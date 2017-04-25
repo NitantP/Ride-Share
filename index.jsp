@@ -15,18 +15,11 @@
 Welcome to the Ride Share website (TEAM 14)
 
 <br>
+<br>
 	<form method="post" action="verifyUser.jsp">
 	<table>
 	<tr>    
-	<td>Username:</td><td><input type="text" name="username"> 
-	<%
-		if(request.getAttribute("loginFailed") != null){
-			out.print(request.getAttribute("loginFailed"));  
-		}
-		if(request.getAttribute("banned") != null){
-			out.print(request.getAttribute("banned"));  
-		}
-    %> 
+	<td>Username:</td><td><input type="text" name="username">  
     </td>
 	</tr>
 	<tr>
@@ -34,7 +27,16 @@ Welcome to the Ride Share website (TEAM 14)
 	</tr>
 	</table>
 	<input type="submit" value="Login">
+	<%
+		if(request.getAttribute("loginFailed") != null){
+			out.print(request.getAttribute("loginFailed"));  
+		}
+		if(request.getAttribute("banned") != null){
+			out.print(request.getAttribute("banned"));  
+		}
+    %>
 	</form>
+	<br>
 	<form method="post" action="register.jsp"><input type="submit" value="Register"></form>
 <br>
 

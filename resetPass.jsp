@@ -44,7 +44,7 @@
 	}
 	%>
 	
-	<p><a href="systeIndex.jsp">Return to settings page</a></p>
+	<p><a href="systemIndex.jsp">Return to settings page</a></p>
 	
 </body>
 </html>

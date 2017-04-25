@@ -120,6 +120,7 @@ e.printStackTrace();
 <br>
 
 <p><a href="userSettings.jsp">Back to user settings page</a></p>
+
 <p><a href="homepage.jsp">Back to main page</a></p>
 
 <br>
