@@ -22,7 +22,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 </div>
 
 <div align="left">
-	<p><a href="availableMatches.jsp">Available matches</a></p>
+	<p><a href="availableMatchesIntermediate.jsp">Available matches</a></p>
 	----------------------------------------------------------
 	<p><a href="createRideOffer.jsp">Create ride offer</a></p>
 	<%

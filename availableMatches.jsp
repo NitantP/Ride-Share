@@ -12,13 +12,10 @@
 </head>
 <body>
 
-	<%
+<%
       if(request.getAttribute("inviteStatus") != null){
-   		 out.print(request.getAttribute("inviteStatus"));  
-      } 
-    %> 
-
-<% 	
+   		 out.print(request.getAttribute("inviteStatus")); 
+      } else {
 		try {
 		//Create a connection string
 		String url = "jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
@@ -31,8 +28,10 @@
 		
 		String currentun = (String)session.getAttribute("currentuser");
 		
+		int offerid = Integer.parseInt(request.getParameter("offer"));
+		
 		//Make a SELECT query from the users table with the username and password matches with the input
-		String str = "SELECT * FROM rideoffers O, riderequests R WHERE O.Username = \"" + currentun + "\" AND O.Origin = R.Origin AND O.Destination = R.Destination AND O.Time = R.Time AND O.Date = R.Date AND R.NumPassengers <= O.MaxPassengers GROUP BY O.offerID";
+		String str = "SELECT * FROM rideoffers O, riderequests R WHERE O.offerId = " + offerid + " AND O.Origin = R.Origin AND O.Destination = R.Destination AND O.Time = R.Time AND O.Date = R.Date AND R.NumPassengers <= O.MaxPassengers ORDER BY R.requestID ASC";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
@@ -79,7 +78,7 @@
 		}
 		%>
 		</table>
-		
+		<br>
 		<input type=submit name=submit value="Send Invites">
 
 		<input type='hidden' name='offerusername' value=<%=currentun%>>
@@ -99,11 +98,12 @@
 		}	catch (Exception ex) {
 			out.print("System failure");	
 		}
+      }
 %>
 
 <br>
 <br>
-[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/availableMatches.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
+[<a href="availableMatchesIntermediate.jsp">Back</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/availableMatches.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
 
 </body>
 </html>
