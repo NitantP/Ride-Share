@@ -119,7 +119,12 @@ e.printStackTrace();
 	</form>
 <br>
 
+<p><a href="userSettings.jsp">Back to user settings page</a></p>
 <p><a href="homepage.jsp">Back to main page</a></p>
+
+<br>
+
+<p><a href="https://github.com/NitantP/Ride-Share/blob/master/carSettings.jsp">GitHub Page</a></p>
 
 </body>
 </html>
