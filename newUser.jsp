@@ -30,6 +30,20 @@
 		String newAddress = request.getParameter("address");
 		String newPhoneNum = request.getParameter("phoneNum");
 		
+		String checkRUID = "SELECT b.RUID FROM banlist b WHERE RUID = \"" + newRUID + "\"";
+		String checkEmail = "SELECT b.Email FROM banlist b WHERE Email = \"" + newEmail + "\"";
+		ResultSet result = stmt.executeQuery(checkRUID);
+		boolean ruid = result.next();
+		result = stmt.executeQuery(checkEmail);
+		boolean email = result.next();
+		
+		System.out.println(ruid + " " + email);
+		if (email || ruid)
+		{
+			request.setAttribute("Banned", "You're banned");
+			RequestDispatcher ed = request.getRequestDispatcher("register.jsp");
+        	ed.forward(request, response);
+		}
 		//Make an insert statement for the Users table:
 		String insert = "INSERT INTO userlist(RUID, Email, Username, Password, AccountType, Name, Address, PhoneNumber)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -52,7 +66,6 @@
 		boolean phoneDigit = true;
 		boolean isDigit = true;
 		boolean error = false;
-		ResultSet result;
 		
 		int max = Math.max(newName.length(), newPhoneNum.length());
 	    

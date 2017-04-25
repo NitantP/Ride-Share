@@ -26,6 +26,10 @@ Ride Share (TEAM 14)
       if(request.getAttribute("userFailed") != null){
    		 out.print(request.getAttribute("userFailed"));  
       } 
+      else if (request.getAttribute("Banned") != null)
+      {
+    	  out.print(request.getAttribute("Banned"));
+      }
     %>
 	</td>
 	</tr>
