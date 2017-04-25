@@ -55,7 +55,7 @@
 		}
 		%>
 		</table>
-		<input type=submit name=submit value="Reset Passwords">
+		<input type=submit name=submit value="Ban Users">
 </FORM>
 		
 	<%

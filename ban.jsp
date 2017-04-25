@@ -26,23 +26,24 @@
 
 		//Make an update statement for the userlist table:
 		String d;
-		String insert = "";
+		String insert;
 		PreparedStatement ps;
+		PreparedStatement ps2;
 		
 		d= "SELECT * From userlist u WHERE u.Reported > 5";
 		ps = con.prepareStatement(d);
 		ResultSet result = stmt.executeQuery(d);
 		while (result.next())
 		{
-			insert = "INSERT INTO userlist(RUID, Email)"
+			insert = "INSERT INTO banlist(RUID, Email)"
 					+ " VALUES (?, ?)";
-			ps.setString(1, result.getString("RUID"));
-			ps.setString(2, result.getString("Email"));
-			ps = con.prepareStatement(insert);
-			ps.executeUpdate();
+			ps2 = con.prepareStatement(insert);
+			ps2.setString(1, result.getString("RUID"));
+			ps2.setString(2, result.getString("Email"));
+			ps2.executeUpdate();
 		}
 		//Run the query against the DB
-		out.print("Successful Password Reset");
+		out.print("Users Banned");
 		con.close();
 	}
 	catch (Exception ex) {
@@ -51,7 +52,7 @@
 	}
 	%>
 	
-	<p><a href="systeIndex.jsp">Return to settings page</a></p>
+	<p><a href="systemIndex.jsp">Return to settings page</a></p>
 	
 </body>
 </html>
