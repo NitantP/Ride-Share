@@ -12,6 +12,12 @@
 </head>
 <body>
 
+	<%
+      if(request.getAttribute("inviteStatus") != null){
+   		 out.print(request.getAttribute("inviteStatus"));  
+      } 
+    %> 
+
 <% 	
 		try {
 		//Create a connection string
@@ -26,9 +32,14 @@
 		String currentun = (String)session.getAttribute("currentuser");
 		
 		//Make a SELECT query from the users table with the username and password matches with the input
-		String str = "SELECT R.requestID, R.Username, R.Date, R.Time, R.NumPassengers, R.Origin, R.Destination FROM rideoffers O, riderequests R WHERE O.Username = \"" + currentun + "\" AND O.Origin = R.Origin AND O.Destination = R.Destination AND O.Time = R.Time AND O.Date = R.Date AND R.NumPassengers <= O.MaxPassengers GROUP BY O.offerID";
+		String str = "SELECT * FROM rideoffers O, riderequests R WHERE O.Username = \"" + currentun + "\" AND O.Origin = R.Origin AND O.Destination = R.Destination AND O.Time = R.Time AND O.Date = R.Date AND R.NumPassengers <= O.MaxPassengers GROUP BY O.offerID";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
+		
+		String offerdate = "";
+		String offertime = "";
+		String offerorigin = "";
+		String offerdestination = "";
 %>
 
 <FORM method = "POST" ACTION = "sendInvites.jsp">
@@ -43,27 +54,40 @@
 		<td>Destination</td>
 		</tr>
 
-<%		
+<%      
 		while(result.next())
 		{
-
+			  if(result.isLast()){
+			  	offerdate = result.getString("O.Date");
+			  	offertime = result.getString("O.Time");
+			  	offerorigin = result.getString("O.Origin");
+			  	offerdestination = result.getString("O.Destination");
+			  }
 		%>
 		<tr>
-		<td><input type=checkbox name=invited VALUE = <%=result.getString("Username")%>></td>
-		<td><%=result.getString("Username") %></td>
-		<td><%=result.getString("Date") %></td>
-		<td><%=result.getString("Time") %></td>
-		<td><%=result.getString("NumPassengers") %></td>
-		<td><%=result.getString("Origin") %></td>
-		<td><%=result.getString("Destination") %></td>
+		<td><input type=checkbox name=invited value = <%=result.getString("R.Username")%>/></td>
+		<td><%=result.getString("R.Username") %></td>
+		<td><%=result.getString("R.Date") %></td>
+		<td><%=result.getString("R.Time") %></td>
+		<td><%=result.getString("R.NumPassengers") %></td>
+		<td><%=result.getString("R.Origin") %></td>
+		<td><%=result.getString("R.Destination") %></td>
 		</tr>
-
+		
 		<%
 
 		}
 		%>
 		</table>
+		
 		<input type=submit name=submit value="Send Invites">
+
+		<input type='hidden' name='offerusername' value=<%=currentun%>>
+		<input type='hidden' name='offerdate' value=<%=offerdate%>>
+		<input type='hidden' name='offertime' value=<%=offertime%>>
+		<input type='hidden' name='offerorigin' value=<%=offerorigin%>>
+		<input type='hidden' name='offerdestination' value=<%=offerdestination%>>
+
 </FORM>
 		
 	<%

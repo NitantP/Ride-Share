@@ -54,7 +54,7 @@ try {
 		
 		if(sender.equals(recipient)){
 			request.setAttribute("messageStatus", "<h4 style=\"color:red;\">Error: cannot send message to self!</h4>");
-		} else if(content.length() > 100){
+		} else if(content.length() > 200){
 			request.setAttribute("messageStatus", "<h4 style=\"color:red;\">Error: message too long! (> 100)</h4>");
 		} else {
 			ps.executeUpdate();
