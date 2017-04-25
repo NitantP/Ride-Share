@@ -26,43 +26,68 @@
 		String newEmail = request.getParameter("email");
 		String newUsername = request.getParameter("username");
 		String newPassword = request.getParameter("password");
+		String newName = request.getParameter("name");
+		String newAddress = request.getParameter("address");
+		String newPhoneNum = request.getParameter("phoneNum");
 		
 		//Make an insert statement for the Users table:
-		String insert = "INSERT INTO userlist(RUID, Email, Username, Password, RidesGiven, RidesTaken, AccountType)"
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String insert = "INSERT INTO userlist(RUID, Email, Username, Password, AccountType, Name, Address, PhoneNumber)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(insert);
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		ps.setString(1, newRUID);
 		ps.setString(2, newEmail);
 		ps.setString(3, newUsername);
 		ps.setString(4, newPassword);
-		ps.setInt(5, 0);
-		ps.setInt(6, 0);
-		ps.setString(7, "User");
+		ps.setString(5, "User");
+		ps.setString(6, newName);
+		ps.setString(7, newAddress);
+		ps.setString(8, newPhoneNum);
 		
 		String userDup = "SELECT * FROM userlist c WHERE c.Username = \"" + newUsername + "\"";
 		String emailDup = "SELECT * FROM userlist c WHERE c.Email = \"" + newEmail + "\"";
 		String RUIDDup = "SELECT * FROM userlist c WHERE c.RUID = \"" + newRUID + "\"";
-		ResultSet result;
-		
+		String update;
+		boolean nameDigit = false;
+		boolean phoneDigit = true;
 		boolean isDigit = true;
 		boolean error = false;
-	    int size = newRUID.length();
+		ResultSet result;
+		
+		int max = Math.max(newName.length(), newPhoneNum.length());
 	    
-	    for (int i = 0; i < size; i++) 
+	    for (int i = 0; i < Math.max(newRUID.length(), max); i++) 
 	    {
-	        if (!Character.isDigit(newRUID.charAt(i))) 
+	    	if (newRUID.length() > i + 1)
+	    	{
+		        if (!Character.isDigit(newRUID.charAt(i))) 
+		        {
+		        	isDigit = false;
+		        }
+	    	}
+	        if (newPhoneNum.length() > i + 1) 
 	        {
-	        	isDigit = false;
+	        	if(!Character.isDigit(newPhoneNum.charAt(i)))
+	        	{
+	        		phoneDigit = false;
+	        	}
+	        }
+	        if (newName.length() > i + 1) 
+	        {
+	        	if(Character.isDigit(newName.charAt(i)))
+	        	{
+	        		nameDigit = true;
+	        	}
 	        }
 	    }
 	
 	    result = stmt.executeQuery(RUIDDup);
+	    //ruid follows the format
 		if(newRUID.length() != 9 || !isDigit)
 		{
 				request.setAttribute("RUIDFailed", "Invalid RUID (must be 9 digits!)");
 				error = true;
-		}
+		}//there is a duplicate
 		else if (result.next())
 		{
 			request.setAttribute("RUIDFailed", "Duplicate RUID");
@@ -70,11 +95,12 @@
 		}
 		
 		result = stmt.executeQuery(emailDup);
+		//email from rutgers
 		if (!newEmail.toLowerCase().contains("@rutgers.edu") || newEmail.substring(newEmail.indexOf("@")).equals("rutgers.edu"))
 		{
 			request.setAttribute("emailFailed", "Invalid email (must be an @rutgers.edu address!)");
 			error = true;
-		}
+		}//there is a duplicate
 		else if (result.next())
 		{
 			request.setAttribute("emailFailed", "Duplicate Email");
@@ -82,28 +108,40 @@
 		}
 		
 		result = stmt.executeQuery(userDup);
+		//username is empty
 		if(newUsername.isEmpty())
 		{
 			request.setAttribute("userFailed", "Invalid username (cannot be blank!)");
 			error = true;
-		}
+		}//there is a duplicate
 		else if (result.next())
 		{
 			request.setAttribute("userFailed", "Duplicate Username");
 			error = true;
 		}
 		
+		//password is empty
 		if(newPassword.isEmpty())
 		{
 			request.setAttribute("passFailed", "Invalid password (cannot be blank!)");
 			error = true;
 		}
+
+		//digit in the name
+		if (nameDigit)
+		{
+			request.setAttribute("nameFailed", "Invalid name");
+			error = true;
+		}
 		
-		
-		
-		
-		
-		
+		//phone is not a digit
+		if (!phoneDigit || (newPhoneNum.length() != 0 && (newPhoneNum.length() < 7 || newPhoneNum.length() > 15)))
+		{
+			request.setAttribute("phoneNumFailed", "Invalid phone number");
+			error = true;
+		}
+
+
 		if (error)
 		{
 			RequestDispatcher ed = request.getRequestDispatcher("register.jsp");
