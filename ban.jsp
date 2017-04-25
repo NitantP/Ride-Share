@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Passwords Were Reset</title>
+<title>Ride Share - Ban Users</title>
 </head>
 <body>
 
@@ -52,8 +52,10 @@
 	}
 	%>
 	
-	<p><a href="systemIndex.jsp">Return to settings page</a></p>
-	
-</body>
+	<br>
+	<br>
+[<a href="systemIndex.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/ban.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 	
+
+<body>
 </html>
 	

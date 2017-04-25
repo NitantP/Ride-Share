@@ -98,11 +98,10 @@
 		}
 %>
 
-<p><a href="homepage.jsp">Back to main page</a></p>
-
+<br>
 <br>
 
-<p><a href="https://github.com/NitantP/Ride-Share/blob/master/leaderboard.jsp">GitHub Page</a></p>
+[<a href="homepage.jsp">Main page</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/leaderboard.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
 
 </body>
 </html>

@@ -16,10 +16,9 @@ Welcome, <%=(String)session.getAttribute("currentuser") %>
 <p><a href="createSystemAccount.jsp">Create system support account</a></p>
 
 <br>
+<br>
 
-<p><a href="https://github.com/NitantP/Ride-Share/blob/master/adminIndex.jsp">GitHub Page</a></p>
-
-<p><a href="index.jsp">logout</a></p>
+[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/adminIndex.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
 
 </body>
 </html>

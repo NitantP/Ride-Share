@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ride Share - Available Matches</title>
+<title>Ride Share - Ban Users</title>
 </head>
 <body>
 
@@ -68,4 +68,10 @@
 			out.print("System failure");	
 		}
 %>
-<p><a href="systemIndex.jsp">Return to System Support page</a></p>
+<br>
+<br>
+
+[<a href="systemIndex.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/banUsers.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
+
+</body>
+</html>

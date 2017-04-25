@@ -100,11 +100,9 @@ e.printStackTrace();
 
 <p><a href="carSettings.jsp"><b>Add and Delete Cars</b></a></p>
 
-<p><a href="homepage.jsp">Back to main page</a></p>
-
 <br>
-
-<p><a href="https://github.com/NitantP/Ride-Share/blob/master/userSettings.jsp">GitHub Page</a></p>
+<br>
+[<a href="userSettings.jsp">User settings</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/userSettings.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
 
 </body>
 </html>
