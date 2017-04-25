@@ -72,5 +72,7 @@ try {
 	}
 %>
 
+[<a href="createMessage.jsp">New message</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newMessage.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
+
 </body>
 </html>

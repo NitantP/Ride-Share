@@ -43,6 +43,7 @@
 		out.print("Insert failed!");
 	}
 	%>
+	
 	<br>
 	<br>
 	[<a href="systemIndex.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/resetPass.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 

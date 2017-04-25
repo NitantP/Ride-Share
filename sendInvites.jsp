@@ -71,6 +71,10 @@ try {
 	out.println("System failure!");
 }
 %>
+<br>
+<br>
+
+[<a href="availableMatches.jsp">Available matches</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/sendInvites.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
 
 </body>
 </html>
