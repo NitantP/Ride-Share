@@ -13,9 +13,14 @@
 
 Welcome System Support!
 
-<p><a href=createAd.jsp>Add new advertisement to list</a></p>
+<p><a href="viewUsers.jsp">Reset Users' passwords</a></p>
 
-<p><a href="https://github.com/NitantP/Ride-Share/blob/master/systemIndex.jsp">GitHub Page</a></p>
+<p><a href="banUsers.jsp">Ban reported users</a></p>
+
+<p><a href="Ads.jsp">See Ads statistics</a></p>
+
+<p><a href="index.jsp">logout</a></p>
+
 
 </body>
 </html>

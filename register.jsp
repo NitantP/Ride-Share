@@ -17,6 +17,9 @@ Ride Share (TEAM 14)
 <br>
 	<form method="post" action="newUser.jsp">
 	<table>
+	<tr>
+	<td>Required Settings</td>
+	</tr>
 	<tr>    
 	<td>Username:</td><td><input type="text" name="username">
 	<%
@@ -49,6 +52,36 @@ Ride Share (TEAM 14)
 	<%
       if(request.getAttribute("RUIDFailed") != null){
    		 out.print(request.getAttribute("RUIDFailed"));  
+      } 
+    %>
+	</td>
+	</tr>
+	<tr>
+	<td>Optional Settings</td>
+	</tr>
+	<tr>
+	<td>Name:</td><td><input type="text" name="name">
+	<%
+      if(request.getAttribute("nameFailed") != null){
+   		 out.print(request.getAttribute("nameFailed"));  
+      } 
+    %>
+	</td>
+	</tr>
+	<tr>
+	<td>Address:</td><td><input type="text" name="address">
+	<%
+      if(request.getAttribute("addressFailed") != null){
+   		 out.print(request.getAttribute("addressFailed"));  
+      } 
+    %>
+	</td>
+	</tr>
+	<tr>
+	<td>Phone Number:</td><td><input type="text" name="phoneNum">
+	<%
+      if(request.getAttribute("phoneNumFailed") != null){
+   		 out.print(request.getAttribute("phoneNumFailed"));  
       } 
     %>
 	</td>
