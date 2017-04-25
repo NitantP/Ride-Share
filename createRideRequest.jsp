@@ -13,12 +13,69 @@
 
 Ride Share (TEAM 14) 
 <br>
-									  
+<form method="post">
+
+<table border="1">
+<tr>
+<td>Origin</td>
+<td>Destination</td>
+<td>Date</td>
+<td>Time</td>
+<td>Number of Passengers</td>
+</tr>
+
+<%
+try
+{
+Class.forName("com.mysql.jdbc.Driver");
+String url="jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
+String cu = (String)session.getAttribute("currentuser");
+String query="SELECT * FROM riderequests r WHERE r.Username = \"" + cu + "\"";
+
+Connection conn=DriverManager.getConnection(url, "cs336project", "csteam14");
+Statement stmt=conn.createStatement();
+ResultSet rs=stmt.executeQuery(query);
+while(rs.next())
+{
+
+%>
+<tr>
+<td><%=rs.getString("Origin") %></td>
+<td><%=rs.getString("Destination") %></td>
+<td><%=rs.getString("Date") %></td>
+<td><%=rs.getString("Time") %></td>
+<td><%=rs.getString("NumPassengers") %></td>
+</tr>
+
+ <%
+
+}
+%>
+</table>
+<%
+rs.close();
+stmt.close();
+conn.close();
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}
+%>
+</form>			  
+
 <br>
+
 	<form method="post" action="newRideRequest.jsp">
 	<table>
 	<tr>    
 	<td>From:</td><td><input type="text" name="startinglocation">
+	<%
+		if (request.getAttribute("duplicate") != null)
+		{
+			out.println(request.getAttribute("duplicate"));
+		}
+	%>
 	</td>
 	</tr>
 	<tr>
@@ -46,7 +103,7 @@ Ride Share (TEAM 14)
 	</form>
 <br>
 
-<p><a href="index.jsp">Back to main (login) page</a></p>
+<p><a href="homepage.jsp">Back to main (login) page</a></p>
 
 </body>
 </html>

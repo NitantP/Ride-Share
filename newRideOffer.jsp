@@ -46,14 +46,29 @@
 		ps.setString(8, newDestination);
 		
 		//INSERT INPUT CHECKS HERE
-
+		boolean error = false;
+		String test = "SELECT * FROM rideoffers r WHERE r.Username = \"" + (String)session.getAttribute("currentuser")
+						+ "\" AND r.Date = \"" + newDate + "\"AND r.Time = \"" + newTime +  
+						"\"AND r.Origin = \""  + newStart + "\" AND r.Destination = \""  + newDestination +"\"";
+		ResultSet result = stmt.executeQuery(test);
+		if (result.next())
+		{
+			request.setAttribute("duplicate","Duplicate Offer");
+			error = true;
+		}
 		if(LicensePlate == null || LicensePlate.equals("")){
 			request.setAttribute("insertStatus","Error: no license plate selected!");
+			error = true;
+		}
+		
+		if (error)
+		{
 			RequestDispatcher ed = request.getRequestDispatcher("createRideOffer.jsp");
 			ed.forward(request, response);	
 		}
-		
-		ps.executeUpdate();
+		else
+		{
+			ps.executeUpdate();
 			
 			out.print("Insert successful! <br><br>");
 			out.print("From: " + newStart + "<br>" +
@@ -62,7 +77,7 @@
 					  "Time: " + newTime + "<br>" +
 					  "Max Passengers: " + newMaxPassengers + "<br>" +
 					  "License Plate: " + LicensePlate + "<br>");	
-		
+		}
 		con.close();
 	}
 	catch (Exception ex) {

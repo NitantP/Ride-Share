@@ -45,13 +45,22 @@
 		
 		//INSERT INPUT CHECKS HERE
 		boolean error = false;
-		
+		String update = "SELECT * FROM riderequests r WHERE r.Username = \"" + (String)session.getAttribute("currentuser")
+						+ "\" AND r.Date = \"" + newDate + "\"AND r.Time = \"" + newTime +  
+						"\"AND r.Origin = \""  + newStart + "\" AND r.Destination = \""  + newDestination +"\"";
+		ResultSet result = stmt.executeQuery(update);
+		if (result.next())
+		{
+			error = true;
+		}
 		if (error)
 		{
-			RequestDispatcher ed = request.getRequestDispatcher("register.jsp");
+			request.setAttribute("duplicate", "You entered a duplicate request");
+			RequestDispatcher ed = request.getRequestDispatcher("createRideRequest.jsp");
         	ed.forward(request, response);
 		}
-
+		else
+		{
 			//Run the query against the DB
 			ps.executeUpdate();
 			
@@ -61,7 +70,7 @@
 					  "Date: " + newDate + "<br>" +
 					  "Time: " + newTime + "<br>" +
 					  "Passengers: " + newNumPassengers + "<br>");	
-		
+		}
 		con.close();
 	}
 	catch (Exception ex) {
@@ -70,7 +79,7 @@
 	}
 	%>
 	
-	<p><a href="index.jsp">Return to main (login) page</a></p>
+	<p><a href="homepage.jsp">Return to main (login) page</a></p>
 	
 </body>
 </html>
