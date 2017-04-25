@@ -23,7 +23,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>!
 
 <p><a href="availableMatches.jsp">See available matches to invite to ride (based on your offers)</a></p>
 
-<p><a href="createMessage.jsp">Send message to a user</a></p>
+<p><a href="messageIndex.jsp">Messages Center (view and send messages)</a></p>
 
 <p><a href="userSettings.jsp">Settings</a></p>
 

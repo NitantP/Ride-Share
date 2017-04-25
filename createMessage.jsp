@@ -40,6 +40,7 @@
 <br>
 
 <br>
+<p><a href="messageIndex.jsp">Return to message center</a></p>
 <p><a href="homepage.jsp">Return to main page</a></p>
 <p><a href="https://github.com/NitantP/Ride-Share/blob/master/createMessage.jsp">GitHub Page</a></p>
 
