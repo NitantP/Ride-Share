@@ -18,7 +18,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 <p><a href="testpage.jsp">test page (NOT PERMANENT, JUST TO SEE HOW SQL TABLES CAN BE DISPLAYED)</a></p>
 
 <div align="center">
-	[<a href="leaderboard.jsp">Leaderboard (My Statistics)</a>] [<a href="messageIndex.jsp">Messages</a>]  [<a href="userSettings.jsp">Settings</a>]
+	[<a href="leaderboard.jsp">Leaderboard</a>] [<a href="Rewards.jsp">Rewards (User Statistics)</a>] [<a href="messageIndex.jsp">Messages</a>]  [<a href="userSettings.jsp">Settings</a>]
 </div>
 <br>
 <br>

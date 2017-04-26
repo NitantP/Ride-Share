@@ -63,7 +63,8 @@
 	 	result = stmt.executeQuery(str);
 %>
 <div align="center">
-		<b>LEADERBOARD</b>
+		<br>
+		<b>LEADERBOARD (TOP 10)</b>
 		<table border="1">
 		<tr>
 		<td>Username</td>
@@ -71,18 +72,20 @@
 		<td>Rating</td>
 		</tr>
 <%		
+		int shown = 0;
 		while(result.next())
 		{
-
+			if(shown > 9){
+				break;
+			}
 		%>
 		<tr>
 		<td><%=result.getString("Username") %></td>
 		<td align="center"><%=result.getInt("RidesGiven") %></td>
 		<td><%=result.getDouble("Rating") %></td>
 		</tr>
-
 		<%
-
+		shown++;
 		}
 		%>
 		</table>

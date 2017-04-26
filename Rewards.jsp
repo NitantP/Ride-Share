@@ -25,7 +25,7 @@ Rewards
 			String str = "SELECT * FROM userlist WHERE Username = \"" + (String)session.getAttribute("currentuser") + "\"";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
-			%>
+		%>
 			<FORM method = "POST" >
 			<table border="1">
 			<tr>
@@ -51,12 +51,87 @@ Rewards
 			<br>
 
 			</FORM>
-			<%
+			
+	<% 
+	String[] ridesgiven = new String[12];
+	for(int i = 1; i <= 12; i++){
+		str = "SELECT COUNT(*) AS total FROM acceptedRides WHERE Offerer = \"" + (String)session.getAttribute("currentuser") + "\" AND MONTH(Date) = " + i;
+		result = stmt.executeQuery(str);
+		if(result.next()){
+			ridesgiven[i-1] = result.getString("total");
+		} else {
+			ridesgiven[i-1] = "0";
+		}
+	}
+	
+	String[] ridestaken = new String[12];
+	for(int i = 1; i <= 12; i++){
+		str = "SELECT COUNT(*) AS total FROM acceptedRides WHERE Requester = \"" + (String)session.getAttribute("currentuser") + "\" AND MONTH(Date) = " + i;
+		result = stmt.executeQuery(str);
+		if(result.next()){
+			ridestaken[i-1] = result.getString("total");
+		} else {
+			ridestaken[i-1] = "0";
+		}
+	}
+	%>
+			<br>
+			<b>Rides by Month</b>
+			<table border="1">
+			<tr>
+			<td>Month</td>
+			<td>January</td>
+			<td>February</td>
+			<td>March</td>
+			<td>April</td>
+			<td>May</td>
+			<td>June</td>
+			<td>July</td>
+			<td>August</td>
+			<td>September</td>
+			<td>October</td>
+			<td>November</td>
+			<td>December</td>
+			</tr>
+			<tr>
+			<td>Rides Given</td>
+			<td align="center"><%=ridesgiven[0]%></td>
+			<td align="center"><%=ridesgiven[1]%></td>
+			<td align="center"><%=ridesgiven[2]%></td>
+			<td align="center"><%=ridesgiven[3]%></td>
+			<td align="center"><%=ridesgiven[4]%></td>
+			<td align="center"><%=ridesgiven[5]%></td>
+			<td align="center"><%=ridesgiven[6]%></td>
+			<td align="center"><%=ridesgiven[7]%></td>
+			<td align="center"><%=ridesgiven[8]%></td>
+			<td align="center"><%=ridesgiven[9]%></td>
+			<td align="center"><%=ridesgiven[10]%></td>
+			<td align="center"><%=ridesgiven[11]%></td>
+			</tr>
+			<tr>
+			<td>Rides Taken</td>
+			<td align="center"><%=ridestaken[0]%></td>
+			<td align="center"><%=ridestaken[1]%></td>
+			<td align="center"><%=ridestaken[2]%></td>
+			<td align="center"><%=ridestaken[3]%></td>
+			<td align="center"><%=ridestaken[4]%></td>
+			<td align="center"><%=ridestaken[5]%></td>
+			<td align="center"><%=ridestaken[6]%></td>
+			<td align="center"><%=ridestaken[7]%></td>
+			<td align="center"><%=ridestaken[8]%></td>
+			<td align="center"><%=ridestaken[9]%></td>
+			<td align="center"><%=ridestaken[10]%></td>
+			<td align="center"><%=ridestaken[11]%></td>
+			</tr>
+
+			</table>
+			
+	<%
 		}
 		catch (Exception ex) 
 		{
 			out.print("System failure");	
 		}
-			%>
+	%>
 </body>
 </html>
