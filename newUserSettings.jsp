@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ride Share - User Settings</title>
+<title>Ride Share - Create Ride Offer</title>
 </head>
 <body>
 
@@ -27,7 +27,6 @@
 		String phoneNum = request.getParameter("phoneNum");
 		String address = request.getParameter("address");
 		String password = request.getParameter("password");
-
 		//Make an update statement for the userlist table:
 		String update;
 		String insert;
@@ -199,7 +198,6 @@
 			ps.executeUpdate();
 			ps.close();
 		}
-
 		if(error)
 		{
 			out.print("failed");
