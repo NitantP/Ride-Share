@@ -97,6 +97,9 @@
 				str = "UPDATE adlist SET TimesShown = TimesShown + 1 WHERE adID =\"" + result.getString("adID") + "\"";
 				PreparedStatement ps = con.prepareStatement(str);
 				ps.executeUpdate();
+				str = "UPDATE userlist SET HasRating = HasRating - 1 WHERE Username =\"" + (String)session.getAttribute("currentuser") + "\"";
+				ps = con.prepareStatement(str);
+				ps.executeUpdate();
 			%>
 
 			</FORM>
