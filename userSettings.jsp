@@ -32,19 +32,14 @@ ResultSet rs=stmt.executeQuery(query);
 while(rs.next())
 {
 
-		String name = rs.getString("Name");
+		String name = rs.getString("Name1");
 		String phone = rs.getString("PhoneNumber");
 		String address = rs.getString("Address");
 		%>
 		<tr>
-		<td>Set Visibility</td>
-		<td>Settings</td>
-		<td>Values</td>
-		</tr>
-		<tr>
-		<td><input type=checkbox name=Vis value = <%=rs.getString("Name")%>/></td>
+		<td><input type=checkbox name=Vis value = <%=rs.getString("Name1")%>/></td>
 		<td>Name</td>
-		<td><%=rs.getString("Name") %></td>
+		<td><%=rs.getString("Name1") %></td>
 		</tr>
 		<tr>
 		<td><input type=checkbox name=Vis2 value = <%=rs.getString("PhoneNumber")%>/></td>

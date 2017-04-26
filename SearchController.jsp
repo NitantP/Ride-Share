@@ -66,22 +66,22 @@
 				out.print("Search successful! <br><br>");
 				out.println("Username: " + user);
 				out.println("<br>");
-				if (!result.getString("Name1").equals(null) || result.getString("Name1").equals(" "))
+				if (!result.getString("Name1").equals(null) && !result.getString("Name1").equals(" "))
 				{
 					out.println("Name: " + result.getString("Name1"));
 					out.println("<br>");
 				}
-				if (!result.getString("Address").equals(null) || result.getString("Address").equals(" "))
+				if (!result.getString("Address").equals(null) && !result.getString("Address").equals(" "))
 				{
 					out.println("Address: " + result.getString("Address"));
 					out.println("<br>");
 				}
-				if (!result.getString("PhoneNumber").equals(null) || result.getString("PhoneNumber").equals(" "))
+				if (!result.getString("PhoneNumber").equals(null) && !result.getString("PhoneNumber").equals(" "))
 				{
 					out.println("Phone Number: " + result.getString("PhoneNumber"));
 					out.println("<br>");
 				}
-				if (!result.getString("Email").equals(null) || result.getString("Email").equals(" "))
+				if (!result.getString("Email").equals(null) && !result.getString("Email").equals(" "))
 				{
 					out.println("Email: " + result.getString("Email"));
 					out.println("<br>");

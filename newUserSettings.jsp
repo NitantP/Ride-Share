@@ -27,6 +27,7 @@
 		String phoneNum = request.getParameter("phoneNum");
 		String address = request.getParameter("address");
 		String password = request.getParameter("password");
+
 		//Make an update statement for the userlist table:
 		String update;
 		String insert;
@@ -36,58 +37,7 @@
 		boolean phoneDigit = true;
 		String user = (String)session.getAttribute("currentuser");
 		
-		for (int i = 0; i < Math.max(name.length(), phoneNum.length()); i++) 
-	    {
-	        if (phoneNum.length() > i + 1) 
-	        {
-	        	if(!Character.isDigit(phoneNum.charAt(i)))
-	        	{
-	        		phoneDigit = false;
-	        	}
-	        }
-	        if (name.length() > i + 1) 
-	        {
-	        	if(Character.isDigit(name.charAt(i)))
-	        	{
-	        		nameDigit = true;
-	        	}
-	        }
-	    }
-		if (name.length() != 0 && !nameDigit)
-		{
-			update = "UPDATE userlist SET Name =\"" + name + "\" WHERE Username =\"" + user+ "\"";
-			ps = con.prepareStatement(update);
-			ps.executeUpdate();
-		}
-		else if (nameDigit)
-		{
-			request.setAttribute("nameFailed", "Invalid name");
-			error = true;
-		}
 		
-		if (phoneNum.length() <= 15 && phoneDigit && phoneNum.length() >= 7)
-		{
-			update = "UPDATE userlist SET PhoneNumber =\"" + phoneNum + "\" WHERE Username =\"" + user+ "\"";
-			ps = con.prepareStatement(update);
-			ps.executeUpdate();
-		}
-		else if (!phoneDigit)
-		{
-			request.setAttribute("phoneNumFailed", "Invalid phone number");
-			error = true;
-		}
-		if (address.length() != 0)
-		{
-			update = "UPDATE userlist SET Address =\"" + address + "\" WHERE Username =\"" + user+ "\"";
-			ps = con.prepareStatement(update);
-			ps.executeUpdate();
-		}
-		if (password.length() != 0)
-		{
-			update = "UPDATE userlist SET Password =\"" + password + "\" WHERE Username =\"" + user+ "\"";
-			ps = con.prepareStatement(update);
-			ps.executeUpdate();
-		}
 		String str = "SELECT * FROM visibleUsers v WHERE v.Username =\"" + user+ "\"";
 		ResultSet result = stmt.executeQuery(str);
 		String values;
@@ -198,6 +148,60 @@
 			ps.executeUpdate();
 			ps.close();
 		}
+		
+		for (int i = 0; i < Math.max(name.length(), phoneNum.length()); i++) 
+	    {
+	        if (phoneNum.length() > i + 1) 
+	        {
+	        	if(!Character.isDigit(phoneNum.charAt(i)))
+	        	{
+	        		phoneDigit = false;
+	        	}
+	        }
+	        if (name.length() > i + 1) 
+	        {
+	        	if(Character.isDigit(name.charAt(i)))
+	        	{
+	        		nameDigit = true;
+	        	}
+	        }
+	    }
+		if (name.length() != 0 && !nameDigit)
+		{
+			update = "UPDATE userlist SET Name1 =\"" + name + "\" WHERE Username =\"" + user+ "\"";
+			ps = con.prepareStatement(update);
+			ps.executeUpdate();
+		}
+		else if (nameDigit)
+		{
+			request.setAttribute("nameFailed", "Invalid name");
+			error = true;
+		}
+		
+		if (phoneNum.length() <= 15 && phoneDigit && phoneNum.length() >= 7)
+		{
+			update = "UPDATE userlist SET PhoneNumber =\"" + phoneNum + "\" WHERE Username =\"" + user+ "\"";
+			ps = con.prepareStatement(update);
+			ps.executeUpdate();
+		}
+		else if (!phoneDigit)
+		{
+			request.setAttribute("phoneNumFailed", "Invalid phone number");
+			error = true;
+		}
+		if (address.length() != 0)
+		{
+			update = "UPDATE userlist SET Address =\"" + address + "\" WHERE Username =\"" + user+ "\"";
+			ps = con.prepareStatement(update);
+			ps.executeUpdate();
+		}
+		if (password.length() != 0)
+		{
+			update = "UPDATE userlist SET Password =\"" + password + "\" WHERE Username =\"" + user+ "\"";
+			ps = con.prepareStatement(update);
+			ps.executeUpdate();
+		}
+		
 		if(error)
 		{
 			out.print("failed");
@@ -208,7 +212,7 @@
 		{
 			//Run the query against the DB
 			out.print("Insert successful! <br>");
-			out.print("Namee: " + name + "<br>" +
+			out.print("Name: " + name + "<br>" +
 					  "Phone Number: " + phoneNum + "<br>" +
 					  "Address: " + address + "<br>" +
 					  "Password: " + password+ "<br>");	
@@ -221,7 +225,7 @@
 	}
 	%>
 	
-[<a href="userSettings.jsp">Back</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newUserSettings.jsp">GitHub Page</a>]
+	<p><a href="userSettings.jsp">Return to settings page</a></p>
 	
 </body>
 </html>
