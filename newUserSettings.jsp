@@ -30,10 +30,12 @@
 
 		//Make an update statement for the userlist table:
 		String update;
+		String insert;
 		PreparedStatement ps;
 		boolean error = false;
 		boolean nameDigit = false;
 		boolean phoneDigit = true;
+		String user = (String)session.getAttribute("currentuser");
 		
 		for (int i = 0; i < Math.max(name.length(), phoneNum.length()); i++) 
 	    {
@@ -54,7 +56,7 @@
 	    }
 		if (name.length() != 0 && !nameDigit)
 		{
-			update = "UPDATE userlist SET Name =\"" + name + "\" WHERE Username =\"" + (String)session.getAttribute("currentuser")+ "\"";
+			update = "UPDATE userlist SET Name =\"" + name + "\" WHERE Username =\"" + user+ "\"";
 			ps = con.prepareStatement(update);
 			ps.executeUpdate();
 		}
@@ -66,7 +68,7 @@
 		
 		if (phoneNum.length() <= 15 && phoneDigit && phoneNum.length() >= 7)
 		{
-			update = "UPDATE userlist SET PhoneNumber =\"" + phoneNum + "\" WHERE Username =\"" + (String)session.getAttribute("currentuser")+ "\"";
+			update = "UPDATE userlist SET PhoneNumber =\"" + phoneNum + "\" WHERE Username =\"" + user+ "\"";
 			ps = con.prepareStatement(update);
 			ps.executeUpdate();
 		}
@@ -77,17 +79,127 @@
 		}
 		if (address.length() != 0)
 		{
-			update = "UPDATE userlist SET Address =\"" + address + "\" WHERE Username =\"" + (String)session.getAttribute("currentuser")+ "\"";
+			update = "UPDATE userlist SET Address =\"" + address + "\" WHERE Username =\"" + user+ "\"";
 			ps = con.prepareStatement(update);
 			ps.executeUpdate();
 		}
 		if (password.length() != 0)
 		{
-			update = "UPDATE userlist SET Password =\"" + password + "\" WHERE Username =\"" + (String)session.getAttribute("currentuser")+ "\"";
+			update = "UPDATE userlist SET Password =\"" + password + "\" WHERE Username =\"" + user+ "\"";
 			ps = con.prepareStatement(update);
 			ps.executeUpdate();
 		}
-		
+		String str = "SELECT * FROM visibleUsers v WHERE v.Username =\"" + user+ "\"";
+		ResultSet result = stmt.executeQuery(str);
+		String values;
+		if (result.next())
+		{
+			String sup;
+			if (request.getParameter("Vis") == null)
+			{
+				sup = " ";
+			}
+			else
+			{
+				values = (String)request.getParameter("Vis");
+				sup = values.substring(0, values.length()-1);
+			}
+			update = "UPDATE visibleUsers SET Name1 =\"" + sup + "\" WHERE Username =\"" + user+ "\"";
+			ps = con.prepareStatement(update);
+			ps.executeUpdate();
+			
+			if (request.getParameter("Vis2") == null)
+			{
+				
+				sup = " ";
+			}
+			else
+			{
+				values = (String)request.getParameter("Vis2");
+				sup = values.substring(0, values.length()-1);
+			}
+			update = "UPDATE visibleUsers SET PhoneNumber =\"" + sup + "\" WHERE Username =\"" + user+ "\"";
+			ps = con.prepareStatement(update);
+			ps.executeUpdate();
+			
+			if (request.getParameter("Vis3") == null)
+			{
+				sup = " ";
+			}
+			else
+			{
+				values = (String)request.getParameter("Vis3");
+				sup = values.substring(0, values.length()-1);
+			}
+			update = "UPDATE visibleUsers SET Address =\"" + sup + "\" WHERE Username =\"" + user+ "\"";
+			ps = con.prepareStatement(update);
+			ps.executeUpdate();
+			
+			if (request.getParameter("Vis4") == null)
+			{
+				sup = " ";
+			}
+			else
+			{
+				values = (String)request.getParameter("Vis4");
+				sup = values.substring(0, values.length()-1);
+			}
+			update = "UPDATE visibleUsers SET Email =\"" + sup + "\" WHERE Username =\"" + user+ "\"";
+			ps = con.prepareStatement(update);
+			ps.executeUpdate();
+			ps.close();
+		}
+		else
+		{
+			str = "INSERT INTO visibleUsers(Username, Name1, Email, Address, PhoneNumber)"
+					+ " VALUES (?, ?, ?, ?, ?)";
+			ps = con.prepareStatement(str);
+			ps.setString(1, user);
+			values = (String)request.getParameter("Vis");
+			String sub;
+			
+			if (values != null)
+			{
+				ps.setString(2, values.substring(0, values.length()-1));
+			}
+			else
+			{
+				ps.setString(2, null);
+			}
+			
+			values = request.getParameter("Vis2");
+			if (values != null)
+			{
+				ps.setString(3, values.substring(0, values.length()-1));
+			}
+			else
+			{
+				ps.setString(3, null);
+			}
+			
+			values = request.getParameter("Vis3");
+			if (values != null)
+			{
+				ps.setString(4, values.substring(0, values.length()-1));
+			}
+			else
+			{
+				ps.setString(4, null);
+			}
+			
+			values = request.getParameter("Vis4");
+			if (values != null)
+			{
+				ps.setString(5, values.substring(0, values.length()-1));
+			}
+			else
+			{
+				ps.setString(5, null);
+			}
+			ps.executeUpdate();
+			ps.close();
+		}
+
 		if(error)
 		{
 			out.print("failed");
