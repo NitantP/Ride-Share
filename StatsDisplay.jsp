@@ -25,9 +25,6 @@
 		
 		String str = "";
 		
-		String input1 = request.getParameter("input1");
-		String input2 = request.getParameter("input2");
-		
 		if(request.getParameter("submit1") != null){
 			String input = request.getParameter("input");
 			String querytype1 = request.getParameter("querytype1");
@@ -48,7 +45,54 @@
 			result = stmt.executeQuery(str);
 	
 %>	
-			<b>Results for query (<%=input%>,<%=querytype1%>)</b>	
+			<b>Results for query (<%=input%>,<%=querytype1%>);</b>	
+			<br>
+			<table border="1">
+			<tr>
+			<td>Offer ID</td>
+			<td>Request ID</td>
+			<td>Offerer</td>
+			<td>Requester</td>
+			<td>Time</td>
+			<td>Date</td>
+			<td>Origin</td>
+			<td>Destination</td>
+			</tr>
+
+		<%   
+			while(result.next())
+			{
+		%>	
+			<tr>
+			<td align="center"><%=result.getInt("offerID") %></td>
+			<td align="center"><%=result.getInt("requestID") %></td>
+			<td><%=result.getString("Offerer") %></td>
+			<td><%=result.getString("Requester") %></td>
+			<td><%=result.getString("Time") %></td>
+			<td><%=result.getString("Date") %></td>
+			<td><%=result.getString("Origin") %></td>
+			<td><%=result.getString("Destination") %></td>
+			</tr>
+			<%
+			}
+			%>
+			</table>
+		<%	
+		} else {
+			String input1 = request.getParameter("input1");
+			String input2 = request.getParameter("input2");
+			String querytype2 = request.getParameter("querytype2");
+			if(querytype2.equals("date")){
+				str = "SELECT * FROM acceptedRides WHERE Date >= \"" + input1 + "\" AND Date <= \"" + input2 + "\"";
+			} else if(querytype2.equals("time")){
+				str = "SELECT * FROM acceptedRides WHERE Time >= \"" + input1 + "\" AND Time <= \"" + input2 + "\"";
+			} else {
+				out.println("No valid query type!");
+				return;
+			}
+			result = stmt.executeQuery(str);
+%>	
+			<b>Results for query (<%=input1%>,<%=input2%>,<%=querytype2%>);</b>
 			<br>
 			<table border="1">
 			<tr>
