@@ -13,10 +13,12 @@
 
 Ride Share (TEAM 14) 
 <br>
-<form method="post">
+<form method="post" action="delete.jsp">
 
 <table border="1">
 <tr>
+<td>Delete?</td>
+<td>Offer ID</td>
 <td>Origin</td>
 <td>Destination</td>
 <td>Date</td>
@@ -41,6 +43,8 @@ while(rs.next())
 
 %>
 <tr>
+<td align="center"><input type="checkbox" name="deleteid" value=<%=rs.getString("offerID") %>></td>
+<td align="center"><%=rs.getInt("offerID") %>
 <td><%=rs.getString("Origin") %></td>
 <td><%=rs.getString("Destination") %></td>
 <td><%=rs.getString("Date") %></td>
@@ -54,6 +58,10 @@ while(rs.next())
 }
 %>
 </table>
+<br>
+<input type="submit" name="submit" value="Delete">
+<input type="hidden" name="deletetype" value="offer">
+
 <%
 rs.close();
 stmt.close();
@@ -65,10 +73,9 @@ e.printStackTrace();
 }
 %>
 </form>		
-<br>
 <%
 
-ResultSet registeredcars = null;
+ResultSet result = null;
 
 try {
 	
@@ -81,10 +88,7 @@ try {
 	//Create a SQL statement
 	String currentun = (String)session.getAttribute("currentuser");
 	Statement stmt = con.createStatement();
-	registeredcars = stmt.executeQuery("SELECT c.LicensePlate FROM carlist c WHERE c.Username = \"" + currentun + "\" ");
-} catch (Exception e) {
-	out.println("System failure!");
-}
+	result = stmt.executeQuery("SELECT c.LicensePlate FROM carlist c WHERE c.Username = \"" + currentun + "\" ");
 %>
 									  
 <br>
@@ -118,8 +122,8 @@ try {
 	</tr>
 	<tr>
 	<td>Select a car (by license plate):</td><td><select name="licenseplate">
-        <%  while(registeredcars.next()){ %>
-            <option value=<%=registeredcars.getString(1)%>><%= registeredcars.getString(1)%></option>
+        <%  while(result.next()){ %>
+            <option value=<%=result.getString(1)%>><%= result.getString(1)%></option>
         <% } %>
         </select>
     </td>
@@ -129,8 +133,15 @@ try {
 	</td>
 	</tr>
 	</table>
+	<br>
 	<input type="submit" value="Submit Request">
 	</form>
+
+<%
+	} catch (Exception e) {
+	out.println("System failure!");
+	}
+%>
 <br>
 <br>
 [<a href="homepage.jsp">Back to main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/createRideOffer.jsp">GitHub Page</a>]

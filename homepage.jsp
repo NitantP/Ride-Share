@@ -18,13 +18,29 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 <p><a href="testpage.jsp">test page (NOT PERMANENT, JUST TO SEE HOW SQL TABLES CAN BE DISPLAYED)</a></p>
 
 <div align="center">
-	[<a href="leaderboard.jsp">Leaderboard (Statistics)</a>] [<a href="messageIndex.jsp">Messages</a>]  [<a href="userSettings.jsp">Settings</a>]
+	[<a href="leaderboard.jsp">Leaderboard (My Statistics)</a>] [<a href="messageIndex.jsp">Messages</a>]  [<a href="userSettings.jsp">Settings</a>]
 </div>
 
 <div align="left">
+	<form method="post" action="SearchController.jsp">
+	<table>
+	<tr>    
+	<td>User:</td><td><input type="text" name="user">
+	<%
+		if (request.getAttribute("none") != null)
+		{
+			out.println(request.getAttribute("none"));
+		}
+	%>
+	</td>
+	</tr>
+	</table>
+	<input type="submit" value="Search">
+	</form>
+	----------------------------------------------------------
 	<p><a href="availableMatchesIntermediate.jsp">Available matches</a></p>
 	----------------------------------------------------------
-	<p><a href="createRideOffer.jsp">Create ride offer</a></p>
+	<p><a href="createRideOffer.jsp">Manage ride offers (create/delete)</a></p>
 	<%
 	try {
 		//Create a connection string
@@ -77,7 +93,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		}
 	%>
 	--------------------------------------------------------------
-	<p><a href="createRideRequest.jsp">Create ride request</a></p>
+	<p><a href="createRideRequest.jsp">Manage ride requests (create/delete)</a></p>
 	<%
 	try {
 		//Create a connection string

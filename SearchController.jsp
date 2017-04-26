@@ -25,7 +25,7 @@
 		//Get parameters from the HTML form at the createRideOffer.jsp		
 		
 		//Make an insert statement for the Ride Offers table:
-		String insert = "SELECT *  FROM userlist u WHERE u.Username = \"" + request.getParameter("user") + "\"";
+		String insert = "SELECT * FROM userlist u WHERE u.Username = \"" + request.getParameter("user") + "\"";
 		ResultSet result = stmt.executeQuery(insert);
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		
@@ -64,8 +64,9 @@
 		out.print("Insert failed!");
 	}
 	%>
+	<br>
 	
-	<p><a href="homepage.jsp">Return to main (login) page</a></p>
+	[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/SearchController.jsp">GitHub Page</a>]
 	
 </body>
 </html>

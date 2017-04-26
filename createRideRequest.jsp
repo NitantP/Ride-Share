@@ -13,10 +13,12 @@
 
 Ride Share (TEAM 14) 
 <br>
-<form method="post">
+<form method="post" action="delete.jsp">
 
 <table border="1">
 <tr>
+<td>Delete?</td>
+<td>Request ID</td>
 <td>Origin</td>
 <td>Destination</td>
 <td>Date</td>
@@ -40,6 +42,8 @@ while(rs.next())
 
 %>
 <tr>
+<td align="center"><input type="checkbox" name="deleteid" value=<%=rs.getString("requestID") %>></td>
+<td align="center"><%=rs.getInt("requestID") %>
 <td><%=rs.getString("Origin") %></td>
 <td><%=rs.getString("Destination") %></td>
 <td><%=rs.getString("Date") %></td>
@@ -52,6 +56,9 @@ while(rs.next())
 }
 %>
 </table>
+<br>
+<input type="submit" name="submit" value="Delete">
+<input type="hidden" name="deletetype" value="request">
 <%
 rs.close();
 stmt.close();
