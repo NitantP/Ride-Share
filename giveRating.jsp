@@ -69,8 +69,18 @@
 					out.print(request.getAttribute("notNum"));  
 				}
 			%>
-			<td><input type=submit name=submit value="Give Rating"></td>
+			<p></p>
+			<tr>
+			<td>Comments</td>
+			<td><textarea rows="4" cols="25" name="comments"></textarea>
+			</tr>
+			</p>
+			<td><input type=submit name=submit value="Give Feedback"></td>
+			<td><input type=submit name=report value="Report User"></td>
 			</table>
+			<p></p>
+			
+			
 			<%String ad = "SELECT * FROM adlist a WHERE a.TimesShown = (SELECT min(a1.TimesShown) FROM adlist a1)";
 				result = stmt.executeQuery(ad);
 				if (result.next())
@@ -90,7 +100,7 @@
 			%>
 
 			</FORM>
-		
+			
 	<%
 
 			result.close();

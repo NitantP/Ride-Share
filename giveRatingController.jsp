@@ -23,13 +23,16 @@
 		double ratingDub = 0;
 		int ridesGiven = 0;
 		PreparedStatement ps;
-		String rating = request.getParameter("rating");
+		String rating;
+		String str;
+		String comments = request.getParameter("comments");
+		String report = request.getParameter("report");
+		rating = request.getParameter("rating");
 		String cun = (String)session.getAttribute("currentuser");
-		String str = "SELECT * FROM acceptedRides WHERE Requester= \"" + cun + "\" AND RatingGiven = 0";
+		str = "SELECT * FROM acceptedRides WHERE Requester= \"" + cun + "\" AND RatingGiven = 0";
 		ResultSet result = stmt.executeQuery(str);
 		if (!Character.isDigit(rating.charAt(0)) || rating.length() != 1)
 		{
-			out.println("test1");
 			request.setAttribute("notNum", "Enter a number 1 - 5");
 			RequestDispatcher ed = request.getRequestDispatcher("giveRating.jsp");
         	ed.forward(request, response);
@@ -46,7 +49,21 @@
 				result = stmt.executeQuery(str);
 				if (result.next())
 				{
-					out.println("test2");
+					if (report != null && report.equals("Report User"))
+					{
+						str = "UPDATE userlist SET Reported = Report + 1";
+						ps = con.prepareStatement(str);
+						ps.executeUpdate();
+					}
+					if (comments != null)
+					{
+						String insert = "INSERT INTO rideoffers(Username, Commentor, Time, Comment)"
+								+ " VALUES (?, ?, ?, ?)";
+						ps = con.prepareStatement(insert);
+						ps.setString(1, cun);
+						ps.setString(2, otherUser);
+						ps.setString(3, comments);
+					}
 					ridesGiven = Integer.parseInt((String)result.getString("RidesGiven"));
 					if (ridesGiven == 1)
 					{
@@ -55,7 +72,7 @@
 					else
 					{
 						ratingDub = Double.parseDouble((String)result.getString("Rating"));
-						ratingDub *= ridesGiven;
+						ratingDub *= ridesGiven - 1;
 						ridesGiven += 1;
 						ratingDub += Integer.parseInt(rating);
 						ratingDub /= ridesGiven;
