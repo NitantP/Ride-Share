@@ -31,7 +31,7 @@
 		int requestid = Integer.parseInt(request.getParameter("invited"));
 		
 		//Make a SELECT query from the users table with the username and password matches with the input
-		String str = "SELECT * FROM userlist U, rideoffers O, possibleMatches P WHERE O.Username = U.Username AND O.offerID = P.offerID AND P.requestID = " + requestid + " AND U.Username IN (SELECT O.Username FROM rideoffers O WHERE O.offerId IN (SELECT offerID FROM possibleMatches WHERE requestID = " + requestid + "))";
+		String str = "SELECT * FROM userlist U, rideoffers O, possibleMatches P, carlist C WHERE O.LicensePlate = C.LicensePlate AND O.Username = U.Username AND O.offerID = P.offerID AND P.requestID = " + requestid + " AND U.Username IN (SELECT O.Username FROM rideoffers O WHERE O.offerId IN (SELECT offerID FROM possibleMatches WHERE requestID = " + requestid + "))";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 %>
@@ -45,6 +45,10 @@
 		<td>Rides Taken</td>
 		<td>Rating</td>
 		<td>Times Reported</td>
+		<td>License Plate</td>
+		<td>Make</td>
+		<td>Model</td>
+		<td>Year</td>
 		</tr>
 
 <%      
@@ -58,6 +62,10 @@
 		<td><%=result.getInt("U.RidesTaken") %></td>
 		<td><%=result.getDouble("U.Rating") %></td>
 		<td><%=result.getInt("U.Reported") %></td>
+		<td><%=result.getString("O.LicensePlate") %>
+		<td><%=result.getString("C.Make") %>
+		<td><%=result.getString("C.Model") %>
+		<td><%=result.getString("C.Year") %>
 		</tr>
 		
 		<%
