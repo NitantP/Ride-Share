@@ -32,9 +32,10 @@
 %>
 		<form method = "POST" ACTION = "availableMatches.jsp">
 		<table border="1">
+		<b>Matches to Your Ride Offers</b>
 		<tr>
-		<td>See Matches</td>
-		<td>Username</td>
+		<td>See Matches For</td>
+		<td>Offer ID</td>
 		<td>Date</td>
 		<td>Time</td>
 		<td>Number of Passengers</td>
@@ -47,8 +48,8 @@
 		{
 		%>
 		<tr>
-		<td><input type="radio" name="offer" value=<%=result.getInt("O.offerID")%>></td>
-		<td><%=result.getString("O.Username") %></td>
+		<td align="center"><input type="radio" name="offer" value=<%=result.getInt("O.offerID")%>></td>
+		<td align="center"><%=result.getInt("O.offerID") %></td>
 		<td><%=result.getString("O.Date") %></td>
 		<td><%=result.getString("O.Time") %></td>
 		<td align="center"><%=result.getString("O.MaxPassengers") %></td>
@@ -66,7 +67,47 @@
 		<input type=submit name=submit value="See Matches">
 
 </FORM>
+<br>
+<br>
+		<form method = "POST" ACTION = "availableInvites.jsp">
+		<b>Invites to Your Ride Requests</b>
+		<table border="1">
+		<tr>
+		<td>See Invites For</td>
+		<td>Request ID</td>
+		<td>Date</td>
+		<td>Time</td>
+		<td>Number of Passengers</td>
+		<td>Origin</td>
+		<td>Destination</td>
+		</tr>
+
+<%      
+		str = "SELECT * FROM riderequests R WHERE R.Username = \"" + currentun + "\" AND R.requestID NOT IN (SELECT requestID FROM acceptedRides)";
+		result = stmt.executeQuery(str);
+		while(result.next())
+		{
+		%>
+		<tr>
+		<td align="center"><input type="radio" name="invited" value=<%=result.getInt("R.requestID")%>></td>
+		<td align="center"><%=result.getInt("R.requestID") %></td>
+		<td><%=result.getString("R.Date") %></td>
+		<td><%=result.getString("R.Time") %></td>
+		<td align="center"><%=result.getString("R.NumPassengers") %></td>
+		<td><%=result.getString("R.Origin") %></td>
+		<td><%=result.getString("R.Destination") %></td>
 		
+		</tr>
+		
+		<%
+
+		}
+		%>
+		</table>
+		<br>
+		<input type=submit name=submit value="See Matches">
+
+</FORM>
 	<%
 		
 		result.close();

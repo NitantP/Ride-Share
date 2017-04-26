@@ -41,7 +41,7 @@
 		String offerdestination = "";
 %>
 
-<FORM method = "POST" ACTION = "sendInvites.jsp">
+<FORM method = "POST" ACTION ="sendInvites.jsp">
 		<table border="1">
 		<tr>
 		<td>Invite</td>
@@ -64,7 +64,7 @@
 			  }
 		%>
 		<tr>
-		<td><input type=checkbox name=invited value = <%=result.getString("R.Username")%>/></td>
+		<td><input type=checkbox name=invited value = <%=result.getInt("R.requestID")%>/></td>
 		<td><%=result.getString("R.Username") %></td>
 		<td><%=result.getString("R.Date") %></td>
 		<td><%=result.getString("R.Time") %></td>
@@ -81,6 +81,7 @@
 		<br>
 		<input type=submit name=submit value="Send Invites">
 
+		<input type='hidden' name='offerid' value=<%=offerid%>>
 		<input type='hidden' name='offerusername' value=<%=currentun%>>
 		<input type='hidden' name='offerdate' value=<%=offerdate%>>
 		<input type='hidden' name='offertime' value=<%=offertime%>>
