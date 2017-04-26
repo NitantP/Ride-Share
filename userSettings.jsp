@@ -14,37 +14,59 @@
 Ride Share (TEAM 14) 
 <br>
 
-<form method="post">
+<form method="post" action="newUserSettings.jsp">
 
 <table border="1">
-<tr>
-<td>Name</td>
-<td>Phone Number</td>
-<td>Address</td>
-<td>Password</td>
-</tr>
+
 
 <%
 try
 {
 Class.forName("com.mysql.jdbc.Driver");
 String url="jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
+Connection conn=DriverManager.getConnection(url, "cs336project", "csteam14");
 String cu = (String)session.getAttribute("currentuser");
 String query="SELECT * FROM userlist c WHERE c.Username = \"" + cu + "\"";
-
-Connection conn=DriverManager.getConnection(url, "cs336project", "csteam14");
 Statement stmt=conn.createStatement();
 ResultSet rs=stmt.executeQuery(query);
 while(rs.next())
 {
 
-%>
-<tr>
-<td><%=rs.getString("Name") %></td>
-<td><%=rs.getString("PhoneNumber") %></td>
-<td><%=rs.getString("Address") %></td>
-<td><%=rs.getString("Password") %></td>
-</tr>
+		String name = rs.getString("Name");
+		String phone = rs.getString("PhoneNumber");
+		String address = rs.getString("Address");
+		%>
+		<tr>
+		<td>Set Visibility</td>
+		<td>Settings</td>
+		<td>Values</td>
+		</tr>
+		<tr>
+		<td><input type=checkbox name=Vis value = <%=rs.getString("Name")%>/></td>
+		<td>Name</td>
+		<td><%=rs.getString("Name") %></td>
+		</tr>
+		<tr>
+		<td><input type=checkbox name=Vis2 value = <%=rs.getString("PhoneNumber")%>/></td>
+		<td>Phone Number</td>
+		<td><%=rs.getString("PhoneNumber") %></td>
+		</tr>
+		<tr>
+		<td><input type=checkbox name=Vis3 value = <%=rs.getString("Address")%>/></td>
+		<td>Address</td>
+		<td><%=rs.getString("Address") %></td>
+		</tr>
+		<tr>
+		<tr>
+		<td><input type=checkbox name=Vis4 value = <%=rs.getString("Email")%>/></td>
+		<td>Email</td>
+		<td><%=rs.getString("Email") %></td>
+		</tr>
+		<tr>
+		<td></td>
+		<td>Password</td>
+		<td><%=rs.getString("Password") %></td>
+		</tr>
 
  <%
 
@@ -60,12 +82,19 @@ catch(Exception e)
 {
 e.printStackTrace();
 }
+Class.forName("com.mysql.jdbc.Driver");
+String url="jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
+Connection conn=DriverManager.getConnection(url, "cs336project", "csteam14");
+String cu = (String)session.getAttribute("currentuser");
+String query="SELECT * FROM userlist c WHERE c.Username = \"" + cu + "\"";
+Statement stmt=conn.createStatement();
+ResultSet rs=stmt.executeQuery(query);
+while(rs.next())
+{
 %>
-</form>
 
 									  
 <br>
-	<form method="post" action="newUserSettings.jsp">
 	<table>
 	<tr>    
 	<td>Name:</td><td><input type="text" name="name">
@@ -93,6 +122,10 @@ e.printStackTrace();
 	<td>Password:</td><td><input type="text" name="password">
 	</td>
 	</tr>
+	 <%
+
+}
+%>
 	</table>
 	<input type="submit" value="Change Settings">
 	</form>
