@@ -16,13 +16,28 @@
 <FORM method = "POST" ACTION ="StatsDisplay.jsp">
 <table>
 		<tr>
-		<td>Query</td><td><input type=text name="input"></td>
-		<td><select name="querytype">
+		<td>Query: </td><td><input type=text name="input"></td>
+		<td><select name="querytype1">
 				<option value="username">Username</option>
 				<option value="date">Date</option>
 				<option value="time">Time</option>
 				<option value="origin">Origin</option>
 				<option value="destination">Destination</option>
+			</select>
+		</tr>
+</table>
+<input type=submit name=submit value="See Stats">
+</FORM>
+<br>
+<br>
+<br>
+<FORM method="POST" ACTION="StatsDisplay.jsp">
+<table>
+		<tr>
+		<td>Query: </td><td><input type=text name="input1"></td><td>to</td><td><input type=text name="input2"></td>
+		<td><select name="querytype2">
+				<option value="date">Date</option>
+				<option value="time">Time</option>
 			</select>
 		</tr>
 </table>

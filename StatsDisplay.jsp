@@ -4,14 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Ride Share - Statistics</title>
 </head>
 <body>
 
 <%
 
 out.println(request.getParameter("input"));
-out.println(request.getParameter("querytype"));
+out.println(request.getParameter("querytype1"));
+out.println("----------------------------------------------");
+out.println(request.getParameter("input1") + " to " + request.getParameter("input2"));
+out.println(request.getParameter("querytype2"));
 
 %>
 
