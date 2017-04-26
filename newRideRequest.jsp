@@ -51,7 +51,7 @@
 		{
 			request.setAttribute("time", "Please use the format hour:minute");
 			request.setAttribute("date", "Please use the format year-month-day eg 2017-01-01");
-			RequestDispatcher ed = request.getRequestDispatcher("createRideOffer.jsp");
+			RequestDispatcher ed = request.getRequestDispatcher("createRideRequest.jsp");
 			ed.forward(request, response);	
 		}
 		else
@@ -83,7 +83,7 @@
 				
 				request.setAttribute("time", "Please use the format hour:minute");
 				request.setAttribute("date", "Please use the format year-month-day eg 2017-01-01");
-				RequestDispatcher ed = request.getRequestDispatcher("createRideOffer.jsp");
+				RequestDispatcher ed = request.getRequestDispatcher("createRideRequest.jsp");
 				ed.forward(request, response);	
 			}
 			else
@@ -123,8 +123,9 @@
 		out.print("Insert failed!");
 	}
 	%>
-	
-	<p><a href="homepage.jsp">Return to main (login) page</a></p>
+<br>
+<br>	
+[<a href="createRideRequest">Ride requests</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newRideRequest.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
 	
 </body>
 </html>

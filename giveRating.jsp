@@ -74,7 +74,6 @@
 				if (result.next())
 				{
 					%>
-					<p></p>
 					<%=result.getString("Advert")%>
 					<%
 				}
@@ -97,10 +96,8 @@
 		}
 
 %>
-<p></p>
-Skip Rating
-<p><a href="homepage.jsp">Go To Homepage</a></p>
 <br>
 <br>
+[<a href="homepage.jsp">Skip rating</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/giveRating.jsp">GitHub Page</a>] 
 </body>
 </html>

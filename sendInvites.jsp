@@ -46,7 +46,7 @@ try {
 						 request.getParameter("offerusername") + "\nDate: " + request.getParameter("offerdate") 
 						 + "\nTime: " + request.getParameter("offertime") 
 		                 + "\nOrigin: " + request.getParameter("offerorigin") + "\nDestination: " 
-		                 + request.getParameter("offerdestination");
+		                 + request.getParameter("offerdestination") + "\nGo to Available Matches to accept!";
 		
 		ps.setString(1, offerun);
 		ps.setDate(3, java.sql.Date.valueOf(parsedDate));

@@ -24,8 +24,8 @@ try {
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		
-		String insert = "INSERT INTO acceptedRides(offerID, requestID, Offerer, Requester, Time, Date, Origin, Destination)"
-						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String insert = "INSERT INTO acceptedRides(offerID, requestID, Offerer, Requester, LicensePlate, Time, Date, Origin, Destination)"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement ps = con.prepareStatement(insert);
 		
@@ -46,10 +46,11 @@ try {
 			ps.setInt(1, ofrid);
 			ps.setInt(2, requestid);
 			ps.setString(3, result.getString("O.Username"));
-			ps.setString(5, result.getString("O.Time"));
-			ps.setString(6, result.getString("O.Date"));
-			ps.setString(7, result.getString("O.Origin"));
-			ps.setString(8, result.getString("O.Destination"));
+			ps.setString(5, result.getString("O.LicensePlate"));
+			ps.setString(6, result.getString("O.Time"));
+			ps.setString(7, result.getString("O.Date"));
+			ps.setString(8, result.getString("O.Origin"));
+			ps.setString(9, result.getString("O.Destination"));
 			result = stmt.executeQuery(q2);
 			if(result.next()){
 				ps.setString(4, result.getString("R.Username"));

@@ -38,7 +38,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 	<input type="submit" value="Search">
 	</form>
 	----------------------------------------------------------
-	<p><a href="availableMatchesIntermediate.jsp">Available matches</a></p>
+	<p><a href="availableMatchesIntermediate.jsp">Available matches (see matches to offers and invites to requests here)</a></p>
 	----------------------------------------------------------
 	<p><a href="createRideOffer.jsp">Manage ride offers (create/delete)</a></p>
 	<%
