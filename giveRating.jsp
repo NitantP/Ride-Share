@@ -30,6 +30,7 @@
 			String str = "SELECT * FROM acceptedRides WHERE Requester = \"" + currentun + "\"AND RatingGiven = 0";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
+			String giver = "";
 			%>
 			
 			<FORM method = "POST" ACTION ="giveRatingController.jsp">
@@ -45,6 +46,7 @@
 			<%      
 			if(result.next())
 			{
+				giver = result.getString("Offerer");
 				//result.getString("Offerer")
 					%>
 					<tr>
@@ -73,7 +75,12 @@
 				result = stmt.executeQuery(ad);
 				if (result.next())
 				{
+					String amount = result.getString("Price");
+					String updateReward = "UPDATE userlist SET Rewards = Rewards + \"" + Double.parseDouble(amount) + "\" WHERE Username = \"" + giver + "\"";
+					PreparedStatement ps = con.prepareStatement(updateReward);
+					ps.executeUpdate();
 					%>
+					<p></p>
 					<%=result.getString("Advert")%>
 					<%
 				}
@@ -96,8 +103,10 @@
 		}
 
 %>
+<p></p>
+Skip Rating
+<p><a href="homepage.jsp">Go To Homepage</a></p>
 <br>
 <br>
-[<a href="homepage.jsp">Skip rating</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/giveRating.jsp">GitHub Page</a>] 
 </body>
 </html>
