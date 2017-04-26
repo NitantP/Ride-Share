@@ -36,6 +36,8 @@
 		ps.executeUpdate();
 		//Run the query against the DB
 		out.print("Successful Password Reset");
+		
+		stmt.close();
 		con.close();
 	}
 	catch (Exception ex) {

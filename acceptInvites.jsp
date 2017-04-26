@@ -24,20 +24,37 @@ try {
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		
-		String insert = "INSERT INTO acceptedRides(offerID, requestID)"
-						+ " VALUES (?, ?)";
+		String insert = "INSERT INTO acceptedRides(offerID, requestID, Offerer, Requester, Time, Date, Origin, Destination)"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement ps = con.prepareStatement(insert);
 		
 		String offerid = request.getParameter("offerid");
-		String requestid = request.getParameter("requestid");
+		String oidcorrected = offerid.substring(0,offerid.length() - 1);
+		int ofrid = Integer.parseInt(oidcorrected);
+				
+		int requestid = Integer.parseInt(request.getParameter("requestid"));
+		
+		String q1 = "SELECT * FROM rideoffers O WHERE O.offerID = " + ofrid;
+		String q2 = "SELECT R.Username FROM riderequests R WHERE R.requestID = " + requestid;
+		
+		ResultSet result = stmt.executeQuery(q1);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("availableInvites.jsp");
 		
-   		if (request.getParameter("offerid") != null && request.getParameter("requestid") != null){
-   			String oidcorrected = offerid.substring(0,offerid.length() - 1);
-			ps.setInt(1, Integer.parseInt(oidcorrected));
-			ps.setInt(2, Integer.parseInt(requestid));
+   		if(result.next()){
+			ps.setInt(1, ofrid);
+			ps.setInt(2, requestid);
+			ps.setString(3, result.getString("O.Username"));
+			ps.setString(5, result.getString("O.Time"));
+			ps.setString(6, result.getString("O.Date"));
+			ps.setString(7, result.getString("O.Origin"));
+			ps.setString(8, result.getString("O.Destination"));
+			result = stmt.executeQuery(q2);
+			if(result.next()){
+				ps.setString(4, result.getString("R.Username"));
+				result.close();
+			}
 			ps.executeUpdate();
    		} else { 
    			request.setAttribute("acceptStatus", "<h4 style=\"color:red;\">Error: invites not accepted!</h4>");
@@ -46,6 +63,9 @@ try {
    		
    		request.setAttribute("acceptStatus", "<h4 style=\"color:green;\">Invites accepted!</h4>");
    		rd.forward(request, response);
+  
+		stmt.close();
+		con.close();
    		
 } catch (Exception ex){
 	ex.printStackTrace();
