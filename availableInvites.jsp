@@ -58,10 +58,10 @@
 		<tr>
 		<td><input type=radio name=offerid value = <%=result.getInt("O.offerID")%>/></td>
 		<td><%=result.getString("U.Username") %></td>
-		<td><%=result.getInt("U.RidesGiven") %></td>
-		<td><%=result.getInt("U.RidesTaken") %></td>
-		<td><%=result.getDouble("U.Rating") %></td>
-		<td><%=result.getInt("U.Reported") %></td>
+		<td align="center"><%=result.getInt("U.RidesGiven") %></td>
+		<td align="center"><%=result.getInt("U.RidesTaken") %></td>
+		<td align="center"><%=result.getDouble("U.Rating") %></td>
+		<td align="center"><%=result.getInt("U.Reported") %></td>
 		<td><%=result.getString("O.LicensePlate") %>
 		<td><%=result.getString("C.Make") %>
 		<td><%=result.getString("C.Model") %>

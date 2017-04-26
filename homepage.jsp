@@ -38,9 +38,9 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 	<input type="submit" value="Search">
 	</form>
 	----------------------------------------------------------
-	<p><a href="availableMatchesIntermediate.jsp">Available matches (see matches to offers and invites to requests here)</a></p>
+	<p>[<a href="availableMatchesIntermediate.jsp">Available matches (see matches to offers and invites to requests here)</a>]</p>
 	----------------------------------------------------------
-	<p><a href="createRideOffer.jsp">Manage ride offers (create/delete)</a></p>
+	<p>[<a href="createRideOffer.jsp">Manage ride offers (create/delete)</a>]</p>
 	<%
 	try {
 		//Create a connection string
@@ -53,10 +53,11 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		Statement stmt = con.createStatement();
 		
 		//Make a SELECT query from the users table with the username and password matches with the input
-		String str = "SELECT * FROM rideoffers O ORDER BY O.offerID DESC";
+		String str = "SELECT * FROM rideoffers O, userlist U WHERE O.Username = U.Username ORDER BY O.offerID DESC";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
-	%>		
+	%>	
+		<b>Ride offers</b>	
 		<table border="1">
 		<tr>
 		<td>Username</td>
@@ -65,6 +66,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		<td>Number of Spots Left</td>
 		<td>Origin</td>
 		<td>Destination</td>
+		<td>Rating</td>
 		</tr>
 
 		<%   
@@ -78,6 +80,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		<td align="center"><%=result.getString("MaxPassengers") %></td>
 		<td><%=result.getString("Origin") %></td>
 		<td><%=result.getString("Destination") %></td>
+		<td><%=result.getDouble("U.Rating") %>
 		</tr>
 		<%
 		}
@@ -93,7 +96,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		}
 	%>
 	--------------------------------------------------------------
-	<p><a href="createRideRequest.jsp">Manage ride requests (create/delete)</a></p>
+	<p>[<a href="createRideRequest.jsp">Manage ride requests (create/delete)</a>]</p>
 	<%
 	try {
 		//Create a connection string
@@ -110,6 +113,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 	%>		
+		<b>Ride requests</b>
 		<table border="1">
 		<tr>
 		<td>Username</td>

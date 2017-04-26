@@ -48,7 +48,7 @@ while(rs.next())
 <td><%=rs.getString("Destination") %></td>
 <td><%=rs.getString("Date") %></td>
 <td><%=rs.getString("Time") %></td>
-<td><%=rs.getString("NumPassengers") %></td>
+<td align="center"><%=rs.getString("NumPassengers") %></td>
 </tr>
 
  <%

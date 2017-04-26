@@ -125,7 +125,7 @@
 	%>
 <br>
 <br>	
-[<a href="createRideRequest">Ride requests</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newRideRequest.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
+[<a href="createRideRequest.jsp">Ride requests</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newRideRequest.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
 	
 </body>
 </html>

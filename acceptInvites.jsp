@@ -24,8 +24,8 @@ try {
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		
-		String insert = "INSERT INTO acceptedRides(offerID, requestID, Offerer, Requester, LicensePlate, Time, Date, Origin, Destination)"
-						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String insert = "INSERT INTO acceptedRides(offerID, requestID, Offerer, Requester, LicensePlate, Time, Date, NumPassengers, Origin, Destination)"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement ps = con.prepareStatement(insert);
 		
@@ -36,7 +36,7 @@ try {
 		int requestid = Integer.parseInt(request.getParameter("requestid"));
 		
 		String q1 = "SELECT * FROM rideoffers O WHERE O.offerID = " + ofrid;
-		String q2 = "SELECT R.Username FROM riderequests R WHERE R.requestID = " + requestid;
+		String q2 = "SELECT R.Username, R.NumPassengers FROM riderequests R WHERE R.requestID = " + requestid;
 		
 		ResultSet result = stmt.executeQuery(q1);
 		
@@ -49,11 +49,12 @@ try {
 			ps.setString(5, result.getString("O.LicensePlate"));
 			ps.setString(6, result.getString("O.Time"));
 			ps.setString(7, result.getString("O.Date"));
-			ps.setString(8, result.getString("O.Origin"));
-			ps.setString(9, result.getString("O.Destination"));
+			ps.setString(9, result.getString("O.Origin"));
+			ps.setString(10, result.getString("O.Destination"));
 			result = stmt.executeQuery(q2);
 			if(result.next()){
 				ps.setString(4, result.getString("R.Username"));
+				ps.setString(8, result.getString("R.NumPassengers"));
 				result.close();
 			}
 			ps.executeUpdate();
