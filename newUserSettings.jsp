@@ -221,7 +221,7 @@
 	}
 	%>
 	
-	<p><a href="userSettings.jsp">Return to settings page</a></p>
+[<a href="userSettings.jsp">Back</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newUserSettings.jsp">GitHub Page</a>]
 	
 </body>
 </html>

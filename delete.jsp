@@ -28,10 +28,16 @@
 	     			str = "DELETE FROM rideoffers WHERE offerID = " + Integer.parseInt(deleteList[i]);
 	     			stmt.executeUpdate(str);
 	     		}
-			} else {
+			} else if(request.getParameter("deletetype").equals("request")){
 				for (int i = 0; i < deleteList.length; i++){
 	     			str = "DELETE FROM riderequests WHERE requestID = " + Integer.parseInt(deleteList[i]);
 	     			stmt.executeUpdate(str);
+	     		}
+			} else {
+				for (int i = 0; i < deleteList.length; i++){
+	     		out.println(deleteList[i]);
+				//	str = "DELETE FROM riderequests WHERE requestID = " + deleteList[i];
+	     		//	stmt.executeUpdate(str);
 	     		}
 			}
 	   	} else {
