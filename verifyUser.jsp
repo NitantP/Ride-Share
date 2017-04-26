@@ -43,12 +43,22 @@
 				if (!result.next())
 				{
 					session.setAttribute("currentuser", un);
+					String hasRating = "SELECT HasRating FROM userlist WHERE Username = \"" + un + "\"";
+					result = stmt.executeQuery(hasRating);
+					result.next();
 					if(AccountType.equals("Admin")){
 						response.sendRedirect("adminIndex.jsp");
 					} else if(AccountType.equals("System Support")){
 						response.sendRedirect("systemIndex.jsp");
 					} else {
-						response.sendRedirect("homepage.jsp");
+						if (!result.getString("HasRating").equals("0"))
+						{
+							response.sendRedirect("giveRating.jsp");
+						}
+						else
+						{
+							response.sendRedirect("homepage.jsp");
+						}
 					}
 				}
 				else
