@@ -132,10 +132,8 @@ try {
 	<input type="submit" value="Submit Request">
 	</form>
 <br>
-
-<p><a href="homepage.jsp">Back to main page</a></p>
-
-<p><a href="https://github.com/NitantP/Ride-Share/blob/master/createRideOffer.jsp">GitHub Page</a></p>
+<br>
+[<a href="homepage.jsp">Back to main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/createRideOffer.jsp">GitHub Page</a>]
 
 </body>
 </html>
