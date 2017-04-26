@@ -8,5 +8,12 @@
 </head>
 <body>
 
+<%
+
+out.println(request.getParameter("input"));
+out.println(request.getParameter("querytype"));
+
+%>
+
 </body>
 </html>
