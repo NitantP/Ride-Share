@@ -11,16 +11,16 @@
 </head>
 <body>
 
-Welcome System Support!
-
-<p><a href="viewUsers.jsp">Reset Users' passwords</a></p>
-
-<p><a href="banUsers.jsp">Ban reported users</a></p>
-
-<p><a href="Ads.jsp">See Ads statistics</a></p>
-
-<p><a href="index.jsp">logout</a></p>
-
+Welcome System Support! [<a href="index.jsp">Logout</a>]
+<br>
+<br>
+[<a href="viewUsers.jsp">Reset Users' passwords</a>]
+<br>
+<br>
+[<a href="banUsers.jsp">Ban reported users</a>]
+<br>
+<br>
+[<a href="adsReport.jsp">See Ads statistics</a>]
 
 </body>
 </html>
