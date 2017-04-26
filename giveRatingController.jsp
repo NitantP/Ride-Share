@@ -83,8 +83,9 @@
 			out.print("System failure");	
 		}
 %>
-
-
+<br>
+<br>
+[<a href="https://github.com/NitantP/Ride-Share/blob/master/giveRatingController.jsp">GitHub Page</a>]
 
 </body>
 </html>

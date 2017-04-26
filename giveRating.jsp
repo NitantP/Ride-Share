@@ -103,10 +103,11 @@
 		}
 
 %>
-<p></p>
-Skip Rating
-<p><a href="homepage.jsp">Go To Homepage</a></p>
 <br>
 <br>
+[<a href="homepage.jsp">Skip to main page</a>]
+<br>
+<br>
+[<a href="https://github.com/NitantP/Ride-Share/blob/master/giveRating.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>]
 </body>
 </html>
