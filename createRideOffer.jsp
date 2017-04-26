@@ -19,11 +19,12 @@ Ride Share (TEAM 14)
 <tr>
 <td>Delete?</td>
 <td>Offer ID</td>
-<td>Origin</td>
-<td>Destination</td>
+<td>Username</td>
 <td>Date</td>
 <td>Time</td>
 <td>Max Passengers</td>
+<td>Origin</td>
+<td>Destination</td>
 <td>License Plate</td>
 </tr>
 
@@ -45,11 +46,12 @@ while(rs.next())
 <tr>
 <td align="center"><input type="checkbox" name="deleteid" value=<%=rs.getString("offerID") %>></td>
 <td align="center"><%=rs.getInt("offerID") %>
-<td><%=rs.getString("Origin") %></td>
-<td><%=rs.getString("Destination") %></td>
+<td><%=rs.getString("Username") %></td>
 <td><%=rs.getString("Date") %></td>
 <td><%=rs.getString("Time") %></td>
-<td><%=rs.getString("MaxPassengers") %></td>
+<td align="center"><%=rs.getString("MaxPassengers") %></td>
+<td><%=rs.getString("Origin") %></td>
+<td><%=rs.getString("Destination") %></td>
 <td><%=rs.getString("LicensePlate") %></td>
 </tr>
 
@@ -110,10 +112,20 @@ try {
 	</tr>
 	<tr>
 	<td>Date:</td><td><input type="text" name="date">
+	<%
+      if(request.getAttribute("date") != null){
+   		 out.print(request.getAttribute("date"));  
+      } 
+    %>
 	</td>
 	</tr>
 	<tr>
 	<td>Time:</td><td><input type="text" name="time">
+	<%
+      if(request.getAttribute("time") != null){
+   		 out.print(request.getAttribute("time"));  
+      } 
+    %>
 	</td>
 	</tr>
 	<tr>

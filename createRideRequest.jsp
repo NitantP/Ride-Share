@@ -91,10 +91,20 @@ e.printStackTrace();
 	</tr>
 	<tr>
 	<td>Date:</td><td><input type="text" name="date">
+	<%
+      if(request.getAttribute("date") != null){
+   		 out.print(request.getAttribute("date"));  
+      } 
+    %>
 	</td>
 	</tr>
 	<tr>
 	<td>Time:</td><td><input type="text" name="time">
+	<%
+      if(request.getAttribute("time") != null){
+   		 out.print(request.getAttribute("time"));  
+      } 
+    %>
 	</td>
 	</tr>
 	<tr>
@@ -109,9 +119,8 @@ e.printStackTrace();
 	<input type="submit" value="Submit Request">
 	</form>
 <br>
-<br>
 
-[<a href="homepage.jsp">Main page</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/createRideRequest.jsp">GitHub Page</a>]
+<p><a href="homepage.jsp">Back to main (login) page</a></p>
 
 </body>
 </html>

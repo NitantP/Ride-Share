@@ -41,42 +41,95 @@
 		ps.setString(3, newTime);
 		ps.setString(4, newMaxPassengers);
 		ps.setString(5, LicensePlate);
+		if (checkRecurring == null)
+		{
+			checkRecurring = "false";
+		}
 		ps.setString(6, checkRecurring);
 		ps.setString(7, newStart);
 		ps.setString(8, newDestination);
 		
+		
+		
 		//INSERT INPUT CHECKS HERE
 		boolean error = false;
-		String test = "SELECT * FROM rideoffers r WHERE r.Username = \"" + (String)session.getAttribute("currentuser")
-						+ "\" AND r.Date = \"" + newDate + "\"AND r.Time = \"" + newTime +  
-						"\"AND r.Origin = \""  + newStart + "\" AND r.Destination = \""  + newDestination +"\"";
-		ResultSet result = stmt.executeQuery(test);
-		if (result.next())
+		boolean isDigit = true;
+		boolean isDigit2 = true;
+		if (newDate.length() != 10 || newTime.length() != 5)
 		{
-			request.setAttribute("duplicate","Duplicate Offer");
-			error = true;
-		}
-		if(LicensePlate == null || LicensePlate.equals("")){
-			request.setAttribute("insertStatus","Error: no license plate selected!");
-			error = true;
-		}
-		
-		if (error)
-		{
+			request.setAttribute("time", "Please use the format hour:minute");
+			request.setAttribute("date", "Please use the format year-month-day eg 2017-01-01");
 			RequestDispatcher ed = request.getRequestDispatcher("createRideOffer.jsp");
 			ed.forward(request, response);	
 		}
 		else
 		{
-			ps.executeUpdate();
-			
-			out.print("Insert successful! <br><br>");
-			out.print("From: " + newStart + "<br>" +
-					  "To: " + newDestination + "<br>" +
-					  "Date: " + newDate + "<br>" +
-					  "Time: " + newTime + "<br>" +
-					  "Max Passengers: " + newMaxPassengers + "<br>" +
-					  "License Plate: " + LicensePlate + "<br>");	
+			for (int i = 0; i < 10; i++)
+			{
+				if (i != 4 && i != 7)
+				{
+					if (!Character.isDigit(newDate.charAt(i))) 
+			        {
+			        	isDigit2 = false;
+			        }
+				}
+			}
+			for (int i = 0; i < 5; i++)
+			{
+				if (i != 2)
+				{
+					if (!Character.isDigit(newTime.charAt(i))) 
+			        {
+			        	isDigit = false;
+			        }
+				}
+			}
+			if(!isDigit || !isDigit2 || Integer.parseInt(newTime.substring(0, 2)) > 24 || Integer.parseInt(newTime.substring(3, newTime.length())) > 59 || newTime.charAt(2) != ':'
+					|| Integer.parseInt(newDate.substring(0, 4)) != 2017 || Integer.parseInt(newDate.substring(5, 7)) > 12 
+					|| (Integer.parseInt(newDate.substring(5, 7)) < 4 && Integer.parseInt(newDate.substring(8, 10)) < 26) || Integer.parseInt(newDate.substring(8, 10)) > 31)
+			{
+				System.out.println("hey big boi");
+				request.setAttribute("time", "Please use the format hour:minute");
+				request.setAttribute("date", "Please use the format year-month-day eg 2017-01-01");
+				RequestDispatcher ed = request.getRequestDispatcher("createRideOffer.jsp");
+				ed.forward(request, response);	
+			}
+			else
+			{
+				String date = newDate.substring(0, 3) + newDate.substring(5,6) + newDate.substring(8,9);
+				String startTime;
+				String test = "SELECT * FROM rideoffers r WHERE r.Username = \"" + (String)session.getAttribute("currentuser")
+				+ "\" AND r.Date = \"" + date + "\"AND r.Time = \"" + newTime +  
+				"\"AND r.Origin = \""  + newStart + "\" AND r.Destination = \""  + newDestination +"\"";
+				ResultSet result = stmt.executeQuery(test);
+				if (result.next())
+				{
+					request.setAttribute("duplicate","Duplicate Offer");
+					error = true;
+				}
+				if(LicensePlate == null || LicensePlate.equals("")){
+					request.setAttribute("insertStatus","Error: no license plate selected!");
+					error = true;
+				}
+				
+				if (error)
+				{
+					RequestDispatcher ed = request.getRequestDispatcher("createRideOffer.jsp");
+					ed.forward(request, response);	
+				}
+				else
+				{
+					ps.executeUpdate();
+					
+					out.print("Insert successful! <br><br>");
+					out.print("From: " + newStart + "<br>" +
+							  "To: " + newDestination + "<br>" +
+							  "Date: " + newDate + "<br>" +
+							  "Time: " + newTime + "<br>" +
+							  "Max Passengers: " + newMaxPassengers + "<br>" +
+							  "License Plate: " + LicensePlate + "<br>");	
+				}
+			}
 		}
 		con.close();
 	}
