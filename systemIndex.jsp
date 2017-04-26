@@ -22,5 +22,7 @@ Welcome System Support! [<a href="index.jsp">Logout</a>]
 <br>
 [<a href="adsReport.jsp">See Ads statistics</a>]
 
+<br>
+[<a href="https://github.com/NitantP/Ride-Share/blob/master/systemIndex.jsp">GitHub Page</a>] 
 </body>
 </html>

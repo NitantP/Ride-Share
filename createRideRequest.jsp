@@ -119,8 +119,8 @@ e.printStackTrace();
 	<input type="submit" value="Submit Request">
 	</form>
 <br>
-
-<p><a href="homepage.jsp">Back to main (login) page</a></p>
+<br>
+[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/createRideRequest.jsp">GitHub Page</a>] 
 
 </body>
 </html>

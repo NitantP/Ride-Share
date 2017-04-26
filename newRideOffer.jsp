@@ -138,11 +138,9 @@
 		out.print("Insert failed!");
 	}
 	%>
-	
-	<p><a href="homepage.jsp">Return to main page</a></p>
-	
-	<p><a href="https://github.com/NitantP/Ride-Share/blob/master/newRideOffer.jsp">GitHub Page</a></p>
-	
+<br>
+<br>	
+[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newRideOffer.jsp">GitHub Page</a>]
 </body>
 </html>
 	
