@@ -147,6 +147,6 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 	%>
 </div>
 
-<p><a href="https://github.com/NitantP/Ride-Share/blob/master/homepage.jsp">GitHub Page</a></p>
+[<a href="https://github.com/NitantP/Ride-Share/blob/master/homepage.jsp">GitHub Page</a>]
 
 </body>

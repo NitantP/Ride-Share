@@ -26,7 +26,7 @@
 			</select>
 		</tr>
 </table>
-<input type=submit name=submit value="See Stats">
+<input type=submit name=submit1 value="See Stats">
 </FORM>
 <br>
 <br>
@@ -41,7 +41,7 @@
 			</select>
 		</tr>
 </table>
-<input type=submit name=submit value="See Stats">
+<input type=submit name=submit2 value="See Stats">
 </FORM>
 
 
