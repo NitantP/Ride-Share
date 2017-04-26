@@ -30,7 +30,6 @@
 </FORM>
 <br>
 <br>
-<br>
 <FORM method="POST" ACTION="StatsDisplay.jsp">
 <table>
 		<tr>
@@ -42,6 +41,21 @@
 		</tr>
 </table>
 <input type=submit name=submit2 value="See Stats">
+</FORM>
+<br>
+<br>
+<br>
+<FORM method="POST" ACTION="StatsDisplay.jsp">
+<table>
+		<tr>
+		<td>Query (enter NUMBERS): </td><td><input type=text name="input3"></td>
+		<td><select name="querytype3">
+				<option value="month">Month</option>
+				<option value="year">Year</option>
+			</select>
+		</tr>
+</table>
+<input type=submit name=submit3 value="See Stats">
 </FORM>
 
 

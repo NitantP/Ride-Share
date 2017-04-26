@@ -58,7 +58,7 @@
 </div>
 
 <%		//Make a SELECT query from the users table with the username and password matches with the input
-		str = "SELECT Username, RidesGiven, Rating FROM userlist WHERE AccountType = 'User' ORDER BY Rating DESC";
+		str = "SELECT Username, RidesGiven, Rating FROM userlist WHERE AccountType = 'User' ORDER BY RidesGiven DESC";
 		//Run the query against the database.
 	 	result = stmt.executeQuery(str);
 %>

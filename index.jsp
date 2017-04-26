@@ -40,6 +40,6 @@ Welcome to the Ride Share website (TEAM 14)
 	<form method="post" action="register.jsp"><input type="submit" value="Register"></form>
 <br>
 
-<p><a href="https://github.com/NitantP/Ride-Share">GitHub Repository</a></p>
+[<a href="https://github.com/NitantP/Ride-Share">GitHub Repository</a>]
 </body>
 </html>

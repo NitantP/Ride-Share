@@ -78,7 +78,7 @@
 			%>
 			</table>
 		<%	
-		} else {
+		} else if(request.getParameter("submit2") != null) {
 			String input1 = request.getParameter("input1");
 			String input2 = request.getParameter("input2");
 			String querytype2 = request.getParameter("querytype2");
@@ -93,6 +93,52 @@
 			result = stmt.executeQuery(str);
 %>	
 			<b>Results for query (<%=input1%>,<%=input2%>,<%=querytype2%>);</b>
+			<br>
+			<table border="1">
+			<tr>
+			<td>Offer ID</td>
+			<td>Request ID</td>
+			<td>Offerer</td>
+			<td>Requester</td>
+			<td>Time</td>
+			<td>Date</td>
+			<td>Origin</td>
+			<td>Destination</td>
+			</tr>
+
+		<%   
+			while(result.next())
+			{
+		%>	
+			<tr>
+			<td align="center"><%=result.getInt("offerID") %></td>
+			<td align="center"><%=result.getInt("requestID") %></td>
+			<td><%=result.getString("Offerer") %></td>
+			<td><%=result.getString("Requester") %></td>
+			<td><%=result.getString("Time") %></td>
+			<td><%=result.getString("Date") %></td>
+			<td><%=result.getString("Origin") %></td>
+			<td><%=result.getString("Destination") %></td>
+			</tr>
+			<%
+			}
+			%>
+			</table>
+		<%	
+		} else {
+			String input3 = request.getParameter("input3");
+			String querytype3 = request.getParameter("querytype3");
+			if(querytype3.equals("month")){
+				str = "SELECT * FROM acceptedRides WHERE MONTH(Date) = " + input3;
+			} else if(querytype3.equals("year")){
+				str = "SELECT * FROM acceptedRides WHERE YEAR(Date) = " + input3;
+			} else {
+				out.println("No valid query type!");
+				return;
+			}
+			result = stmt.executeQuery(str);
+		%>	
+			<b>Results for query (<%=input3%><%=querytype3%>);</b>
 			<br>
 			<table border="1">
 			<tr>

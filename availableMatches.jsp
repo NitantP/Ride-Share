@@ -68,7 +68,7 @@
 		<td><%=result.getString("R.Username") %></td>
 		<td><%=result.getString("R.Date") %></td>
 		<td><%=result.getString("R.Time") %></td>
-		<td><%=result.getString("R.NumPassengers") %></td>
+		<td align="center"><%=result.getString("R.NumPassengers") %></td>
 		<td><%=result.getString("R.Origin") %></td>
 		<td><%=result.getString("R.Destination") %></td>
 		</tr>

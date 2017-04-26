@@ -39,6 +39,9 @@
 		ps.setString(2, newDate);
 		ps.setString(3, newTime);
 		ps.setString(4, newNumPassengers);
+		if(checkRecurring == null){
+			checkRecurring = "false";
+		}
 		ps.setString(5, checkRecurring);
 		ps.setString(6, newStart);
 		ps.setString(7, newDestination);
@@ -49,8 +52,8 @@
 		boolean isDigit2 = true;
 		if (newDate.length() != 10 || newTime.length() != 5)
 		{
-			request.setAttribute("time", "Please use the format hour:minute");
-			request.setAttribute("date", "Please use the format year-month-day eg 2017-01-01");
+			request.setAttribute("time", "Please use the format HH:MM");
+			request.setAttribute("date", "Please use the format YYYY-MM-DD");
 			RequestDispatcher ed = request.getRequestDispatcher("createRideRequest.jsp");
 			ed.forward(request, response);	
 		}

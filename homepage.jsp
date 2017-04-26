@@ -20,7 +20,8 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 <div align="center">
 	[<a href="leaderboard.jsp">Leaderboard (My Statistics)</a>] [<a href="messageIndex.jsp">Messages</a>]  [<a href="userSettings.jsp">Settings</a>]
 </div>
-
+<br>
+<br>
 <div align="left">
 	<form method="post" action="SearchController.jsp">
 	<table>
@@ -33,9 +34,9 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		}
 	%>
 	</td>
+	<td><input type="submit" value="Search"><td>
 	</tr>
 	</table>
-	<input type="submit" value="Search">
 	</form>
 	----------------------------------------------------------
 	<p>[<a href="availableMatchesIntermediate.jsp">Available matches (see matches to offers and invites to requests here)</a>]</p>
