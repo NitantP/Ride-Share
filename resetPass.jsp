@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Passwords Were Reset</title>
+<title>Passwords Reset</title>
 </head>
 <body>
 

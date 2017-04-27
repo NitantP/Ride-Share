@@ -31,6 +31,7 @@
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 			String giver = "";
+			PreparedStatement ps;
 			%>
 			
 			<FORM method = "POST" ACTION ="giveRatingController.jsp">
@@ -46,7 +47,25 @@
 			<%      
 			if(result.next())
 			{
+				String offerer = result.getString("Offerer");
 				giver = result.getString("Offerer");
+				String time = result.getString("Time");
+				String date = result.getString("Date");
+				String origin = result.getString("Origin");
+				String destination = result.getString("Destination");
+				session.setAttribute("time", time);
+				session.setAttribute("date", date);
+				session.setAttribute("origin", origin);
+				session.setAttribute("destination", destination);
+				session.setAttribute("offerer", offerer);
+				str = "UPDATE userlist SET HasRating = HasRating - 1 WHERE Username =\"" + (String)session.getAttribute("currentuser") + "\"";
+				ps = con.prepareStatement(str);
+				ps.executeUpdate();
+				str = "UPDATE acceptedRides SET RatingGiven = 1 WHERE Requester =\"" + (String)session.getAttribute("currentuser") + 
+						"\" AND RatingGiven = 0 AND Origin =\"" + origin +
+						"\" AND Destination =\"" + destination + "\" AND Date =\"" + date + "\" AND Offerer =\"" + offerer + "\"";
+				ps = con.prepareStatement(str);
+				ps.executeUpdate();
 				//result.getString("Offerer")
 					%>
 					<tr>
@@ -75,8 +94,10 @@
 			<td><textarea rows="4" cols="25" name="comments"></textarea>
 			</tr>
 			</p>
+			<tr>
+			<td>Report<input type=checkbox name=check value = hello/></td>
+			</tr>
 			<td><input type=submit name=submit value="Give Feedback"></td>
-			<td><input type=submit name=report value="Report User"></td>
 			</table>
 			<p></p>
 			
@@ -87,17 +108,13 @@
 				{
 					String amount = result.getString("Price");
 					String updateReward = "UPDATE userlist SET Rewards = Rewards + \"" + Double.parseDouble(amount) + "\" WHERE Username = \"" + giver + "\"";
-					PreparedStatement ps = con.prepareStatement(updateReward);
+					ps = con.prepareStatement(updateReward);
 					ps.executeUpdate();
 					%>
 					<p></p>
-					<%=result.getString("Advert")%>
-					<%
+					<%result.getString("Advert");
 				}
 				str = "UPDATE adlist SET TimesShown = TimesShown + 1 WHERE adID =\"" + result.getString("adID") + "\"";
-				PreparedStatement ps = con.prepareStatement(str);
-				ps.executeUpdate();
-				str = "UPDATE userlist SET HasRating = HasRating - 1 WHERE Username =\"" + (String)session.getAttribute("currentuser") + "\"";
 				ps = con.prepareStatement(str);
 				ps.executeUpdate();
 			%>

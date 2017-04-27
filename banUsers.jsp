@@ -45,7 +45,6 @@
 
 		%>
 		<tr>
-		<td><input type=checkbox name=invited VALUE = <%=result.getString("Username")%>></td>
 		<td><%=result.getString("Username") %></td>
 		<td><%=result.getString("Reported") %></td>
 		</tr>
