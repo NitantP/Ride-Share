@@ -43,7 +43,6 @@
 		String values;
 		if (result.next())
 		{
-			System.out.println("im in");
 			String sup;
 			if (request.getParameter("Vis") == null)
 			{

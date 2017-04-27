@@ -31,7 +31,6 @@
 		ResultSet result = stmt.executeQuery(str);
 		if (result.next())
 		{
-			System.out.println("hello");
 			str = "UPDATE userlist SET ForgotPass = 1 WHERE Username = \"" + user + "\"";
 			PreparedStatement ps = con.prepareStatement(str);
 			ps.executeUpdate();

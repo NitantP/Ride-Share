@@ -36,8 +36,7 @@
 		boolean ruid = result.next();
 		result = stmt.executeQuery(checkEmail);
 		boolean email = result.next();
-		
-		System.out.println(ruid + " " + email);
+
 		if (email || ruid)
 		{
 			request.setAttribute("Banned", "You're banned");
