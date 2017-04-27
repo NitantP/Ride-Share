@@ -58,7 +58,7 @@
 		}
 		%>
 		</table>
-		<input type="submit" name="deletebutton" value="Delete">(DOES NOT WORK YET)
+		<input type="submit" name="deletebutton" value="Delete">
 		<input type="hidden" name="deletetype" value="message">
 		</form>	
 		<br>
