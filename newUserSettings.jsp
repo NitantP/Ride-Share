@@ -224,8 +224,9 @@
 		out.print("Insert failed!");
 	}
 	%>
-	
-	<p><a href="userSettings.jsp">Return to settings page</a></p>
+<br>
+<br>
+[<a href="userSettings.jsp">User settings</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newUserSettings.jsp">GitHub Page</a>] 
 	
 </body>
 </html>

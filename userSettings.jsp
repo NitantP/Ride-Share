@@ -130,7 +130,7 @@ while(rs.next())
 
 <br>
 <br>
-[<a href="userSettings.jsp">User settings</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/userSettings.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
+[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/userSettings.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
 
 </body>
 </html>

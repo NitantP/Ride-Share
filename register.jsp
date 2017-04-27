@@ -95,7 +95,7 @@ Ride Share (TEAM 14)
 	</form>
 <br>
 
-<p><a href="index.jsp">Back to main (login) page</a></p>
+[<a href="index.jsp">Login</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/register.jsp">GitHub Page</a>] 
 
 
 </body>

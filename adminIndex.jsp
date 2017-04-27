@@ -11,14 +11,14 @@
 </head>
 <body>
 
-Welcome, <%=(String)session.getAttribute("currentuser") %>
+Welcome, <%=(String)session.getAttribute("currentuser") %> [<a href="index.jsp">Logout</a>] 
 
 <p><a href="createSystemAccount.jsp">Create system support account</a></p>
 
 <br>
 <br>
 
-[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/adminIndex.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
+[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/adminIndex.jsp">GitHub Page</a>]
 
 </body>
 </html>

@@ -81,6 +81,9 @@
 		}
 %>
 
+<br>
+<br>
+[<a href="https://github.com/NitantP/Ride-Share/blob/master/verifyUser.jsp">GitHub Page</a>] 
 
 
 </body>

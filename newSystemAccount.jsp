@@ -81,7 +81,7 @@
 	}
 	%>
 	
-	<p><a href="adminIndex.jsp">Return to main page</a></p>
+[<a href="adminIndex.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newSystemAccount.jsp">GitHub Page</a>]
 	
 </body>
 </html>

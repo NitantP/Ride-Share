@@ -183,8 +183,9 @@
 		out.print("Insert failed!");
 	}
 	%>
-	
-	<p><a href="index.jsp">Return to main (login) page</a></p>
+<br>
+<br>
+[<a href="index.jsp">Login</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newUser.jsp">GitHub Page</a>] 
 	
 </body>
 </html>

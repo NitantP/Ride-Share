@@ -109,7 +109,9 @@
 	}
 	%>
 	
-	<p><a href="carSettings.jsp">Return to settings page</a></p>
+<br>
+<br>
+[<a href="carSettings.jsp">Car settings</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newCarSettings.jsp">GitHub Page</a>]
 	
 </body>
 </html>

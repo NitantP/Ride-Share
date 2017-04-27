@@ -183,6 +183,6 @@
 %>
 <br>
 <br>
-[<a href="Stats.jsp">Another query</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/StatsDisplay.jsp">GitHub Page</a>] 
+[<a href="Stats.jsp">Another query</a>] [<a href="adminIndex.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/StatsDisplay.jsp">GitHub Page</a>] 
 </body>
 </html>

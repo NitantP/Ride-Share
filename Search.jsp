@@ -25,6 +25,8 @@ Search for a User Here
 	</table>
 	<input type="submit" value="Search">
 	</form>
-	<p><a href="homepage.jsp">Return to main (login) page</a></p>
+<br>
+<br>
+[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/Search.jsp">GitHub Page</a>] 
 </body>
 </html>

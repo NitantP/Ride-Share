@@ -139,7 +139,7 @@
 	%>
 <br>
 <br>	
-[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newRideOffer.jsp">GitHub Page</a>]
+[<a href="createRideOffer.jsp">Ride offers</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/newRideOffer.jsp">GitHub Page</a>]
 </body>
 </html>
 	

@@ -97,7 +97,7 @@
 	}
 	%>
 	<br>
-	
+	<br>
 	[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/SearchController.jsp">GitHub Page</a>]
 	
 </body>

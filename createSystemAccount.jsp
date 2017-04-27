@@ -46,8 +46,8 @@
 	</form>
 <br>
 
-
-<p><a href="adminIndex.jsp">Back to home page</a></p>
+<br>
+[<a href="adminIndex.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/createSystemAccount.jsp">GitHub Page</a>]
 
 </body>
 </html>

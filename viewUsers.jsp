@@ -69,4 +69,4 @@
 			out.print("System failure");	
 		}
 %>
-<p><a href="systemIndex.jsp">Return to System Support page</a></p>
+[<a href="systemIndex.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/viewUsers.jsp">GitHub Page</a>] 

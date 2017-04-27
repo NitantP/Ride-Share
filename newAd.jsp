@@ -59,5 +59,7 @@
 	}	
 %>
 
+<br>
+[<a href="https://github.com/NitantP/Ride-Share/blob/master/newAd.jsp">GitHub Page</a>] 
 </body>
 </html>
