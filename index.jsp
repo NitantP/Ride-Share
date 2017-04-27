@@ -38,6 +38,7 @@ Welcome to the Ride Share website (TEAM 14)
 	</form>
 	<br>
 	<form method="post" action="register.jsp"><input type="submit" value="Register"></form>
+	<form method="post" action="forgot.jsp"><input type="submit" value="Reset Password"></form>
 <br>
 
 [<a href="https://github.com/NitantP/Ride-Share">GitHub Repository</a>]
