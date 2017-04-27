@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ride Share - Available Matches</title>
+<title>Ride Share - Reset Password</title>
 </head>
 <body>
 
@@ -32,6 +32,9 @@
 %>
 
 <FORM method = "POST" ACTION = "resetPass.jsp">
+		<b>RESETS ACCOUNT PASSWORDS TO " " (SPACE)</b>
+		<br>
+		<br>
 		<table border="1">
 		<tr>
 		<td>Check</td>

@@ -44,6 +44,9 @@
 		}
 		//Run the query against the DB
 		out.print("Users Banned");
+		
+		result.close();
+		stmt.close();
 		con.close();
 	}
 	catch (Exception ex) {
@@ -54,7 +57,7 @@
 	
 	<br>
 	<br>
-[<a href="systemIndex.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/ban.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 	
+[<a href="banUsers.jsp">Ban page</a>] [<a href="systemIndex.jsp">Home page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/ban.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 	
 
 <body>
 </html>

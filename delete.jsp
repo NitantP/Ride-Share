@@ -43,6 +43,7 @@
 				for (int i = 0; i < deleteList.length; i++){
 					str = "DELETE FROM adlist WHERE adID = " + Integer.parseInt(deleteList[i]);
 	     			stmt.executeUpdate(str);
+	     			response.sendRedirect("createAd.jsp");
 				}
 			}
 	   	} else {

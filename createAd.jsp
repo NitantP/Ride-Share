@@ -11,7 +11,8 @@
 </head>
 <body>
 
-<b>Advertisement creation page</b>
+<b>Advertisements page</b>
+<br>
 <br>
 	<%
       if(request.getAttribute("adStatus") != null){

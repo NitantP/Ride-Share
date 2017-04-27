@@ -23,7 +23,7 @@ Welcome System Support! [<a href="index.jsp">Logout</a>]
 [<a href="adsReport.jsp">See Ads statistics</a>]
 <br>
 <br>
-[<a href="createAd.jsp">Add new advertisement</a>]
+[<a href="createAd.jsp">Add/delete advertisements</a>]
 <br>
 <br>
 <br>
