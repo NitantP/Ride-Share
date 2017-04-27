@@ -43,6 +43,7 @@
 		String values;
 		if (result.next())
 		{
+			System.out.println("im in");
 			String sup;
 			if (request.getParameter("Vis") == null)
 			{
@@ -95,56 +96,6 @@
 			}
 			update = "UPDATE visibleUsers SET Email =\"" + sup + "\" WHERE Username =\"" + user+ "\"";
 			ps = con.prepareStatement(update);
-			ps.executeUpdate();
-			ps.close();
-		}
-		else
-		{
-			str = "INSERT INTO visibleUsers(Username, Name1, Email, Address, PhoneNumber)"
-					+ " VALUES (?, ?, ?, ?, ?)";
-			ps = con.prepareStatement(str);
-			ps.setString(1, user);
-			values = (String)request.getParameter("Vis");
-			String sub;
-			
-			if (values != null)
-			{
-				ps.setString(2, values.substring(0, values.length()-1));
-			}
-			else
-			{
-				ps.setString(2, null);
-			}
-			
-			values = request.getParameter("Vis2");
-			if (values != null)
-			{
-				ps.setString(3, values.substring(0, values.length()-1));
-			}
-			else
-			{
-				ps.setString(3, null);
-			}
-			
-			values = request.getParameter("Vis3");
-			if (values != null)
-			{
-				ps.setString(4, values.substring(0, values.length()-1));
-			}
-			else
-			{
-				ps.setString(4, null);
-			}
-			
-			values = request.getParameter("Vis4");
-			if (values != null)
-			{
-				ps.setString(5, values.substring(0, values.length()-1));
-			}
-			else
-			{
-				ps.setString(5, null);
-			}
 			ps.executeUpdate();
 			ps.close();
 		}
