@@ -22,11 +22,6 @@
 	<table>
 	<tr>    
 	<td>To:</td><td><input type="text" name="recipient"></td>
-<!--<%
-      if(request.getAttribute("loginFailed") != null){
-   		 out.print(request.getAttribute("loginFailed"));  
-      } 
-    %> -->
 	</tr>
 	<tr>
 	<td>Subject:</td><td><input type="text" name="subject"></td>
@@ -41,7 +36,7 @@
 
 <br>
 
-[<a href="messageIndex.jsp">Messages</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/createMessage.jsp">GitHub Page</a>] [<a href="index.jsp">Logout</a>] 
+[<a href="messageIndex.jsp">Messages</a>] [<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/createMessage.jsp">GitHub Page</a>]
 
 </body>
 </html>

@@ -156,7 +156,7 @@ try {
 %>
 <br>
 <br>
-[<a href="homepage.jsp">Back to main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/createRideOffer.jsp">GitHub Page</a>]
+[<a href="homepage.jsp">Main page</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/createRideOffer.jsp">GitHub Page</a>]
 
 </body>
 </html>

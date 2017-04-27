@@ -35,10 +35,10 @@
 	     		}
 			} else {
 				for (int i = 0; i < deleteList.length; i++){
-	     		out.println(deleteList[i]);
-				//	str = "DELETE FROM riderequests WHERE requestID = " + deleteList[i];
-	     		//	stmt.executeUpdate(str);
-	     		}
+					String[] deleteInfo = deleteList[i].split(",");
+					str = "DELETE FROM SEND_EMAIL WHERE Sender = \"" + deleteInfo[0] + "\" AND Date = \"" + deleteInfo[1] + "\" AND Time = \"" + deleteInfo[2] + "\"";
+	     			stmt.executeUpdate(str);
+				}
 			}
 	   	} else {
 	   		out.println("Nothing selected!");
@@ -56,7 +56,7 @@
 %>	
 <br>	
 <br>
-[<a href="createRideOffer.jsp">Offers</a>] [<a href="createRideRequest.jsp">Requests</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/delete.jsp">GitHub Page</a>]
+[<a href="createRideOffer.jsp">Offers</a>] [<a href="createRideRequest.jsp">Requests</a>] [<a href="messageIndex.jsp">Messages</a>] [<a href="https://github.com/NitantP/Ride-Share/blob/master/delete.jsp">GitHub Page</a>]
 
 </body>
 </html>

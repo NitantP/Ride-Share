@@ -29,9 +29,10 @@
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 %>		
-		<form method="post">
+		<form method="post" action="delete.jsp">
 		<table border="1">
 		<tr>
+		<td>Delete?</td>
 		<td>From</td>
 		<td>Date</td>
 		<td>Time</td>
@@ -44,7 +45,7 @@
 		{
 		%>
 		<tr>
-		<td><input type="checkbox" name="delete" value=<%=result.getString("e.Content")%>><td>
+		<td><input type="checkbox" name="deleteid" value=<%=result.getString("e.Sender") + "," + result.getString("e.Date") + "," + result.getString("e.Time")%>></td>
 		<td><%=result.getString("e.Sender") %></td>
 		<td><%=result.getString("e.Date") %></td>
 		<td><%=result.getString("e.Time") %></td>
@@ -58,12 +59,10 @@
 		%>
 		</table>
 		<input type="submit" name="deletebutton" value="Delete">(DOES NOT WORK YET)
+		<input type="hidden" name="deletetype" value="message">
 		</form>	
 		<br>
-		<p><a href="createMessage.jsp">Send message to a user</a></p>
-		<p><a href="homepage.jsp">Return to main page</a></p>
-		<br>
-		<br>
+		[<a href="createMessage.jsp"><b>New message</b></a>]
 <%
 		
 		result.close();
@@ -75,5 +74,9 @@
 			out.println("--");
 		}
 %>
+
+		<br>
+		<br>
+[<a href="homepage.jsp">Main page</a>] [<a href="index.jsp">Logout</a>]
 </body>
 </html>
