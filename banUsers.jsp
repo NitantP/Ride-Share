@@ -34,7 +34,6 @@
 <FORM method = "POST" ACTION = "ban.jsp">
 		<table border="1">
 		<tr>
-		<td>Check</td>
 		<td>Username</td>
 		<td>Reported</td>
 		</tr>
