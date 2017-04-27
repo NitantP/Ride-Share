@@ -27,6 +27,21 @@
 	<td>Subject:</td><td><input type="text" name="subject"></td>
 	</tr>
 	<tr>
+	<td>Time:</td><td><input type="text" name="time"></td>
+	<% if (request.getAttribute("time") != null)
+	{
+		out.print(request.getAttribute("time"));
+	}%>
+	</tr>
+	<tr>
+	<td>Date:</td><td><input type="text" name="date"></td>
+	<%
+      if(request.getAttribute("date") != null){
+   		 out.print(request.getAttribute("date"));  
+      } 
+    %>
+	</tr>
+	<tr>
 	<td>Message (max. 100):</td><td><textarea rows="4" cols="25" name="content"></textarea></td>
 	</tr>
 	</table>
