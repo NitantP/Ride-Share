@@ -45,7 +45,7 @@
         	ed.forward(request, response);
 		}
 		//Make an insert statement for the Users table:
-		String insert = "INSERT INTO userlist(RUID, Email, Username, Password, AccountType, Name, Address, PhoneNumber)"
+		String insert = "INSERT INTO userlist(RUID, Email, Username, Password, AccountType, Name1, Address, PhoneNumber)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(insert);
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself

@@ -33,10 +33,15 @@
 	     			str = "DELETE FROM riderequests WHERE requestID = " + Integer.parseInt(deleteList[i]);
 	     			stmt.executeUpdate(str);
 	     		}
-			} else {
+			} else if(request.getParameter("deletetype").equals("message")){
 				for (int i = 0; i < deleteList.length; i++){
 					String[] deleteInfo = deleteList[i].split(",");
 					str = "DELETE FROM SEND_EMAIL WHERE Sender = \"" + deleteInfo[0] + "\" AND Date = \"" + deleteInfo[1] + "\" AND Time = \"" + deleteInfo[2] + "\"";
+	     			stmt.executeUpdate(str);
+				}
+			} else if(request.getParameter("deletetype").equals("ad")){
+				for (int i = 0; i < deleteList.length; i++){
+					str = "DELETE FROM adlist WHERE adID = " + Integer.parseInt(deleteList[i]);
 	     			stmt.executeUpdate(str);
 				}
 			}
