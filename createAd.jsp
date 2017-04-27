@@ -11,13 +11,31 @@
 </head>
 <body>
 
-Welcome System Support!
+<b>Advertisement creation page</b>
 <br>
 	<%
       if(request.getAttribute("adStatus") != null){
    		 out.print(request.getAttribute("adStatus"));  
       }
     %> 
+<br>
+	<form method="post" action="newAd.jsp">
+	<table>
+	<tr>    
+	<td>Company: </td><td><input type="text" name="company"></td>
+	</tr>
+	<tr>
+	<td>Advertisement: </td><td><textarea rows="4" cols="25" name="advert"></textarea></td>
+	</tr>
+	<tr>
+	<td>Price: </td><td><input type="text" name="price"></td>
+	</tr>
+	</table>
+	<br>
+	<input type="submit" value="Add new advertisement">
+	</form>
+<br>
+
 <br>
 	<form method="post" action="newAd.jsp">
 	<table>

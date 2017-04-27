@@ -12,8 +12,11 @@
 <body>
 
 Welcome, <%=(String)session.getAttribute("currentuser") %> [<a href="index.jsp">Logout</a>] 
-
-<p><a href="createSystemAccount.jsp">Create system support account</a></p>
+<br>
+<br>
+[<a href="createSystemAccount.jsp">Create system support account</a>]
+<br>
+[<a href="Stats.jsp">Statistics</a>]
 
 <br>
 <br>

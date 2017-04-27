@@ -40,6 +40,17 @@
 		ps.setString(2, newDate);
 		ps.setString(3, newTime);
 		ps.setString(4, newMaxPassengers);
+		
+		String qry = "SELECT MaxPassengers FROM carlist WHERE LicensePlate = \"" + LicensePlate + "\"";
+		ResultSet maxpasscheck = stmt.executeQuery(qry);
+		if(maxpasscheck.next()){
+			if(Integer.parseInt(newMaxPassengers) > maxpasscheck.getInt("MaxPassengers")){
+				request.setAttribute("maxpassengers", "Passengers exceeds give car capacity!");
+				RequestDispatcher ed = request.getRequestDispatcher("createRideOffer.jsp");
+				ed.forward(request, response);	
+			}
+		}
+		
 		ps.setString(5, LicensePlate);
 		if (checkRecurring == null)
 		{
@@ -57,8 +68,8 @@
 		boolean isDigit2 = true;
 		if (newDate.length() != 10 || newTime.length() != 5)
 		{
-			request.setAttribute("time", "Please use the format hour:minute");
-			request.setAttribute("date", "Please use the format year-month-day eg 2017-01-01");
+			request.setAttribute("time", "Please use the format HH:MM");
+			request.setAttribute("date", "Please use the format YYYY-MM-DD");
 			RequestDispatcher ed = request.getRequestDispatcher("createRideOffer.jsp");
 			ed.forward(request, response);	
 		}
@@ -105,6 +116,7 @@
 				{
 					request.setAttribute("duplicate","Duplicate Offer");
 					error = true;
+					result.close();
 				}
 				if(LicensePlate == null || LicensePlate.equals("")){
 					request.setAttribute("insertStatus","Error: no license plate selected!");
@@ -130,6 +142,7 @@
 				}
 			}
 		}
+		stmt.close();
 		con.close();
 	}
 	catch (Exception ex) {

@@ -84,8 +84,8 @@
 					|| (Integer.parseInt(newDate.substring(5, 7)) < 4 && Integer.parseInt(newDate.substring(8, 10)) < 26) || Integer.parseInt(newDate.substring(8, 10)) > 31)
 			{
 				
-				request.setAttribute("time", "Please use the format hour:minute");
-				request.setAttribute("date", "Please use the format year-month-day eg 2017-01-01");
+				request.setAttribute("time", "Please use the format HH:MM");
+				request.setAttribute("date", "Please use the format YYYY-MM-DD");
 				RequestDispatcher ed = request.getRequestDispatcher("createRideRequest.jsp");
 				ed.forward(request, response);	
 			}
