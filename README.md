@@ -13,4 +13,4 @@ Ride Share is an application developed to facilitate carpooling. Users can offer
 
 ## NOTE
 
-Usually, Ride Share would be hosted on an Apache Tomcat server running on an Amazon EC2 instance, but neither of these are up anymore. Therefore, Ride Share isn't usable at the moment.
+Unfortuneately, because the trial period for Amazon Web Services ended for the account that controlled the RDS and EC2 instances, Ride Share is no longer usable. Usually Ride Share would be available over the internet thanks to Apache Tomcat and EC2, but this is no longer the case. Furthermore, downloading the files to use would not work as is either because the database (RDS) no longer exists. Sorry!
