@@ -10,6 +10,10 @@
 <title>newUser</title>
 </head>
 <body>
+
+<!-- Create a new user account to enter into database user list (including error/validity checks) -->
+<!-- Takes from/returns to register.jsp -->
+
 	<%
 	try {
 		
@@ -21,7 +25,9 @@
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
-		//Get parameters from the HTML form at the main.jsp		
+
+
+		//Get parameters from the HTML form at register.jsp		
 		String newRUID = request.getParameter("ruid");
 		String newEmail = request.getParameter("email");
 		String newUsername = request.getParameter("username");
@@ -30,33 +36,37 @@
 		String newAddress = request.getParameter("address");
 		String newPhoneNum = request.getParameter("phoneNum");
 		
+		//Check to see if RUID or e-mail belongs to a banned user
 		String checkRUID = "SELECT b.RUID FROM banlist b WHERE RUID = \"" + newRUID + "\"";
 		String checkEmail = "SELECT b.Email FROM banlist b WHERE Email = \"" + newEmail + "\"";
+		
 		ResultSet result = stmt.executeQuery(checkRUID);
 		boolean ruid = result.next();
 		result = stmt.executeQuery(checkEmail);
 		boolean email = result.next();
-
-		if (email || ruid)
-		{
-			request.setAttribute("Banned", "You're banned");
-			RequestDispatcher ed = request.getRequestDispatcher("register.jsp");
+		
+		if (email || ruid) {
+			request.setAttribute("Banned", "You are banned");
+			RequestDispatcher ed = request.getRequestDispatcher("register.jsp"); //Let register.jsp know that either is banned
         	ed.forward(request, response);
 		}
-		//Make an insert statement for the Users table:
+
+		//If not banned, make an insert statement for the Users table
 		String insert = "INSERT INTO userlist(RUID, Email, Username, Password, AccountType, Name1, Address, PhoneNumber)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(insert);
+
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		ps.setString(1, newRUID);
 		ps.setString(2, newEmail);
 		ps.setString(3, newUsername);
 		ps.setString(4, newPassword);
-		ps.setString(5, "User");
+		ps.setString(5, "User"); //default account type
 		ps.setString(6, newName);
 		ps.setString(7, newAddress);
 		ps.setString(8, newPhoneNum);
 		
+		//Set up variables used later for error/validity checks
 		String userDup = "SELECT * FROM userlist c WHERE c.Username = \"" + newUsername + "\"";
 		String emailDup = "SELECT * FROM userlist c WHERE c.Email = \"" + newEmail + "\"";
 		String RUIDDup = "SELECT * FROM userlist c WHERE c.RUID = \"" + newRUID + "\"";
@@ -68,99 +78,77 @@
 		
 		int max = Math.max(newName.length(), newPhoneNum.length());
 	    
-	    for (int i = 0; i < Math.max(newRUID.length(), max); i++) 
-	    {
-	    	if (newRUID.length() > i + 1)
-	    	{
-		        if (!Character.isDigit(newRUID.charAt(i))) 
-		        {
+	    for (int i = 0; i < Math.max(newRUID.length(), max); i++) {
+	    	if (newRUID.length() > i + 1) {
+		        if (!Character.isDigit(newRUID.charAt(i))) {
 		        	isDigit = false;
 		        }
 	    	}
-	        if (newPhoneNum.length() > i + 1) 
-	        {
-	        	if(!Character.isDigit(newPhoneNum.charAt(i)))
-	        	{
+	        if (newPhoneNum.length() > i + 1) {
+	        	if(!Character.isDigit(newPhoneNum.charAt(i))) {
 	        		phoneDigit = false;
 	        	}
 	        }
-	        if (newName.length() > i + 1) 
-	        {
-	        	if(Character.isDigit(newName.charAt(i)))
-	        	{
+	        if (newName.length() > i + 1) {
+	        	if(Character.isDigit(newName.charAt(i))) {
 	        		nameDigit = true;
 	        	}
 	        }
 	    }
 	
+		//Check RUID: (1) is it valid? (2) is it a duplicate?
 	    result = stmt.executeQuery(RUIDDup);
-	    //ruid follows the format
-		if(newRUID.length() != 9 || !isDigit)
-		{
+		if(newRUID.length() != 9 || !isDigit) {
 				request.setAttribute("RUIDFailed", "Invalid RUID (must be 9 digits!)");
 				error = true;
-		}//there is a duplicate
-		else if (result.next())
-		{
+		} else if (result.next()) { 
 			request.setAttribute("RUIDFailed", "Duplicate RUID");
 			error = true;
 		}
 		
+		//Check username: (1) is it valid? (2) is it a duplicate?
 		result = stmt.executeQuery(emailDup);
-		//email from rutgers
-		if (!newEmail.toLowerCase().contains("@rutgers.edu") || newEmail.substring(newEmail.indexOf("@")).equals("rutgers.edu"))
-		{
+		if (!newEmail.toLowerCase().contains("@rutgers.edu") || newEmail.substring(newEmail.indexOf("@")).equals("rutgers.edu")) {
 			request.setAttribute("emailFailed", "Invalid email (must be an @rutgers.edu address!)");
 			error = true;
-		}//there is a duplicate
-		else if (result.next())
-		{
+		} else if (result.next()) {
 			request.setAttribute("emailFailed", "Duplicate Email");
 			error = true;
 		}
 		
+		//Check username: (1) is it blank? (2) is it a duplicate?
 		result = stmt.executeQuery(userDup);
-		//username is empty
-		if(newUsername.isEmpty())
-		{
+		if(newUsername.isEmpty()) {
 			request.setAttribute("userFailed", "Invalid username (cannot be blank!)");
 			error = true;
-		}//there is a duplicate
-		else if (result.next())
-		{
+		} else if (result.next()) {
 			request.setAttribute("userFailed", "Duplicate Username");
 			error = true;
 		}
 		
-		//password is empty
-		if(newPassword.isEmpty())
-		{
+		//Check password: (1) is it blank?
+		if(newPassword.isEmpty()) {
 			request.setAttribute("passFailed", "Invalid password (cannot be blank!)");
 			error = true;
 		}
 
-		//digit in the name
-		if (nameDigit)
-		{
+		//Name contains a digit (invalid)
+		if (nameDigit) {
 			request.setAttribute("nameFailed", "Invalid name");
 			error = true;
 		}
 		
-		//phone is not a digit
-		if (!phoneDigit || (newPhoneNum.length() != 0 && (newPhoneNum.length() < 7 || newPhoneNum.length() > 15)))
-		{
+		//Phone number is invalid
+		if (!phoneDigit || (newPhoneNum.length() != 0 && (newPhoneNum.length() < 7 || newPhoneNum.length() > 15))) {
 			request.setAttribute("phoneNumFailed", "Invalid phone number");
 			error = true;
 		}
 
-
-		if (error)
-		{
+		//If error, return to register.jsp with specific response. Otherwise, update database.
+		if (error) {
 			RequestDispatcher ed = request.getRequestDispatcher("register.jsp");
         	ed.forward(request, response);
-		}
-		else
-		{
+		} else {
 			//Run the query against the DB
 			ps.executeUpdate();
 			

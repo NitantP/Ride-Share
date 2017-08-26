@@ -12,23 +12,23 @@
 </head>
 <body>
 
+<!-- Displays users that are eligible to receive a ban -->
+
 <% 	
-		try {
-		//Create a connection string
-		String url = "jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
-		//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
-		Class.forName("com.mysql.jdbc.Driver");
-		//Create a connection to your DB
-		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
-				
-		Statement stmt = con.createStatement();
-		
-		String currentun = (String)session.getAttribute("currentuser");
-		
-		//Make a SELECT query from the users table with the username and password matches with the input
-		String str = "SELECT * FROM userlist u WHERE Reported > 5";
-		//Run the query against the database.
-		ResultSet result = stmt.executeQuery(str);
+	try {
+	//Create a connection string
+	String url = "jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
+	//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
+	Class.forName("com.mysql.jdbc.Driver");
+	//Create a connection to your DB
+	Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
+	//Create an SQL statement
+	Statement stmt = con.createStatement();
+	
+	String currentun = (String)session.getAttribute("currentuser");
+	
+	String str = "SELECT * FROM userlist u WHERE Reported > 5";
+	ResultSet result = stmt.executeQuery(str);
 %>
 
 <FORM method = "POST" ACTION = "ban.jsp">
@@ -38,7 +38,7 @@
 		<td>Reported</td>
 		</tr>
 
-<%		
+<%		//Choose users to ban
 		while(result.next())
 		{
 

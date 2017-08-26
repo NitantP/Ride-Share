@@ -10,6 +10,10 @@
 <title>Ride Share - Login</title>
 </head>
 <body>
+
+<!-- Verify a user account that is trying to log into the system -->
+<!-- Takes from/returns to index.jsp -->
+
 <% 
 		List<String> list = new ArrayList<String>();
 		
@@ -20,62 +24,52 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		//Create a connection to your DB
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
-		
+		//Create an SQL statement
 		Statement stmt = con.createStatement();
-		//Get the username from the main.jsp
+
+		//Check to see whether user exists and is banned
 		String un = request.getParameter("username");
-		//Get the password from the main.jsp
 		String pw = request.getParameter("password");
-		//Make a SELECT query from the users table with the username and password matches with the input
 		String str = "SELECT * FROM userlist WHERE Username = \"" + un + "\" AND Password = \"" + pw + "\";";
-		//out.print("" + str + "<br>");
-		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 
-			if(result.next()){
-				String banRUID = result.getString("RUID");
-				String AccountType = result.getString("AccountType");
-				//see if the user is banned
-				String ban = "SELECT * FROM banlist WHERE RUID = \"" + banRUID + "\"";
-				result = stmt.executeQuery(ban);
-				//Run query
-				//ResultSet resultBan = stmt.executeQuery(ban);
-				if (!result.next())
-				{
-					session.setAttribute("currentuser", un);
-					String hasRating = "SELECT HasRating FROM userlist WHERE Username = \"" + un + "\"";
-					result = stmt.executeQuery(hasRating);
-					result.next();
-					if(AccountType.equals("Admin")){
-						response.sendRedirect("adminIndex.jsp");
-					} else if(AccountType.equals("System Support")){
-						response.sendRedirect("systemIndex.jsp");
+		if(result.next()) {
+			String banRUID = result.getString("RUID");
+			String AccountType = result.getString("AccountType");
+			String ban = "SELECT * FROM banlist WHERE RUID = \"" + banRUID + "\"";
+			result = stmt.executeQuery(ban);
+			if (!result.next()) {
+				session.setAttribute("currentuser", un);
+				String hasRating = "SELECT HasRating FROM userlist WHERE Username = \"" + un + "\"";
+				result = stmt.executeQuery(hasRating);
+				result.next();
+				//Redirect according to account type
+				if(AccountType.equals("Admin")) {
+					response.sendRedirect("adminIndex.jsp");
+				} else if(AccountType.equals("System Support")) {
+					response.sendRedirect("systemIndex.jsp");
+				} else {
+					//Redirect a user to a rating page for previous ride, if available
+					if (!result.getString("HasRating").equals("0")) {
+						response.sendRedirect("giveRating.jsp");
 					} else {
-						if (!result.getString("HasRating").equals("0"))
-						{
-							response.sendRedirect("giveRating.jsp");
-						}
-						else
-						{
-							response.sendRedirect("homepage.jsp");
-						}
+						response.sendRedirect("homepage.jsp");
 					}
 				}
-				else
-				{
-					request.setAttribute("banned", "You Are Banned");
-					RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-					rd.forward(request, response);
-				}
 			} else {
-				request.setAttribute("loginFailed", "Invalid username or password!");
-	            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-	            rd.forward(request, response);
+				request.setAttribute("banned", "You Are Banned");
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
 			}
+		} else {
+			request.setAttribute("loginFailed", "Invalid username or password!");
+	        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+	        rd.forward(request, response);
+		}
 
 		con.close();
 		
-		}	catch (Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			out.print("System failure");	
 		}

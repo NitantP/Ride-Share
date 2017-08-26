@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- Generates an ad report containing statistics to more easily charge companies  -->
+
 <%
 	try {
 		//Create a connection string
@@ -19,12 +21,10 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		//Create a connection to your DB
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
-				
+		//Create an SQL statement
 		Statement stmt = con.createStatement();
 		
-		//Make a SELECT query from the users table with the username and password matches with the input
 		String str = "SELECT * FROM adlist";
-		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
 		DecimalFormat format = new DecimalFormat("0.##");
@@ -41,7 +41,8 @@
 		<td><b>Total to Bill</b></td>
 		</tr>
 
-		<%   
+		<%
+		//Display ads statistics
 		while(result.next())
 		{
 		%>	
@@ -70,7 +71,7 @@
 		stmt.close();
 		con.close();
 		
-		}	catch (Exception ex) {
+		} catch (Exception ex) {
 			out.print("System failure");	
 		}
 	%>

@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- Home page for system support staff -->
+
 Welcome System Support! [<a href="index.jsp">Logout</a>]
 <br>
 <br>

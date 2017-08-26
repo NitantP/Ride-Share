@@ -11,6 +11,9 @@
 </head>
 <body>
 
+<!-- Runs queries to generate a statistics report -->
+<!-- Takes from Stats.jsp -->
+
 <%
 	try {
 		//Create a connection string
@@ -25,6 +28,7 @@
 		
 		String str = "";
 		
+		//Query type 1
 		if(request.getParameter("submit1") != null){
 			String input = request.getParameter("input");
 			String querytype1 = request.getParameter("querytype1");
@@ -59,7 +63,7 @@
 			<td>Destination</td>
 			</tr>
 
-		<%   
+		<%  //Display results of query type 1
 			while(result.next())
 			{
 		%>	
@@ -77,7 +81,8 @@
 			}
 			%>
 			</table>
-		<%	
+		<%
+		//Query type 2
 		} else if(request.getParameter("submit2") != null) {
 			String input1 = request.getParameter("input1");
 			String input2 = request.getParameter("input2");
@@ -106,7 +111,7 @@
 			<td>Destination</td>
 			</tr>
 
-		<%   
+		<%  //Display results of query type 2 
 			while(result.next())
 			{
 		%>	
@@ -125,6 +130,7 @@
 			%>
 			</table>
 		<%	
+		//Query type 3
 		} else {
 			String input3 = request.getParameter("input3");
 			String querytype3 = request.getParameter("querytype3");
@@ -152,7 +158,7 @@
 			<td>Destination</td>
 			</tr>
 
-		<%   
+		<%  //Display results of query type 3 
 			while(result.next())
 			{
 		%>	

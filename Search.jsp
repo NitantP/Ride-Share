@@ -9,6 +9,9 @@ Search for a User Here
 <p></p>
 </head>
 <body>
+
+<!-- Page to search for users -->
+
 <br>
 	<form method="post" action="SearchController.jsp">
 	<table>

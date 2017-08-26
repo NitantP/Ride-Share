@@ -12,6 +12,7 @@
 </head>
 <body>
 
+<!-- Statistics page to input different queries for rides given/taken -->
 
 <FORM method = "POST" ACTION ="StatsDisplay.jsp">
 <table>
@@ -28,8 +29,10 @@
 </table>
 <input type=submit name=submit1 value="See Stats">
 </FORM>
+
 <br>
 <br>
+
 <FORM method="POST" ACTION="StatsDisplay.jsp">
 <table>
 		<tr>
@@ -42,9 +45,11 @@
 </table>
 <input type=submit name=submit2 value="See Stats">
 </FORM>
+
 <br>
 <br>
 <br>
+
 <FORM method="POST" ACTION="StatsDisplay.jsp">
 <table>
 		<tr>

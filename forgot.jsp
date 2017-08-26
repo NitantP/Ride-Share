@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<!-- Page to ask for password reset (forgot password) -->
 
 	<form method="post" action="forgotController.jsp">
 	<table>

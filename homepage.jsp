@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- Home page for the application -->
+
 Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="index.jsp">Logout</a>]
 
 <br>
@@ -49,7 +51,7 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		Class.forName("com.mysql.jdbc.Driver");
 		//Create a connection to your DB
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
-				
+		//Create an SQL statement		
 		Statement stmt = con.createStatement();
 		
 		//Make a SELECT query from the users table with the username and password matches with the input
@@ -69,7 +71,8 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		<td>Rating</td>
 		</tr>
 
-		<%   
+		<%
+		//Display all ride offers
 		while(result.next())
 		{
 		%>	
@@ -105,12 +108,11 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		Class.forName("com.mysql.jdbc.Driver");
 		//Create a connection to your DB
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
-				
+		//Create an SQL statement	
 		Statement stmt = con.createStatement();
 		
-		//Make a SELECT query from the users table with the username and password matches with the input
+		
 		String str = "SELECT * FROM riderequests R ORDER BY R.requestID DESC";
-		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 	%>		
 		<b>Ride requests</b>
@@ -124,7 +126,8 @@ Welcome to Ride Share, <%= session.getAttribute("currentuser") %>! [<a href="ind
 		<td>Destination</td>
 		</tr>
 
-		<%   
+		<%
+		//Display all ride requests
 		while(result.next())
 		{
 		%>	

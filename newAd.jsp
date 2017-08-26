@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- Run queries to insert a new advertisement into the system -->
+
 <%
 	try {
 
@@ -22,16 +24,17 @@
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
-		//Get parameters from the HTML form at the createRideOffer.jsp		
+	
+		//Get information to be inserted
 		String company = request.getParameter("company");
 		String advert = request.getParameter("advert");
 		String price = request.getParameter("price");
 		
-		//Make an insert statement for the Ride Offers table:
+
 		String insert = "INSERT INTO adlist(Company, Advert, TimesShown, Price)"
 		 				+ " VALUES (?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(insert);
-		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
+
 		ps.setString(1, company);
 		ps.setString(2, advert);
 		ps.setInt(3, 0);
@@ -39,6 +42,7 @@
 		
 		RequestDispatcher rd = request.getRequestDispatcher("createAd.jsp");
 		
+		//Error check on entered information (advertisment length restricted to 100 characters)
 		if(company == null || company.equals("")){
 			request.setAttribute("adStatus", "<h4 style=\"color:red;\">Error: need company name!</h4>");
 		} else if(advert.length() > 100){

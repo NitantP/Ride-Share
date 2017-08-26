@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<!-- Page to display all available ride invites based on matched ride offers -->
+
 <%
       if(request.getAttribute("acceptStatus") != null){
    		 out.print(request.getAttribute("acceptStatus")); 
@@ -23,16 +25,15 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		//Create a connection to your DB
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
-				
+		//Create an SQL statement
 		Statement stmt = con.createStatement();
 		
 		String currentun = (String)session.getAttribute("currentuser");
 		
 		int requestid = Integer.parseInt(request.getParameter("invited"));
 		
-		//Make a SELECT query from the users table with the username and password matches with the input
 		String str = "SELECT * FROM userlist U, rideoffers O, possibleMatches P, carlist C WHERE O.LicensePlate = C.LicensePlate AND O.Username = U.Username AND O.offerID = P.offerID AND P.requestID = " + requestid + " AND U.Username IN (SELECT O.Username FROM rideoffers O WHERE O.offerId IN (SELECT offerID FROM possibleMatches WHERE requestID = " + requestid + "))";
-		//Run the query against the database.
+
 		ResultSet result = stmt.executeQuery(str);
 %>
 
@@ -51,9 +52,8 @@
 		<td>Year</td>
 		</tr>
 
-<%      
-		while(result.next())
-		{
+<%      //Display all available ride invites (based on matches)
+		while(result.next()) {
 		%>
 		<tr>
 		<td><input type=radio name=offerid value = <%=result.getInt("O.offerID")%>/></td>
@@ -86,7 +86,7 @@
 		stmt.close();
 		con.close();
 		
-		}	catch (Exception ex) {
+		} catch (Exception ex) {
 			out.print("System failure");	
 		}
       }

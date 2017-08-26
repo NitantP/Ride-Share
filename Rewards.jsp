@@ -10,6 +10,9 @@
 <title>Rewards</title>
 </head>
 <body>
+
+<!-- Rewards page displaying a user's total rewards based on rides given -->
+
 Rewards
 		<%
 		try 
@@ -20,10 +23,10 @@ Rewards
 			Class.forName("com.mysql.jdbc.Driver");
 			//Create a connection to your DB
 			Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
-					
+			//Create an SQL statement		
 			Statement stmt = con.createStatement();
+			
 			String str = "SELECT * FROM userlist WHERE Username = \"" + (String)session.getAttribute("currentuser") + "\"";
-			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 		%>
 			<FORM method = "POST" >
@@ -35,6 +38,7 @@ Rewards
 			<td>RidesTaken</td>
 			</tr>
 		  <%
+		  	//Display a user's rewards (and associated statistics)
 			if(result.next())
 			{
 					%>
@@ -53,6 +57,7 @@ Rewards
 			</FORM>
 			
 	<% 
+	//Format information for easy access during display
 	String[] ridesgiven = new String[12];
 	for(int i = 1; i <= 12; i++){
 		str = "SELECT COUNT(*) AS total FROM acceptedRides WHERE Offerer = \"" + (String)session.getAttribute("currentuser") + "\" AND MONTH(Date) = " + i;
@@ -63,7 +68,7 @@ Rewards
 			ridesgiven[i-1] = "0";
 		}
 	}
-	
+	//Format information for easy access during display
 	String[] ridestaken = new String[12];
 	for(int i = 1; i <= 12; i++){
 		str = "SELECT COUNT(*) AS total FROM acceptedRides WHERE Requester = \"" + (String)session.getAttribute("currentuser") + "\" AND MONTH(Date) = " + i;

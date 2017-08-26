@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- Execute search query -->
+
 <%
 	try {
 		
@@ -22,67 +24,53 @@
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
-		//Get parameters from the HTML form at the createRideOffer.jsp		
-		
-		//Make an insert statement for the Ride Offers table:
+
+
 		String insert = "SELECT * FROM userlist u WHERE u.Username = \"" + request.getParameter("user") + "\"";
 		ResultSet result = stmt.executeQuery(insert);
 		String rating;
 		String user;
 		boolean error = false;
-		if (result.next())
-		{
+
+		if (result.next()) {
 			rating = result.getString("Rating");
 			user = result.getString("Username");
-		}
-		else
-		{
+		} else {
 			error = true;
 			rating = "";
 			user = "";
 		}
+
 		insert = "SELECT * FROM visibleUsers v WHERE v.Username = \"" + request.getParameter("user") + "\"";
 		result = stmt.executeQuery(insert);
-		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		
 		//INSERT INPUT CHECKS HERE
-		if(error)
-		{
+		if(error) {
 			request.setAttribute("none", "There are no users with that username");
 			RequestDispatcher ed = request.getRequestDispatcher("Search.jsp");
         	ed.forward(request, response);
-		}
-		else
-		{
-			if(!result.next())
-			{
+		} else {
+			if(!result.next()) {
 				out.println("Username: " + user);
 				out.println("<br>");
 				out.println("Rating: " + rating);
-			}
-			else
-			{
-				//Run the query against the DB
+			} else {
 				out.print("Search successful! <br><br>");
 				out.println("Username: " + user);
 				out.println("<br>");
-				if (!result.getString("Name1").equals(null) && !result.getString("Name1").equals(" "))
-				{
+				if (!result.getString("Name1").equals(null) && !result.getString("Name1").equals(" ")) {
 					out.println("Name: " + result.getString("Name1"));
 					out.println("<br>");
 				}
-				if (!result.getString("Address").equals(null) && !result.getString("Address").equals(" "))
-				{
+				if (!result.getString("Address").equals(null) && !result.getString("Address").equals(" ")) {
 					out.println("Address: " + result.getString("Address"));
 					out.println("<br>");
 				}
-				if (!result.getString("PhoneNumber").equals(null) && !result.getString("PhoneNumber").equals(" "))
-				{
+				if (!result.getString("PhoneNumber").equals(null) && !result.getString("PhoneNumber").equals(" ")) {
 					out.println("Phone Number: " + result.getString("PhoneNumber"));
 					out.println("<br>");
 				}
-				if (!result.getString("Email").equals(null) && !result.getString("Email").equals(" "))
-				{
+				if (!result.getString("Email").equals(null) && !result.getString("Email").equals(" ")) {
 					out.println("Email: " + result.getString("Email"));
 					out.println("<br>");
 				}

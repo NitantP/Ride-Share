@@ -14,6 +14,8 @@
 
 Welcome to the Ride Share website (TEAM 14)
 
+<!-- Login page for application -->
+
 <br>
 <br>
 	<form method="post" action="verifyUser.jsp">
@@ -28,9 +30,11 @@ Welcome to the Ride Share website (TEAM 14)
 	</table>
 	<input type="submit" value="Login">
 	<%
+	    //Invalid username or password
 		if(request.getAttribute("loginFailed") != null){
 			out.print(request.getAttribute("loginFailed"));  
 		}
+		//User is banned
 		if(request.getAttribute("banned") != null){
 			out.print(request.getAttribute("banned"));  
 		}

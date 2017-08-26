@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- Home page for administrators -->
+
 Welcome, <%=(String)session.getAttribute("currentuser") %> [<a href="index.jsp">Logout</a>] 
 <br>
 <br>

@@ -11,9 +11,11 @@
 </head>
 <body>
 
+<!-- Enter user information to have them banned -->
+<!-- Takes from banUsers.jsp -->
+
 <%
 	try {
-		//ban those that have >5 reports?
 		//Create a connection string
 		String url = "jdbc:mysql://cs336finalproject.cl75kudzatsx.us-east-1.rds.amazonaws.com:3306/users";
 		//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
@@ -22,19 +24,18 @@
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
-		//Get parameters from the HTML form at the createRideOffer.jsp		
 
-		//Make an update statement for the userlist table:
 		String d;
 		String insert;
 		PreparedStatement ps;
 		PreparedStatement ps2;
 		
-		d= "SELECT * From userlist u WHERE u.Reported > 5";
+		//Ban user that has been reported more than 5 times
+		d = "SELECT * From userlist u WHERE u.Reported > 5";
 		ps = con.prepareStatement(d);
 		ResultSet result = stmt.executeQuery(d);
-		while (result.next())
-		{
+		//Insert user into banlist ("ban them")
+		while (result.next()) {
 			insert = "INSERT INTO banlist(RUID, Email)"
 					+ " VALUES (?, ?)";
 			ps2 = con.prepareStatement(insert);
@@ -42,11 +43,9 @@
 			ps2.setString(2, result.getString("Email"));
 			ps2.executeUpdate();
 		}
-		//Run the query against the DB
 		out.print("Users Banned");
 		con.close();
-	}
-	catch (Exception ex) {
+	} catch (Exception ex) {
 		ex.printStackTrace();
 		out.print("Insert failed!");
 	}

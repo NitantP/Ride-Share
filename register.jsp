@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- Registration page to make a new account -->
+
 Ride Share (TEAM 14) 
 <br>
 									  
@@ -23,11 +25,10 @@ Ride Share (TEAM 14)
 	<tr>    
 	<td>Username:</td><td><input type="text" name="username">
 	<%
-      if(request.getAttribute("userFailed") != null){
+	  //Invalid username (blank, duplicate, or banned)
+      if(request.getAttribute("userFailed") != null) {
    		 out.print(request.getAttribute("userFailed"));  
-      } 
-      else if (request.getAttribute("Banned") != null)
-      {
+      } else if (request.getAttribute("Banned") != null) {
     	  out.print(request.getAttribute("Banned"));
       }
     %>
@@ -36,7 +37,8 @@ Ride Share (TEAM 14)
 	<tr>
 	<td>Password:</td><td><input type="password" name="password">
 	<%
-      if(request.getAttribute("passFailed") != null){
+	  //Invalid password (blank)
+      if(request.getAttribute("passFailed") != null) {
    		 out.print(request.getAttribute("passFailed"));  
       } 
     %>
@@ -45,28 +47,32 @@ Ride Share (TEAM 14)
 	<tr>
 	<td>E-mail:</td><td><input type="text" name="email">
 	<%
-      if(request.getAttribute("emailFailed") != null){
+	  //Invalid e-mail (non-Rutgers or duplicate)
+      if(request.getAttribute("emailFailed") != null) {
    		 out.print(request.getAttribute("emailFailed"));  
-      } 
+      }
     %>
 	</td>
 	</tr>
 	<tr>
 	<td>RUID:</td><td><input type="text" name="ruid">
 	<%
-      if(request.getAttribute("RUIDFailed") != null){
+	  //Invalid RUID (invalid format or duplicate)
+      if(request.getAttribute("RUIDFailed") != null) {
    		 out.print(request.getAttribute("RUIDFailed"));  
       } 
     %>
 	</td>
 	</tr>
 	<tr>
+	<!-- Settings below are not necessary for an account -->
 	<td>Optional Settings</td>
 	</tr>
 	<tr>
 	<td>Name:</td><td><input type="text" name="name">
 	<%
-      if(request.getAttribute("nameFailed") != null){
+	  //Invalid name (non-alpha character)
+      if(request.getAttribute("nameFailed") != null) {
    		 out.print(request.getAttribute("nameFailed"));  
       } 
     %>
@@ -75,7 +81,8 @@ Ride Share (TEAM 14)
 	<tr>
 	<td>Address:</td><td><input type="text" name="address">
 	<%
-      if(request.getAttribute("addressFailed") != null){
+	  //Invalid address
+      if(request.getAttribute("addressFailed") != null) {
    		 out.print(request.getAttribute("addressFailed"));  
       } 
     %>
@@ -84,7 +91,8 @@ Ride Share (TEAM 14)
 	<tr>
 	<td>Phone Number:</td><td><input type="text" name="phoneNum">
 	<%
-      if(request.getAttribute("phoneNumFailed") != null){
+	  //Invalid phone number (non-numeric character)
+      if(request.getAttribute("phoneNumFailed") != null) {
    		 out.print(request.getAttribute("phoneNumFailed"));  
       } 
     %>

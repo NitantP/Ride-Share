@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- Reset user password in the database -->
+
 <%
 	try {
 		
@@ -22,19 +24,20 @@
 		Connection con = DriverManager.getConnection(url, "cs336project", "csteam14");
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
-		//Get parameters from the HTML form at the createRideOffer.jsp		
+
 
 		//Make an update statement for the userlist table:
 		String update;
 		PreparedStatement ps;
 		
+		//Execute password update
 		update = "UPDATE userlist SET Password = \"" + " " + "\" WHERE ForgotPass = 1";
 		ps = con.prepareStatement(update);
 		ps.executeUpdate();
 		update = "UPDATE userlist SET ForgotPass = 0 WHERE ForgotPass = 1";
 		ps = con.prepareStatement(update);
 		ps.executeUpdate();
-		//Run the query against the DB
+		
 		out.print("Successful Password Reset");
 		
 		stmt.close();
